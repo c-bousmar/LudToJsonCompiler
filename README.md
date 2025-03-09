@@ -27,6 +27,29 @@ Game and Metadata are both treated as one simple string for now.
 │── README.md
 ```
 
+## Setup
+
+1. **Install Poetry** (if not already installed):
+   ```sh
+   curl -sSL https://install.python-poetry.org | python3 -
+   ```
+
+2. **Install Dependencies**:
+   ```sh
+   poetry install
+   ```
+   This ensures all dependencies are installed according to `pyproject.toml`.
+
+3. **Activating the Virtual Environment**:
+   ```sh
+   poetry shell
+   ```
+
+4. **Running Scripts Inside Poetry Environment**:
+   ```sh
+   poetry run python script.py
+   ```
+
 ## Usage
 If a `"game name"` is given, the script only tries for that specific game, do it for all otherwise.
 #### Running everything together:
