@@ -1,0 +1,81 @@
+{
+    "define": {},
+    "game": "\"Compart\" (players 2) (equipment { (board <Board> use:Vertex) (piece \"Marker\" Each) } ) (rules (meta (swap)) (play (move Add (to (sites Empty) if:(not (is In (to) (sites (values Remembered)))) (apply (addScore Mover 1)) ) (then (do (forEach Site (sites Group at:(last To) if:(not (is Enemy (who at:(to)))) ) (remember Value (site)) ) next:(if (< 0 (count Sites in:(difference (sites Empty) (sites (values Remembered)) ) ) ) (moveAgain) (forget Value All) ) ) ) ) ) (end (if (is Full) { (if (= (score P1) (score P2) ) (result Mover Win) ) (if True (byScore misere:True) ) } ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3x3": {
+                    "content": "(square 3)",
+                    "description": "A 3x3 board is currently selected."
+                },
+                "4x4": {
+                    "content": "(square 4)",
+                    "description": "A 4x4 board is currently selected."
+                },
+                "5x5": {
+                    "content": "(square 5)",
+                    "description": "A 5x5 board is currently selected."
+                },
+                "6x6": {
+                    "content": "(square 6)",
+                    "description": "A 6x6 board is currently selected."
+                },
+                "7x7": {
+                    "content": "(square 7)",
+                    "description": "A 7x7 board is currently selected."
+                },
+                "8x8": {
+                    "content": "(square 8)",
+                    "description": "An 8x8 board is currently selected."
+                },
+                "9x9": {
+                    "content": "(square 9)",
+                    "description": "A 9x9 board is currently selected."
+                },
+                "10x10": {
+                    "content": "(square 10)",
+                    "description": "A 10x10 board is currently selected."
+                },
+                "11x11": {
+                    "content": "(square 11)",
+                    "description": "An 11x11 board is currently selected."
+                },
+                "12x12": {
+                    "content": "(square 12)",
+                    "description": "A 12x12 board is currently selected."
+                },
+                "13x13": {
+                    "content": "(square 13)",
+                    "description": "A 13x13 board is currently selected."
+                },
+                "14x14": {
+                    "content": "(square 14)",
+                    "description": "A 14x14 board is currently selected."
+                },
+                "15x15": {
+                    "content": "(square 15)",
+                    "description": "A 15x15 board is currently selected."
+                },
+                "16x16": {
+                    "content": "(square 16)",
+                    "description": "A 16x16 board is currently selected."
+                },
+                "17x17": {
+                    "content": "(square 17)",
+                    "description": "A 17x17 board is currently selected."
+                },
+                "18x18": {
+                    "content": "(square 18)",
+                    "description": "An 18x18 board is currently selected."
+                },
+                "19x19": {
+                    "content": "(square 19)",
+                    "description": "A 19x19 board is currently selected."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

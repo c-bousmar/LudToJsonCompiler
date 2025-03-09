@@ -1,0 +1,32 @@
+{
+    "define": {
+        "Nbors": "(count Sites in:(intersection (sites Around #1) (sites Occupied by:All) ) )",
+        "Grow": "(forEach Site (sites Board) (if (and (is Empty (to)) (= 3 (\"Nbors\" (to))) ) (add (piece \"Disc\") (to (to))) (if (and (is Occupied (to)) (or (< (\"Nbors\" (to)) 2) (> (\"Nbors\" (to)) 3)) ) (remove (to)) ) ) )"
+    },
+    "game": "\"Game of Life\" (players 0) (equipment { (board <Board>) (piece \"Disc\" Shared) }) (rules (start (place \"Disc\" (sites {<Start>}))) (play (\"Grow\") ) (end (if (= (count Moves) 100) (result Mover Draw))) )",
+    "option": {
+        "Board": {
+            "arguments": "<board>",
+            "items": {
+                "Square 8x8": {
+                    "content": "(square 8)",
+                    "description": "Square 8x8 board."
+                },
+                "Square 12x12": {
+                    "content": "(square 12)",
+                    "description": "Square 12x12 board."
+                },
+                "Hex 5": {
+                    "content": "(hex 5)",
+                    "description": "Hex 5 board."
+                }
+            }
+        },
+        "Start": {
+            "arguments": "<start>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Board game version of Conway's Game of Life.\") (rules \"At each tick, a set of rules are applied to every board cell, which determine whether a piece 'lives' or 'dies' at each cell. Any live cell with two or three live neighbours survives. Any dead cell with three live neighbours becomes a live cell. All other live cells die in the next generation. Similarly, all other dead cells stay dead.\") (id \"708\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"simulation\") (author \"John Horton Conway\") (credit \"Eric Piette and Cameron Browne\") (date \"1970\") } )"
+}

@@ -1,0 +1,213 @@
+{
+    "define": {
+        "CellOfLastEdge": "(sites Incident Cell of:Edge at:(last To))",
+        "NoFreeEdge": "(\"NoSites\" (intersection (sites Incident Edge of:Cell at:(site)) (sites Empty Edge) ) )",
+        "CaptureTheCell": "(claim (to Cell (site) ) (then (and (addScore Mover 1) (moveAgain) ) ) )",
+        "HalfBoardSize": "(/ (count Cells) 2"
+    },
+    "game": "\"Dots and Boxes\" (players 2) (equipment {(board <Dual:begin> (<Board> <Size>) <Dual:end>) }) (rules (play (move Add (to Edge (sites Empty Edge)) (then (forEach Site \"CellOfLastEdge\" (if \"NoFreeEdge\" \"CaptureTheCell\" ) ) ) ) ) (end (if (> (score Mover) \"HalfBoardSize\") (result Mover <Result>))) )",
+    "option": {
+        "Board": {
+            "arguments": "<type>",
+            "items": {
+                "Square": {
+                    "content": "square",
+                    "description": "The board uses a square tiling."
+                },
+                "Diamond Square": {
+                    "content": "square Diamond",
+                    "description": "The diamond board uses a square tiling."
+                },
+                "Hexagon": {
+                    "content": "hex",
+                    "description": "The board uses a hexagon tiling."
+                },
+                "Square Hexagon": {
+                    "content": "hex Square",
+                    "description": "The square board uses a hexagon tiling."
+                },
+                "Diamond Hexagon": {
+                    "content": "hex Diamond",
+                    "description": "The diamond board uses a hexagon tiling."
+                },
+                "Triangle Hexagon": {
+                    "content": "hex Triangle",
+                    "description": "The triangle board uses a hexagon tiling."
+                },
+                "Star Hexagon": {
+                    "content": "hex Star",
+                    "description": "The star board uses a hexagon tiling."
+                },
+                "Limping Hexagon": {
+                    "content": "hex Limping",
+                    "description": "The limping board uses a hexagon tiling."
+                },
+                "Triangle": {
+                    "content": "tri",
+                    "description": "The board uses a triangle tiling."
+                },
+                "Hexagon Triangle": {
+                    "content": "tri Hexagon",
+                    "description": "The hexagonal board uses a triangle tiling."
+                },
+                "Diamond Triangle": {
+                    "content": "tri Diamond",
+                    "description": "The diamond board uses a triangle tiling."
+                },
+                "Square Triangle": {
+                    "content": "tri Square",
+                    "description": "The square board uses a triangle tiling."
+                },
+                "Star Triangle": {
+                    "content": "tri Star",
+                    "description": "The star board uses a triangle tiling."
+                },
+                "Limping Triangle": {
+                    "content": "tri Limping",
+                    "description": "The limping board uses a triangle tiling."
+                },
+                "Celtic": {
+                    "content": "celtic",
+                    "description": "The board uses a celtic tiling."
+                },
+                "Brick": {
+                    "content": "brick",
+                    "description": "The board uses a brick tiling."
+                },
+                "Diamond Brick": {
+                    "content": "brick Diamond",
+                    "description": "The diamond board uses a brick tiling."
+                },
+                "Spiral Brick": {
+                    "content": "brick Spiral",
+                    "description": "The spiral board uses a brick tiling."
+                },
+                "Limping Brick": {
+                    "content": "brick Limping",
+                    "description": "The limping board uses a brick tiling."
+                },
+                "Quadhex": {
+                    "content": "quadhex",
+                    "description": "The board uses a quadhex tiling."
+                },
+                "Tiling 31212": {
+                    "content": "tiling T31212",
+                    "description": "The board uses a tiling 31212."
+                },
+                "Tiling 333333_33434": {
+                    "content": "tiling T333333_33434",
+                    "description": "The board uses a tiling 333333_33434."
+                },
+                "Tiling 33336": {
+                    "content": "tiling T33336",
+                    "description": "The board uses a tiling 33336."
+                },
+                "Tiling 33344": {
+                    "content": "tiling T33344",
+                    "description": "The board uses a tiling 33344."
+                },
+                "Tiling 3464": {
+                    "content": "tiling T3464",
+                    "description": "The board uses a tiling 3464."
+                },
+                "Tiling 3636": {
+                    "content": "tiling T3636",
+                    "description": "The board uses a tiling 3636."
+                },
+                "Tiling 4612": {
+                    "content": "tiling T4612",
+                    "description": "The board uses a tiling 4612."
+                },
+                "Tiling 488": {
+                    "content": "tiling T488",
+                    "description": "The board uses a tiling 488."
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3x3": {
+                    "content": "3",
+                    "description": "The game is played on a 3x3 board."
+                },
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board."
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board."
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board."
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board."
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board."
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board."
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board."
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": "The game is played on a 11x11 board."
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "The game is played on a 12x12 board."
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": "The game is played on a 13x13 board."
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "The game is played on a 14x14 board."
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": "The game is played on a 15x15 board."
+                }
+            }
+        },
+        "Dual": {
+            "arguments": "<begin> <end>",
+            "items": {
+                "No": {
+                    "content": "> <",
+                    "description": ""
+                },
+                "Yes": {
+                    "content": "(dual > <)",
+                    "description": "The dual of the board is applied."
+                }
+            }
+        },
+        "End Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Standard": {
+                    "content": "Win",
+                    "description": "The first player capture half the cells wins."
+                },
+                "Misere": {
+                    "content": "Loss",
+                    "description": "The first player capture half the cells loses."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Dots and Boxes was invented in the nineteenth century by \u00c9douard Lucas, calling it \\\"la Pipopipette.\\\" It is a pen-and-paper game that is sometimes adapted into other forms.\") (aliases {\"La Pipopipette\"}) (rules \"It is played on a board that is a grid of dots. 3x3 dots is common. Players alternate turns drawing a line between two of the dots. If a player completes a square, they receive one point and play again. The player with the most points when there are no more moves wins.\") (source \"<a href=\\\"https: (id \"103\") (version \"1.3.14\") (classification \"math/graph\") (author \"\u00c9douard Lucas\") (credit \"Eric Piette\") (date \"1889\") } ) (graphics { (player Colour P1 (colour Red)) (player Colour P2 (colour Blue)) (board Style PenAndPaper replaceComponentsWithFilledCells:True) }) (ai \"Dots and Boxes_ai\" )"
+}

@@ -1,0 +1,16 @@
+{
+    "define": {},
+    "game": "\"Temeen Tavag\" (players 2) (equipment { <Board> (hand Each) (piece \"Disc\" Each \"StepToEmpty\") }) (rules (start (place \"Disc\" \"Hand\" count:2)) phases:{ (phase \"Placement\" (play (move (from (handSite Mover)) (to (sites Empty)) ) ) (nextPhase Mover (\"HandEmpty\" Mover) \"Movement\") ) (\"PhaseMovePiece\" \"Movement\") } (end (\"BlockWin\")) )",
+    "option": {
+        "Board": {
+            "arguments": "<board>",
+            "items": {}
+        }
+    },
+    "rulesets": {
+        "Temeen Tavag (Observed)": {
+            "Board": "Circle"
+        }
+    },
+    "metadata": "(info { (description \"Temeen Tavag (\\\"Camel hoof\\\") is a blockade game played in Mongolia. It can also be played on a square board, when it is known as D\u00f6rv\u00f6n Bux (the four bulls). \") (aliases {\"D\u00f6rv\u00f6n Bux\"}) (useFor \"Ruleset/Temeen Tavag (Observed)\" (rules \"An X, with a rounded line connecting the four endpoints of the X, but leaving two unconnected. A circle is drawn between these two unconnected endpoints. Two pieces per player. Players alternate turns placing one of their pieces on an empty point on the board. When all of the pieces are placed, players alternate turns moving one of the pieces to an empty adjacent point on the board, moving along the lines. The player who blocks their opponent from being able to move wins.\")) (useFor \"Ruleset/Temeen Tavag (Observed)\" (source \"Popova 1974: 16-18.\")) (useFor \"Ruleset/Temeen Tavag (Observed)\" (id \"1007\")) (useFor \"Ruleset/Dorvon Bux (Observed)\" (rules \"The board is a square, with diagonals drawn. One of the sides of the square is not drawn.\")) (useFor \"Ruleset/Dorvon Bux (Observed)\" (source \"Popova 1974: 16-18\")) (useFor \"Ruleset/Dorvon Bux (Observed)\" (id \"1008\")) (id \"1007\") (version \"1.3.14\") (classification \"board/space/blocking\") (credit \"Eric Piette\") (origin \"This game was played in Mongolia, from around 1963 to 1991.\") } ) (graphics { (useFor \"Ruleset/Temeen Tavag (Observed)\" (board Background image:\"disc.svg\" edgeColour:(colour 90 90 90) scale:0.5 offsetX:-0.6)) }) (ai \"Temeen Tavag_ai\" )"
+}

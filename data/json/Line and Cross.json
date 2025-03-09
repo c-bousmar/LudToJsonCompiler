@@ -1,0 +1,16 @@
+{
+    "define": {},
+    "game": "\"Line and Cross\" (players <Version:numPlayers>) (equipment { (board <Board:type> use:Edge) (piece \"Marker\" Shared) }) (rules (start <Board:start> ) (play (move Remove (sites Occupied by:Shared) (then (and (remove Edge (last To)) (forEach Site (sites Crossing at:(last To) All) (and (remove Edge (to)) (addScore Mover 1) ) ) ) ) ) ) (end (if (no Moves Next) (byScore) ) ) )",
+    "option": {
+        "Board": {
+            "arguments": "<type> <start>",
+            "items": {}
+        },
+        "Players": {
+            "arguments": "<numPlayers>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Line and Cross is a multi-player mathematical game.\") (rules \"Initially, there is a number of edges in a plane, where some of them cross each other. At each turn, a player selects an edge to remove it and all of its intersecting edges. The number of edges with which a selected edge intersects is added to the player's score. When there are no moves left, the game is over. Finally, the player with the highest score wins.\") (id \"680\") (version \"1.3.14\") (classification \"experimental/graph theory\") (author \"Tahmina Begum\") (credit \"Tahmina Begum 22-06-2020\") (date \"22-06-2020\") } ) (graphics { (player Colour Shared (colour 255 200 0)) (board Style PenAndPaper replaceComponentsWithFilledCells:True) (show Edges ThinDotted (colour 127 127 127)) }) (ai \"Line and Cross_ai\" )"
+}

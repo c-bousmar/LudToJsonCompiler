@@ -1,0 +1,117 @@
+{
+    "define": {
+        "GroupCount": "(max 0 (max (sizes Group \"ScoreConnectionDirection\" #1) ) )",
+        "GroupScore": "(set Var \"MoverScore\" (\"GroupCount\" Mover) (then (set Var \"NextScore\" (\"GroupCount\" Next) (then <TieScoring:tiebreaker> ) ) ) )",
+        "PlusCaptureScore": "(set Var \"MoverScore\" (+ (value Piece at:(handSite Mover)) (\"GroupCount\" Mover) ) (then (set Var \"NextScore\" (+ (value Piece at:(handSite Next)) (\"GroupCount\" Next) ) (then <TieScoring:tiebreaker> ) ) ) )",
+        "BonusMover": "(set Var \"MoverScore\" (+ (\"GroupCount\" Mover) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (mover))) ) (then (set Var \"NextScore\" (+ (\"GroupCount\" Next) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (next))) ) (then <TieScoring:tiebreaker> ) ) ) )",
+        "BonusOpponent": "(set Var \"MoverScore\" (+ (\"GroupCount\" Mover) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (next))) ) (then (set Var \"NextScore\" (+ (\"GroupCount\" Next) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (mover))) ) (then <TieScoring:tiebreaker> ) ) ) )",
+        "CascadeScore": "(max 0 (max (difference (sizes Group \"ScoreConnectionDirection\" #1) (sizes Group \"ScoreConnectionDirection\" #2) ) ) )",
+        "NoTiebreaker": "(and (set Score Mover (var \"MoverScore\")) (set Score Next (var \"NextScore\")) )",
+        "CascadeTiebreaker": "(if (= (var \"MoverScore\") (var \"NextScore\")) (and (set Score Mover (- 0 (\"CascadeScore\" Mover Next))) (set Score Next (- 0 (\"CascadeScore\" Next Mover))) ) (\"NoTiebreaker\") )",
+        "CaptureScores": "(forEach Value (array #1) (if (> 2 (count Sites in:(sites Around (value) \"ConnectionDirection\" if:(is Empty (to))))) (if (is Mover (who at:(value))) (remove (value)) (remove (value) (then (if (is Empty (handSite Mover)) (add (piece (id \"Disc\" Next)) (to (handSite Mover)) (then (set Value at:(handSite Mover) (+ 1 (value Piece at:(handSite Mover)))) )) (set Value at:(handSite Mover) (+ 1 (value Piece at:(handSite Mover)))) ) ) ) ) ) )",
+        "Capture": "(forEach Value (array #1) (if (> 2 (count Sites in:(sites Around (value) \"ConnectionDirection\" if:(is Empty (to))))) (remove (value)) ) )",
+        "AllHave1Connection2Edge": "(all Sites #1 if:(or (and (is Empty (site)) (is In (site) (sites Outer)) ) (!= Infinity (count Steps (step \"ConnectionDirection\" (to if:(is Empty (to))) ) (site) (difference (sites Outer) (site)) ) ) ) )",
+        "ColourBackground": "(colour 126 130 156"
+    },
+    "game": "\"Branching Coral\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" Each) (piece \"Disc\" Each) <Scoring:handType> }) (rules (start (set Score Each 0)) (play (do (move Add (to (sites Empty) if:(< 1 (count Sites in:(intersection (sites Around (to) \"ConnectionDirection\") (sites Empty) ) ) ) ) ) ifAfterwards:(\"AllHave1Connection2Edge\" (intersection (sites Around (last To) \"ConnectionDirection\") (sites Empty) ) ) (then (do (<Scoring:captureType> (intersection (sites Occupied by:All) (sites Around (last To) \"ConnectionDirection\") )) next:(<Scoring:selScoring>) ) ) ) ) (end (if (no Moves Next) { (if (= (score Mover) (score Next)) <TieScoring:finalTie> ) (if (!= (score Mover) (score Next)) (byScore) ) }) ) ) ) /----------------------------------------- (define \"ScoreConnectionDirection\" <BoardShape:directionScored>) (define \"ConnectionDirection\" <BoardShape:directionUsed>) (define \"BoardUsed\" <BoardShape:gridType>) (define \"HexLimp\" (board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell)) (define \"Hex2Limp\" (board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell)) (define \"HexCell\" (board (hex Hexagon <BoardSize:smallSide>) use:Cell)) (define \"TriSquare\" (board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex",
+    "option": {
+        "Size": {
+            "arguments": "<smallSide>",
+            "items": {
+                "3 (5 moves each)": {
+                    "content": "3",
+                    "description": "Order 3 board - about 5 moves each"
+                },
+                "4 (11 moves each)": {
+                    "content": "4",
+                    "description": "Order 4 board - about 11 moves each"
+                },
+                "5 (17 moves each)": {
+                    "content": "5",
+                    "description": "Order 5 board - about 17 moves each"
+                },
+                "6 (27 moves each)": {
+                    "content": "6",
+                    "description": "Order 6 board - about 27 moves each"
+                },
+                "7 (40 moves each)": {
+                    "content": "7",
+                    "description": "Order 7 board - about 40 moves each"
+                },
+                "8 (55 moves each)": {
+                    "content": "8",
+                    "description": "Order 8 board - about 55 moves each"
+                },
+                "9 (70 moves each)": {
+                    "content": "9",
+                    "description": "Order 9 board - about 70 moves each"
+                },
+                "11 (105 moves each)": {
+                    "content": "11",
+                    "description": "Order 11 board - about 105 moves each"
+                }
+            }
+        },
+        "Board Grid": {
+            "arguments": "<gridType> <directionUsed> <diagShow> <directionScored> <backgroundImage>",
+            "items": {
+                "TriSquare connections to edge All directions - Orthogonal only form groups": {
+                    "content": "\"TriSquare\"> <All> <ThinDotted> <Adjacent> <\"Disc\"",
+                    "description": "Triangle-Square N-2 all directions connect paths to edge - Orthogonal only form groups, about 20% more moves"
+                },
+                "TriSquare connections to edge orthogonal only - All directions form groups": {
+                    "content": "\"TriSquare\"> <Adjacent> <Hidden> <All> <\"Disc\"",
+                    "description": "Triangle-Square N-2 Orthogonal connections to edge - ALl direction form groups"
+                },
+                "Hex Limping": {
+                    "content": "\"HexLimp\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex N / N-1 Grid, about 5% less moves"
+                },
+                "Hex Double Limping": {
+                    "content": "\"Hex2Limp\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex N+1 / N-1 Grid"
+                },
+                "Hex Grid": {
+                    "content": "\"HexCell\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex Grid - Standard"
+                }
+            }
+        },
+        "Bonus Goal": {
+            "arguments": "<selScoring> <handType> <captureType>",
+            "items": {
+                "Captured opponent's pieces": {
+                    "content": "\"PlusCaptureScore\"> <(hand Each size:1)> <\"CaptureScores\"",
+                    "description": "Scoring Option: Score a point for each piece in your largest group and each opponent piece you capture"
+                },
+                "Number of mover groups": {
+                    "content": "\"BonusMover\"> <> <\"Capture\"",
+                    "description": "Scoring Option: Score the size of your largest group, then score an additional point for every group you have on the board."
+                },
+                "Number of opponent's groups": {
+                    "content": "\"BonusOpponent\"> <> <\"Capture\"",
+                    "description": "Scoring Option: Score the size of your largest group, then score an additional point for every opponent's group on the board."
+                },
+                "No Bonus: Largest group size only": {
+                    "content": "\"GroupScore\"> <> <\"Capture\"",
+                    "description": "Scoring Option: No bonus. Score a point only for each piece in your largest group"
+                }
+            }
+        },
+        "TieBreaker": {
+            "arguments": "<tiebreaker> <finalTie>",
+            "items": {
+                "A: Largest group, cascading LOSES": {
+                    "content": "(\"CascadeTiebreaker\")> <(result Mover Win)",
+                    "description": "Tiebreaker is largest group (excluding tied pairs) LOSES. If all are paired, last placement wins."
+                },
+                "B: Last to place": {
+                    "content": "(\"NoTiebreaker\")> <(result Mover Win)",
+                    "description": "Tiebreaker is last to place wins."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

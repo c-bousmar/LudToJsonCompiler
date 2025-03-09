@@ -1,0 +1,152 @@
+{
+    "define": {
+        "SameTurn": "(is Prev Mover",
+        "SitePowerPlayerAt": "(- (* 2 (count Pieces of:#1 in:(sites Around #2 <Board:adj> includeSelf:True))) (count Pieces All in:(sites Around #2 <Board:adj> includeSelf:True))",
+        "PlacementSites": "(forEach (sites Empty) if:(< 0 (\"SitePowerPlayerAt\" (mover) (site)))",
+        "SitesUncontrolledEmpty": "(difference (sites Empty) (sites (results from:(difference (sites Board) (sites Empty)) to:(sites Around (from) if:(and (is Empty (to)) (< 0 (\"SitePowerPlayerAt\" (who at:(from)) (to))) )) (to)",
+        "SiteUntontrolledOccupiedBy": "(difference (sites Occupied by:(player #1)) (sites (results from:(difference (sites Occupied by:All) (sites Occupied by:(player #1))) to:(sites Around (from) if:(and (= #1 (who at:(to))) (< 0 (\"SitePowerPlayerAt\" (who at:(from)) (to))) )) (to)",
+        "PlayerTerritory": "(forEach (sites Board) if:(or (< 0 (\"SitePowerPlayerAt\" #1 (site))) (and { (= #1 (who at:(site))) (is In (site) (\"SiteUntontrolledOccupiedBy\" #1)) }",
+        "SetScores": "(forEach Player (set Score (player (player)) (max 0 (size Array (array (\"PlayerTerritory\" (player))))",
+        "MoveAddPriority": "(priority (move Add (to (#1) (apply (set Var \"PlacedPiece\" (to))) )) (move Add (to (#2) (apply (set Var \"PlacedPiece\" (to))) )) (then (set Value Mover (max 0 (- (\"SitePowerPlayerAt\" (mover) (last To)) 1)) (then (if (>= 0 (value Player Mover)) (\"SetScores\") (and (\"SetScores\") (moveAgain)",
+        "MoveUntilDone": "(or (move Pass (then (\"SetScores\")) ) (do (set Value Mover (- (value Player Mover) 1)) next:(forEach Piece (move Step (from if:(!= (from) (var \"PlacedPiece\"))) <Board:adj> (to if:(is Empty (to))) (then (if (>= 0 (value Player Mover)) (\"SetScores\") (moveAgain)",
+        "Show3": "(show Symbol \"Disc.svg\" P3 Vertex (\"PlayerTerritory\" 3) edgeColour:(colour Red) scale:1.0)",
+        "Show34": "\"Show3\" (show Symbol \"Disc.svg\" P4 Vertex (\"PlayerTerritory\" 4) edgeColour:(colour Green) scale:1.0)",
+        "Show345": "\"Show34\" (show Symbol \"Disc.svg\" P5 Vertex (\"PlayerTerritory\" 5) edgeColour:(colour Blue) scale:1.0)",
+        "Show3456": "\"Show345\" (show Symbol \"Disc.svg\" P6 Vertex (\"PlayerTerritory\" 6) edgeColour:(colour Magenta) scale:1.0)"
+    },
+    "game": "\"Parry\" (players <PlayerCount:option>) (equipment { (board <Board:size> use:Vertex) (piece \"Ball\" Each) } ) (rules (meta (no Repeat PositionalInTurn)) (start { (set Score Each 1) } ) (play (if \"SameTurn\" (\"MoveUntilDone\") (\"MoveAddPriority\" \"PlacementSites\" \"SitesUncontrolledEmpty\" ))) (end { (if (and { \"EndCondition\" (= 2 <PlayerCount:option>) (= (score P1) (score P2)) (= (id P1) (what at:(var \"PlacedPiece\"))) } ) (result P1 Win) ) (if (and { \"EndCondition\" (= 2 <PlayerCount:option>) (= (score P1) (score P2)) (!= (id P1) (what at:(var \"PlacedPiece\"))) } ) (result P2 Win) ) (if \"EndCondition\" (byScore) ) } ) ) ) (define \"EndCondition\" (or (no Moves Next) (all Passed)",
+    "option": {
+        "Number of players": {
+            "arguments": "<option> <graphics>",
+            "items": {
+                "Two": {
+                    "content": "2> <",
+                    "description": "Two Players"
+                },
+                "Three": {
+                    "content": "3> <(\"Show3\")",
+                    "description": "Three Players"
+                },
+                "Four": {
+                    "content": "4> <(\"Show34\")",
+                    "description": "Four Players"
+                },
+                "Five": {
+                    "content": "5> <(\"Show345\")",
+                    "description": "Five Players"
+                },
+                "Six": {
+                    "content": "6> <(\"Show3456\")",
+                    "description": "Six Players"
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size> <adj> <diag>",
+            "items": {
+                "Equiversi 2-4 (18)": {
+                    "content": "(tri {2 4 2 4 2})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Equiversi Hexhex with edges alternating 2 and 4"
+                },
+                "Hex 3 (19)": {
+                    "content": "(tri Hexagon 3)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex 3"
+                },
+                "Square 5 ortho (25)": {
+                    "content": "(square 5)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 5"
+                },
+                "Square 4 omni (25)": {
+                    "content": "(add (remove (square 7) vertices:{ 0 1 2 4 5 6 7 8 12 13 14 20 28 34 35 36 40 41 42 43 44 46 47 48}) edges:{{0 1} {0 3} {3 8} {1 4} {4 9} {8 15} {9 16} {15 20} {16 21} {20 23} {21 24} {23 24}} )> <All> <Thin",
+                    "description": "Board & size: Orthogonal 4"
+                },
+                "Hex 3-4 (27)": {
+                    "content": "(tri {3 4 3 4 3})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex with edges alternating 3 and 4"
+                },
+                "Equiversi 3-5 (36)": {
+                    "content": "(tri {3 5 3 5 3})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Equiversi Hexhex with edges alternating 3 and 5"
+                },
+                "Square 6 ortho (36)": {
+                    "content": "(square 6)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 7"
+                },
+                "Hex 4 (37)": {
+                    "content": "(tri Hexagon 4)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex 4"
+                },
+                "Square 5 omni (41)": {
+                    "content": "(add (remove (square 9) vertices:{ 0 1 2 3 5 6 7 8 9 10 11 15 16 17 18 19 25 26 27 35 45 53 54 55 61 62 63 64 65 69 70 71 72 73 74 75 77 78 79 80 }) edges:{{0 1} {0 3} {3 8} {1 4} {4 9} {8 15} {9 16} {15 24} {16 25} {24 31} {25 32} {31 36} {32 37} {36 39} {37 40} {39 40}} )> <All> <Thin",
+                    "description": "Board & size: Orthogonal 5"
+                },
+                "Hex 4-5 (48)": {
+                    "content": "(tri {4 5 4 5 4})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex with edges alternating 4 and 5"
+                },
+                "Square 7 ortho (49)": {
+                    "content": "(square 7)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 7"
+                },
+                "Equiversi 4-6 (60)": {
+                    "content": "\"Tri46Bug\"> <Orthogonal> <Hidden",
+                    "description": "Board & size: Equiversi Hexhex with edges alternating 4 and 6"
+                },
+                "Hex 5 (61)": {
+                    "content": "(tri Hexagon 5)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex 5"
+                },
+                "Square 6 omni (61)": {
+                    "content": "(add (remove (square 11) vertices:{ 0 1 2 3 4 6 7 8 9 10 11 12 13 14 18 19 20 21 22 23 24 30 31 32 33 34 42 43 44 54 66 76 77 78 86 87 88 89 90 96 97 98 99 100 101 102 106 107 108 109 110 111 112 113 114 116 117 118 119 120 }) edges:{{0 1} {0 3} {3 8} {1 4} {4 9} {8 15} {9 16} {15 24} {16 25} {24 35} {25 36} {35 44} {36 45} {44 51} {45 52} {51 56} {52 57} {56 59} {57 60} {59 60}} )> <All> <Thin",
+                    "description": "Board & size: Orthogonal 6"
+                },
+                "Square 8 ortho (64)": {
+                    "content": "(square 8)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 9"
+                },
+                "Hex 5-6 (75)": {
+                    "content": "\"Tri56Bug\"> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex with edges alternating 5 and 6"
+                },
+                "Square 9 ortho (81)": {
+                    "content": "(square 9)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 9"
+                },
+                "Square 7 omni (85)": {
+                    "content": "(add (remove (square 13) vertices:{ 0 1 2 3 4 5 7 8 9 10 11 12 13 14 15 16 17 21 22 23 24 25 26 27 28 29 35 36 37 38 39 40 41 49 50 51 52 53 63 64 65 77 91 103 104 105 115 116 117 118 119 127 128 129 130 131 132 133 139 140 141 142 143 144 145 146 147 151 152 153 154 155 156 157 158 159 160 161 163 164 165 166 167 168 }) edges:{{0 1} {0 3} {3 8} {1 4} {4 9} {8 15} {9 16} {15 24} {16 25} {24 35} {25 36} {35 48} {36 49} {48 59} {49 60} {59 68} {60 69} {68 75} {69 76} {75 80} {76 81} {80 83} {81 84} {83 84}} )> <All> <Thin",
+                    "description": "Board & size: Orthogonal 7"
+                },
+                "Equiversi 5-7 (90)": {
+                    "content": "\"Tri57Bug\"> <Orthogonal> <Hidden",
+                    "description": "Board & size: Equiversi Hexhex with edges alternating 5 and 7"
+                },
+                "Hex 6 (91)": {
+                    "content": "(tri Hexagon 6)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex 6"
+                },
+                "Square 10 ortho (100)": {
+                    "content": "(square 10)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Orthogonal 10"
+                },
+                "Hex 6-7 (108)": {
+                    "content": "(tri {6 7 6 7 6})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex with edges alternating 6 and 7"
+                },
+                "Equiversi 6-8 (126)": {
+                    "content": "(tri {6 8 6 8 6})> <Orthogonal> <Hidden",
+                    "description": "Board & size: Equiversi Hexhex with edges alternating 6 and 8"
+                },
+                "Hex 7 (127)": {
+                    "content": "(tri Hexagon 7)> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex 7"
+                },
+                "Hex 7-8 (147)": {
+                    "content": "\"Tri78Bug\"> <Orthogonal> <Hidden",
+                    "description": "Board & size: Hexhex with edges alternating 7 and 8"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

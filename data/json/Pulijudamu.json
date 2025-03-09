@@ -1,0 +1,110 @@
+{
+    "define": {},
+    "game": "\"Pulijudamu\" (players 2) (equipment { (board (add (remove (merge (scale 1 2 (wedge 5 3)) (shift 0 2 (scale 8 2 (rectangle 3 2))) ) edges:{{17 18} {15 16} {13 14}} ) edges:{{13 7} {15 4} {17 1} {3 18} {6 16} {9 14}} ) use:Vertex ) (hand Each) (piece \"Goat\" P2 (\"StepToEmpty\")) (piece \"Tiger\" P1 (or (\"StepToEmpty\") (\"HopCapture\") ) ) }) (rules (start { (place \"Goat2\" (handSite P2) count:<Goat:num>) (place \"Tiger1\" (handSite P1) count:<Tiger:num>) }) phases:{ (phase \"Opening\" P1 (play (move (from (handSite Mover)) (to (if (= 0 (count Sites in:(intersection (sites Top) (sites Occupied by:Mover)))) (sites Top) (intersection (sites Empty) (sites {1 2 3})) ) ) (then (if (\"HandOccupied\" Mover) (moveAgain))) ) ) (nextPhase Mover (\"HandEmpty\" Mover) \"Movement\") ) (phase \"Opening\" P2 (play (move (from (handSite Mover)) (to (sites Empty)))) (nextPhase Mover (\"HandEmpty\" Mover) \"Movement\") ) (\"PhaseMovePiece\" \"Movement\") } (end (\"NoMovesP1NoPiecesP2\")) )",
+    "option": {
+        "Start Rules Tiger": {
+            "arguments": "<num>",
+            "items": {
+                "1": {
+                    "content": "1",
+                    "description": "1 Tiger."
+                },
+                "2": {
+                    "content": "2",
+                    "description": "2 Tigers."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "3 Tigers."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "4 Tigers."
+                }
+            }
+        },
+        "Start Rules Goat": {
+            "arguments": "<num>",
+            "items": {
+                "5": {
+                    "content": "5",
+                    "description": "5 Goats."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "6 Goats."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "7 Goats."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "8 Goats."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "9 Goats."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "10 Goats."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "11 Goats."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "12 Goats."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "13 Goats."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "14 Goats."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "15 Goats."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "16 Goats."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "17 Goats."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "18 Goats."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "19 Goats."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "20 Goats."
+                },
+                "21": {
+                    "content": "21",
+                    "description": "21 Goats."
+                },
+                "22": {
+                    "content": "22",
+                    "description": "22 Goats."
+                },
+                "23": {
+                    "content": "23",
+                    "description": "23 Goats."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Pulijudamu is a hunt game played in the area of Vijayanagara. Written sources place the game in the sixteenth century, and graffiti at the site of Vijayanagara could indicate that it was older. It was a game considered to belong to the lower classes in the sixteenth century and is still played by agricultural workers today. It is considered more impressive to win with more tigers and fewer goats.\") (aliases {\"Ane-Nayi Ata\"}) (rules \"A triangle, with a line drawn from the apex to the base. A rectangle intersects with the triangle, and has a line connecting the midpoints of the short sides. One player plays as the tiger(s), one to four in number. The other player plays as five to 23 goats (or dogs, or lambs). The tiger begins on the apex of the triangle, and any other tigers on the spots adjacent to the apex. The tiger player moves by moving a piece to an empty adjacent spot along the lines of the board. The goat player begins the game by placing a goat on an empty point on the board, and then the tiger player moves. When all of the goats are placed, they move like the tiger. The tiger may capture a goat by hopping over it to an empty spot on the opposite adjacent side of the goat along the lines of the board. The goats win by blocking the tiger(s) from being able to move; the tiger(s) win by capturing enough goats to prevent them from blocking it/them.\") (source \"Vasantha 2003: 28.\") (id \"1140\") (version \"1.3.14\") (classification \"board/hunt\") (credit \"Eric Piette\") (origin \"This game was played in India, from around 1200 to 2003.\") } ) (graphics { (piece Families {\"Abstract\" \"Themed\"}) (show Edges Diagonal Hidden) }) (ai \"Pulijudamu_ai\" )"
+}

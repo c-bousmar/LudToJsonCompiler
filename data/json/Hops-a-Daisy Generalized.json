@@ -1,0 +1,209 @@
+{
+    "define": {
+        "NonpriorityMoves": "(or { (if (\"SameTurn\") (or (\"TurnPass\") (\"PlaceHex\") ) (or { (\"TurnPass\") (\"PlaceHex\") (\"PlaceDisc\") (\"DiscStep\") } )) #1 #2 })",
+        "PriorityHopsOnly": "(priority (\"NonMoverHops\") (\"NonpriorityMoves\" ~ ~) )",
+        "PriorityHops": "(priority (\"NonMoverHops\") (\"NonpriorityMoves\" (\"MoverHops\") ~) )",
+        "MoverHops": "(\"HopChange\" <CapOption:friendHops> \"MoverSites\")",
+        "NonMoverHops": "(\"HopChange\" <CapOption:enemyHops> <Multi:capture>)",
+        "HopChange": "(if (\"SameTurn\") (if (is Pending) (#1 (from (last To)) #2) ) (do (forget Value All) next:(#1 (from) #2) ) )",
+        "Previous": "(+ 1 (% (+ (- <NumberPlayers:inGame> 2) (mover)) <NumberPlayers:inGame>))",
+        "NextInTurnSequence": "(+ 1 (% (mover) <NumberPlayers:inGame>))",
+        "MoverSites": "(sites Occupied by:Mover)",
+        "NextSites": "(sites Occupied by:(player (\"NextInTurnSequence\")))",
+        "PreviousSites": "(sites Occupied by:(player (\"Previous\")))",
+        "NonMoverSites": "(difference (sites Occupied by:All) (sites Occupied by:Mover)",
+        "ValueDisc": "<ScoreOption:discVal>",
+        "ValueHex": "10",
+        "FinalizeScores": "(and (forEach Player (addScore (player (player)) (% (+ {<NumberPlayers:inGame> (var \"FirstNoPlace\") (- (player)) -1}) <NumberPlayers:inGame> ) ) ) (propose \"End\") )",
+        "TurnPass": "(do (if (= 0 (var \"FirstNoPlace\")) (set Var \"FirstNoPlace\" (mover)) (if (= (next) (var \"FirstNoPlace\")) (\"FinalizeScores\") ) ) next:(move Pass) )",
+        "NoMorph": "(or (\"GeneralHop\" #1 #2 \"Hex\" \"Hex\" \"ValueHex\" \"ValueHex\") (\"GeneralHop\" #1 #2 \"Disc\" \"Disc\" \"ValueDisc\" \"ValueDisc\") )",
+        "Morph": "(or (\"GeneralHop\" #1 #2 \"Disc\" \"Hex\" \"ValueDisc\" \"ValueHex\") (\"GeneralHop\" #1 #2 \"Hex\" \"Disc\" \"ValueHex\" \"ValueDisc\") )",
+        "GeneralHop": "(forEach Piece \"Disc\" (move Hop #1 (between if:(is In (between) (difference (intersection #2 (sites Occupied by:All component:#3) ) (sites (values Remembered)) ) ) (apply (and (addScore (player (who at:(between))) (- #5)) (set Pending (between)) ) ) ) (to if:(is Empty (to))) ) (then (and { (remember Value (value Pending)) (remove (value Pending)) (add (piece (id #4 Mover)) (to (value Pending))) (addScore Mover #6) } (then (and (set Pending) (moveAgain) ) ) ) ) )",
+        "DiscStep": "(forEach Piece \"Disc\" (move (from (from)) (to (sites Around (from)) if:(is Empty (to))) (then (moveAgain)) ) )",
+        "PlaceHex": "(move Add (piece (id \"Hex\" Mover)) (to (forEach (sites Empty) if:\"HexSite\")) (then (and (addScore Mover \"ValueHex\") (set Var \"FirstNoPlace\" 0) ) ) )",
+        "PlaceDisc": "(if (\"NewTurn\") (move Add (piece (id \"Disc\" Mover)) (to (forEach <PlaceDisc:suicideOption> if:<PlaceDisc:location>)) (then (and (addScore Mover \"ValueDisc\") (set Var \"FirstNoPlace\" 0) ) ) ) )",
+        "NoSuicide": "(difference (sites Empty) (sites To (forEach Site (intersection <Multi:suicide> (sites Occupied by:All component:\"Disc\") ) (select (from (sites Distance from:(site) (exact 2)) if:(is Empty (from)) ) (to (sites Between from:(from) to:(site)) ) ) ) ) )",
+        "HexSite": "(= (\"NearestPieces\" \"MoverSites\") (\"NearestPieces\" <Multi:influence>",
+        "DiscSite": "(!= (\"NearestPieces\" \"MoverSites\") (\"NearestPieces\" <Multi:influence>",
+        "NearestPieces": "(count Sites in:(intersection { (#1) (sites Direction from:(site) distance:<Equi:method>) (sites LineOfSight Piece at:(site) Orthogonal) }) )",
+        "Dist2NearestLoSEnemy": "(min (results from:(site) to:(forEach (sites LineOfSight Piece at:(from) Orthogonal) if:(or (is Mover (who at:(site))) (is In (site) <Multi:influence>)) ) (count Steps Orthogonal (from) (to)) ) )",
+        "Dist2NearestLoS": "(min (results from:(site) to:(sites LineOfSight Piece at:(from) Orthogonal) (count Steps Orthogonal (from) (to)) ) )"
+    },
+    "game": "\"Hops-a-Daisy Generalized\" (players <NumberPlayers:inGame>) (equipment { (board (hex <Board:size>) use:Cell) (piece \"Disc\" Each) (piece \"Hex\" Each) }) (rules (start (set Score Each 0)) (play <ChosenHop:prioritySetting> ) (end (if (is Proposed \"End\") (byScore) ) ) )",
+    "option": {
+        "Players": {
+            "arguments": "<inGame>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "2 players"
+                },
+                "3": {
+                    "content": "3",
+                    "description": "3 players"
+                },
+                "4": {
+                    "content": "4",
+                    "description": "4 players"
+                },
+                "5": {
+                    "content": "5",
+                    "description": "5 players"
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "Hex 2-4": {
+                    "content": "{2 4 2 4 2}",
+                    "description": "Board & size: Hexhex with edges alternating 2 and 4"
+                },
+                "Hex 3-5": {
+                    "content": "{3 5 3 5 3}",
+                    "description": "Board & size: Hexhex with edges alternating 3 and 5"
+                },
+                "Hex 4-6": {
+                    "content": "{4 6 4 6 4}",
+                    "description": "Board & size: Hexhex with edges alternating 4 and 6"
+                },
+                "Hex 5-7": {
+                    "content": "{5 7 5 7 5}",
+                    "description": "Board & size: Hexhex with edges alternating 5 and 7"
+                },
+                "Hex 6-8": {
+                    "content": "{6 8 6 8 6}",
+                    "description": "Board & size: Hexhex with edges alternating 6 and 8"
+                }
+            }
+        },
+        "Capture": {
+            "arguments": "<enemyHops> <friendHops>",
+            "items": {
+                "Morph All": {
+                    "content": "\"Morph\"> <\"Morph\"",
+                    "description": "Hopping any piece changes type, Hopping enemies also changes ownership"
+                },
+                "Morph Enemy": {
+                    "content": "\"Morph\"> <\"NoMorph\"",
+                    "description": "Hopping enemies changes type and ownership, friendly pieces unaffected"
+                },
+                "Morph Own": {
+                    "content": "\"NoMorph\"> <\"Morph\"",
+                    "description": "Hopping enemies only changes ownership, Hopping friendly pieces changes type"
+                },
+                "No Morphs": {
+                    "content": "\"NoMorph\"> <\"NoMorph\"",
+                    "description": "Hopping enemies only changes ownership, Hopping friendly pieces unaffected"
+                }
+            }
+        },
+        "Hopping": {
+            "arguments": "<prioritySetting>",
+            "items": {
+                "Mandatory - Can hop own": {
+                    "content": "(\"PriorityHops\")",
+                    "description": "An adjacent Enemy must be hopped, a friend can be."
+                },
+                "Mandatory - Cannot hop own": {
+                    "content": "(\"PriorityHopsOnly\")",
+                    "description": "An adjacent Enemy must be hopped, Friends cannot be"
+                },
+                "Optional - Can hop own": {
+                    "content": "(\"NonpriorityMoves\" (\"MoverHops\") (\"NonMoverHops\"))",
+                    "description": "Hopping is Optional"
+                },
+                "Optional - Cannot hop own": {
+                    "content": "(\"NonpriorityMoves\" (\"NonMoverHops\") ~)",
+                    "description": "Hopping is Optional"
+                }
+            }
+        },
+        "Multi-": {
+            "arguments": "<capture> <suicide> <influence>",
+            "items": {
+                "hop Others, Equi: All Others": {
+                    "content": "\"NonMoverSites\"> <\"NonMoverSites\"> <\"NonMoverSites\"",
+                    "description": "Can hop all others, Equi is based on all NonMovers"
+                },
+                "hop Next - Equi: Next": {
+                    "content": "\"NextSites\"> <\"PreviousSites\"> <\"NextSites\"",
+                    "description": "Can hop Next, Equi is based on Next"
+                },
+                "hop Prev - Equi: Prev": {
+                    "content": "\"PreviousSites\"> <\"NextSites\"> <\"PreviousSites\"",
+                    "description": "Can hop Prev, Equi is based on Prev"
+                },
+                "hop Others - Equi: Next": {
+                    "content": "\"NonMoverSites\"> <\"NonMoverSites\"> <\"NextSites\"",
+                    "description": "Can hop others, Equi is based on Next"
+                },
+                "hop Others - Equi: Prev": {
+                    "content": "\"NonMoverSites\"> <\"NonMoverSites\"> <\"PreviousSites\"",
+                    "description": "Can hop others, Equi is based on Prev"
+                },
+                "hop Prev - Equi: Next": {
+                    "content": "\"PreviousSites\"> <\"NextSites\"> <\"NextSites\"",
+                    "description": "Can hop Prev, Equi is based on Next"
+                },
+                "hop Next - Equi: Prev": {
+                    "content": "\"NextSites\"> <\"PreviousSites\"> <\"PreviousSites\"",
+                    "description": "Can hop Next, Equi is based on Prev"
+                }
+            }
+        },
+        "Equi-count": {
+            "arguments": "<method>",
+            "items": {
+                "LoS any": {
+                    "content": "\"Dist2NearestLoS\"",
+                    "description": "Equi count is based on Lines-of-Sight distance to any piece"
+                },
+                "LoS enemy": {
+                    "content": "\"Dist2NearestLoSEnemy\"",
+                    "description": "Equi count is based on Lines-of-Sight distance to pieces being compared"
+                },
+                "Adj": {
+                    "content": "1",
+                    "description": "Equi count is based on adjacent cells"
+                }
+            }
+        },
+        "Discs": {
+            "arguments": "<location> <suicideOption>",
+            "items": {
+                "Anywhere": {
+                    "content": "(= 1 1)> <(sites Empty)",
+                    "description": "Place Discs at any Empty location"
+                },
+                "Non-Hex": {
+                    "content": "\"DiscSite\"> <(sites Empty)",
+                    "description": "Place Discs at any Non-Hex location"
+                },
+                "Safe": {
+                    "content": "(= 1 1)> <\"NoSuicide\"",
+                    "description": "Place Discs at any Empty location, except where it can be taken by the next player's first hop"
+                },
+                "Safe - Non-Hex": {
+                    "content": "\"DiscSite\"> <\"NoSuicide\"",
+                    "description": "Place Discs at any Non-Hex location, except where it can be taken by the next player's first hop"
+                }
+            }
+        },
+        "Value": {
+            "arguments": "<discVal>",
+            "items": {
+                "-10": {
+                    "content": "-10",
+                    "description": "Discs value is -10"
+                },
+                "0": {
+                    "content": "0",
+                    "description": "Discs value is 0"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Equi-based games are games played on a hex grid that share the following properties:Each player has two kinds of pieces, one kind (Discs) move using steps and/or hops with flip-captures, the other kind (Hexes) are stationary. The stationary pieces have more score value, and they are limited to certain sites of placement. Identifying the placement sites for the stationary Hex pieces is based on their having an equal number of influencing neighbour pieces belonging to the player and to his (selected) enemy. Turns consist of either: placing any a piece, or moving a Disc. The Disc move may be followed by optionally placing a Hex piece. The game ends when in succession, none of the players adds a piece to the board. The winner is the player who has the highest score, with the first player not to place a piece winning in the case of a tiebreaker. In the original game of Equi, The influencing neighbour pieces were found along lines of sight, and included only those pieces that were at the same distance as the nearest of them. The original game also had special placement limitations not discussed here, to reduce cycling. These evolved into produce the version cited here. Areas of variation. The main families are: 1. Equi - Line of sight based rules, forced flip-hopping of enemy pieces, and optional friendly hops, piece values same magnitude, but opposite sign. Details are that moving Disc pieces can only be entered onto non-Equi sites and not to suicide sites. The game is intended as a 2 player strategy game.Equiversi - intended to be easier to play and more territorial and have less cycling issues. The first change was to replace line of sight influence with adjacent piece influence, that is easier to see. With the increase in hex placement opportunities thus available, friendly hops were disallowed. Then a second evolution, Equiversi-2, occurred with the concept of allowing players to decide a range of piece values for the Discs prior to play, -- represented here only by the selection of a zero value. Reduced value allowed for a relaxation of all placement restrictions on the Discs. An implementation side effect is that selecting a site gives a piece-choice pop-up for those sites where Hexes may be played. Pre-selecting the piece to play would be a better implementation. Evolution to Hops-a-Daisy Nothing in the game prohibits a multi-player implementation, except that king-making could be an issue. Thus, the idea of a small, light multi-player game based on Equi was born. To increase the chaotic experience, the hop changes both piece type and ownership leading to entirely different strategies. Hops-a-Daisy default rules allow hopping any piece, 'morphing' it (changing its type). Opponent's pieces are flipped to the mover's ownership as well. For ease of play, Disc placement is either to Non-Hex sites or unlimited. Hex placement considers all opponents as enemies. These settings can be changed to restrict hopping and/or Hex placement rules to either the preceding or following player's pieces. The game is strictly for fun and thus should be played on a small board. These games also inspired Refugia, with different placement restrictions, single piece types, and ownership changes taking place in stages, which has been implemented separately on Ludii.\") (rules \"Equi is a game system played on a hex grid, for 2 or more players, using 2 types of reversible pieces. Each player has: -- Hexes that are stationary. The Hexes score 10 points at the end of the game, but are limited to certain sites of placement. -- Discs that move using steps and/or hops with flip-captures, Discs score according to the value selected in the (Options) normally -10. Note: look in the drop-down (Options) tab to see what Option are selected. Equi gets its name from the Hex placement rules: The neighbourhood of the chosen location for a Hex must contain equal numbers of your own and your opponent's pieces. This neighbourhood could be defined either as adjacent locations, or as locations in each direction of travel that are at the same distance as the closest relevant piece. (See the (Options) for your game.) The (Options) also determine who you can hop and who is your enemy in a multi-player setting. Turns: Each turn offers a choice, either place any a piece, or move a Disc. In addition, the Disc move may be followed by optionally placing a Hex. Any placement ends the turn. The standard options make Disc 'flip-captures' mandatory: This means that if a Disc is next to an opponent's piece which it can hop, then it must do so. The ownership of the hopped piece flips immediately. The same Disc may hop any number of available pieces, but may not, in any case, hop over the same location twice in the same turn. Depending on the (Options) chosen the Disc may, or may not, hop friendly pieces. Hopping friendly pieces is never required. In some (Options) the hopped pieces also 'morph' between Disc and Hex. The (Options) also determine whose pieces morph and whose don't. Except for Enemy flip-captures, all parts of a turn are optional and passing is allowed. But be careful about not making a placement during a turn, as this is an offer to end the game. Placements: Sites for placing Hexes have already been explained. Sites for placing a Disc at the beginning of a turn, are given in the (Options). -- 'Non-Hex' means sites where Hexes are not allowed to be placed. -- 'Safe' means not on sites where the next player's first action could be to hop-flip the Disc. -- 'Any' means any empty site The game ends when all the players have consecutively taken their turn without making a placement. Please have fun with this playground, and let me, the author, know which are your favourite game options...\") (id \"1159\") (version \"1.3.14\") (classification \"experimental\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"26-12-2020\") } ) (graphics { (board Colour Phase0 (colour 124 145 111)) (board Colour InnerEdges (colour 62 72 55)) (board Colour OuterEdges (colour 62 72 55)) (board StyleThickness OuterEdges 2.0) (piece Scale P1 \"Hex\" 1.05) (piece Scale P2 \"Hex\" 1.05) (piece Scale P3 \"Hex\" 1.05) (piece Scale P4 \"Hex\" 1.05) (piece Scale P5 \"Hex\" 1.05) (piece Scale P1 \"Disc\" 0.65) (piece Scale P2 \"Disc\" 0.65) (piece Scale P3 \"Disc\" 0.65) (piece Scale P4 \"Disc\" 0.65) (piece Scale P5 \"Disc\" 0.65) } ) (ai \"Hops-a-Daisy Generalized_ai\" )"
+}

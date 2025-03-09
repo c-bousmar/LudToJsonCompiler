@@ -1,0 +1,49 @@
+{
+    "define": {
+        "DestinationGroupSize": "(count Sites in:(sites Distance Orthogonal (step (to if:(and (!= (var \"From\") (to)) (is Mover (who at:(to)))))) from:(to) (min 0) ) )",
+        "PlayableSite": "(difference <Board:area> (sites Occupied by:Mover",
+        "IsPlayableSiteType": "(is In (to) (\"PlayableSite\"",
+        "AlongLine": "(sites Distance (step #1 (to if:True)) from:(from) (min 1",
+        "FurtherAlongLine": "(sites Distance (step #1 (to if:True)) from:(to) (min 1",
+        "MoveTowardFriendInSameLine": "(< 0 (count Pieces Mover in:(\"FurtherAlongLine\" #1)))",
+        "MoveToSiteWithFriendVisible": "(< 1 (count Pieces Mover in:(sites LineOfSight Piece at:(to) Orthogonal)))",
+        "ValueAtTo": "(max 1 (max (results from:(last To) to:(\"FirstFriend\" Orthogonal) (size Group at:(to) Orthogonal if:(= (mover) (who at:(to)))) ) ) )",
+        "ValueAtFrom": "(set Var \"MaxSizeFrom\" (max 1 (max (results from:(from) to:(\"FirstFriend\" Orthogonal) (size Group at:(to) Orthogonal if:(= (mover) (who at:(to)))) ) ) ) )",
+        "FirstFriend": "(sites To (move Hop #1 (between (min 0) if:(or { (= (from) (between)) (is Next (who at:(between))) (is Empty (between)) }) ) (to <Board:area> if:(is Mover (who at:(to)))) ) )",
+        "MoveOrLOSCapture": "(forEach Piece (or (move (from) (to (sites LineOfSight Piece at:(from)) if:(is Next (who at:(to))) (apply (remove (to))) ) ) (<Game:option>) ) )",
+        "PriorityMoveOverCaptureByPiece": "(forEach Piece (priority (<Game:option>) (move (from) (to (sites LineOfSight Piece at:(from)) if:(is Next (who at:(to))) (apply (remove (to))) ) ) ) )",
+        "PriorityCaptureOverMoveByPiece": "(forEach Piece (priority (move (from) (to (sites LineOfSight Piece at:(from)) if:(is Next (who at:(to))) (apply (remove (to))) ) ) (<Game:option>) ) )",
+        "Shakattrition": "(do (set Var \"OriginGroupSize\" (size Group at:(from)) (then (set Var \"From\" (from))) ) next:(move (from (from)) (to (intersection <Board:area> (sites Around (from) if:(is Empty (to)))) if:(<= (var \"OriginGroupSize\") (\"DestinationGroupSize\") ) ) ) )",
+        "IsSingleGroupOf": "(= 1 (count Groups Cell Orthogonal if:(is #1 (who at:(to))) ) )",
+        "StandardEnd": "(if (or { (no Moves Next) (\"IsSingleGroupOf\" Mover) (\"IsSingleGroupOf\" Next) }) { (if (\"IsSingleGroupOf\" Mover) (result Mover Win) ) (if (\"IsSingleGroupOf\" Next) (result Next Win) ) (\"Last2MoveEnd\") } )",
+        "AMSEnd": "(if (no Moves Next) (result Mover Loss",
+        "Last2MoveEnd": "(\"BlockWin\"",
+        "ColourBackground": "(colour 245 245 245"
+    },
+    "game": "\"Conflagration and Keep-a-riding\" (players 2) (equipment { (board (hex Hexagon <Board:side>) use:Cell) (piece \"Disc\" Each) }) (rules (start {<Board:white> <Board:black>}) (play <Game:structure> ) (end <Game:winCondition> ) )",
+    "option": {
+        "Game": {
+            "arguments": "<structure> <option> <winCondition> <token>",
+            "items": {}
+        },
+        "Board Size": {
+            "arguments": "<side> <area> <white> <black>",
+            "items": {
+                "Order 4": {
+                    "content": "5> <(sites Inner)> <(place \"Disc1\" {7 12 15 21 24 28 31 38 41 44 47 52})> <(place \"Disc2\" {8 13 16 19 22 29 32 36 39 45 48 53})",
+                    "description": "Order 4 board"
+                },
+                "Order 5": {
+                    "content": "5> <(sites Board)> <(place \"Disc1\" {0 3 7 10 12 15 18 21 24 28 31 34 35 38 41 44 47 52 55 56 59})> <(place \"Disc2\" {1 4 5 8 13 16 19 22 25 26 29 32 36 39 42 45 48 50 53 57 60})",
+                    "description": "Order 5 board"
+                },
+                "Order 6": {
+                    "content": "6> <(sites Board)> <(place \"Disc1\" {0 3 8 11 14 17 20 21 24 27 32 35 38 41 44 47 50 53 56 59 61 64 67 71 74 77 80 83 85 88})> <(place \"Disc2\" {2 5 7 10 13 16 19 23 26 29 31 34 37 40 43 46 49 52 55 58 63 66 69 70 73 76 79 82 87 90})",
+                    "description": "Order 6 board"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

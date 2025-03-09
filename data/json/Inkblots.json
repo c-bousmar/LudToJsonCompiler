@@ -1,0 +1,81 @@
+{
+    "define": {},
+    "game": "\"Inkblots\" (players 2) (equipment { (board (tri Hexagon <Board>)) (tile \"Triangle\" Each) (tile \"Triangle\" Neutral) }) (rules (meta (swap)) (start (place Random {\"Triangle1\" \"Triangle2\" \"Triangle0\"})) (play (move Add (to (sites Empty)) (then (add (piece (id \"Triangle\" Next)) (to (intersection (expand (sites Occupied by:Next) Orthogonal) (sites Empty) ) ) ) ) ) ) (end (if (no Moves Next) (byScore { (score P1 (count Pieces P1)) (score P2 (count Pieces P2)) }) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3": {
+                    "content": "3",
+                    "description": "Played on a size 3 board."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "Played on a size 4 board."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "Played on a size 5 board."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "Played on a size 6 board."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "Played on a size 7 board."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "Played on a size 8 board."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "Played on a size 9 board."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "Played on a size 10 board."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "Played on a size 11 board."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "Played on a size 12 board."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "Played on a size 13 board."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "Played on a size 14 board."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "Played on a size 15 board."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "Played on a size 16 board."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "Played on a size 17 board."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "Played on a size 18 board."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "Played on a size 19 board."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Players steer cellular automata to dominate the board.\") (rules \"Play on an equilateral hexagonal triangle-tessellated grid. The board is seeded randomly with a black stone, a white stone, and a neutral stone. Players take turn seeding new groups. Every placement triggers growth of all enemy groups, where growth is defined as adding a stone to all empty cells adjacent to a group. When the board fills up, the person who has more pieces on the board wins.\") (id \"710\") (version \"1.3.14\") (classification \"board/space/territory\") (publisher \"Michael Zapawa\") (credit \"Designer: Mihaw Zapawa. Implemented by Alek Erickson\") (date \"2020\") } ) (graphics { (player Colour Neutral (colour Blue)) }) (ai \"Inkblots_ai\" )"
+}

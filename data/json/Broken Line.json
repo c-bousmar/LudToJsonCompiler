@@ -1,0 +1,190 @@
+{
+    "define": {},
+    "game": "\"Broken Line\" (players 2) (equipment { (board (<Board:type> <BoardSize>)) (piece \"Marker\" Each) }) (rules <Meta:rule> (play (move Add (to (sites Empty)))) (end (if (is Line <Line:size> <Connection:type>) (result Mover <Result>))) )",
+    "option": {
+        "Line Size": {
+            "arguments": "<size>",
+            "items": {
+                "3": {
+                    "content": "3",
+                    "description": "The length of the line is 3 or more."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The length of the line is 4 or more."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The length of the line is 5 or more."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The length of the line is 6 or more."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The length of the line is 7 or more."
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3x3": {
+                    "content": "3",
+                    "description": "The game is played on a 3x3 board."
+                },
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board."
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board."
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board."
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board."
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board."
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board."
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board."
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": "The game is played on a 11x11 board."
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "The game is played on a 12x12 board."
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": "The game is played on a 13x13 board."
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "The game is played on a 14x14 board."
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": "The game is played on a 15x15 board."
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": "The game is played on a 16x16 board."
+                },
+                "17x17": {
+                    "content": "17",
+                    "description": "The game is played on a 17x17 board."
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": "The game is played on a 18x18 board."
+                },
+                "19x19": {
+                    "content": "19",
+                    "description": "The game is played on a 19x19 board."
+                }
+            }
+        },
+        "Board": {
+            "arguments": "<type>",
+            "items": {
+                "Hex Diamond": {
+                    "content": "hex Diamond",
+                    "description": "The board is a diamond tiling by hexagon."
+                },
+                "Square Diamond": {
+                    "content": "square Diamond",
+                    "description": "The board is a diamond tiling by square."
+                },
+                "Triangle Diamond": {
+                    "content": "tri Diamond",
+                    "description": "The board is a diamond tiling by triangle."
+                },
+                "Brick Diamond": {
+                    "content": "brick Diamond",
+                    "description": "The board is a diamond tiling by brick."
+                },
+                "Square": {
+                    "content": "square",
+                    "description": "The board is a square tiling by square."
+                },
+                "hex": {
+                    "content": "hex",
+                    "description": "The board is a hexagon tiling by hexagon."
+                },
+                "tri": {
+                    "content": "tri",
+                    "description": "The board is a triangle tiling by triangle."
+                }
+            }
+        },
+        "Swap Rules": {
+            "arguments": "<rule>",
+            "items": {
+                "On": {
+                    "content": "(meta (swap))",
+                    "description": "The game uses the swap rule."
+                },
+                "Off": {
+                    "content": "",
+                    "description": "The game does not use the swap rule."
+                }
+            }
+        },
+        "End Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Standard": {
+                    "content": "Win",
+                    "description": "The first player to connect their two sides wins."
+                },
+                "Misere": {
+                    "content": "Loss",
+                    "description": "The first player to connect their two sides loses."
+                }
+            }
+        },
+        "Connection Type": {
+            "arguments": "<type>",
+            "items": {
+                "Diagonal": {
+                    "content": "Diagonal",
+                    "description": "The connection between two stones is using all the diagonal directions."
+                },
+                "Orthogonal": {
+                    "content": "Orthogonal",
+                    "description": "The connection between two stones is using all the orthogonal directions."
+                },
+                "All": {
+                    "content": "All",
+                    "description": "The connection between two stones is using all the directions."
+                },
+                "Adjacent": {
+                    "content": "Adjacent",
+                    "description": "The connection between two stones is using all the adjacent directions."
+                },
+                "Off Diagonal": {
+                    "content": "OffDiagonal",
+                    "description": "The connection between two stones is using all the off Diagonal directions."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Broken Line is a game played on a board tiling by hexagon. The goal is to make a line with stones connected diagonally.\") (rules \"Players take turns placing their pieces on one empty space on the board, with the goal of making a line with stones connected diagonally of at least length 4.\") (id \"999\") (version \"1.3.14\") (classification \"board/space/line\") (author \"Eric Piette\") (credit \"Eric Piette\") (date \"12-10-2020\") } ) (graphics { (player Colour P1 (colour Red)) (player Colour P2 (colour Blue)) (board Colour OuterEdges (colour Black)) (board StyleThickness OuterEdges 3.0) }) (ai \"Broken Line_ai\" )"
+}

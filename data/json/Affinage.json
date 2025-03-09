@@ -1,0 +1,43 @@
+{
+    "define": {
+        "NoNeutralSingleton": "(all Sites (sites Around (sites {(last To) (last From)}) <Scoring:direction> if:(is Empty (to)) ) if:(or { (!= 0 (size Array (array (difference (sites Around (site) Orthogonal if:(is Empty (to))) (sites {(last To) (last From)}) )))) (!= (* 2 (count Pieces in:(intersection (sites State (- 3 <Variant:piece2>)) (sites Around (site) <Scoring:direction>) ))) (size Array (array (difference (sites Around (site) <Scoring:direction>) (difference (sites Empty) (sites {(last To) (last From)}) )) ))) }",
+        "GroupSize": "(< #1 (size Group at:(site) Orthogonal if:(is Empty (to",
+        "NoOddNeutralTerritoryCreatedSmallerThan": "(all Sites (sites Around (sites {(last To) (last From)}) <Scoring:direction> if:(is Empty (to)) ) if:(or { #1 (= 0 (% (size Group at:(site) Orthogonal if:(is Empty (to))) 2 )) (!= (* 2 (count Pieces in:(intersection (sites State (- 3 <Variant:piece2>)) (sites Around (sites Group at:(site) Orthogonal if:(is Empty (to))) <Scoring:direction> )))) (size Array (array (sites Around (sites Group at:(site) Orthogonal if:(is Empty (to))) <Scoring:direction> if:(not (is Empty (to))) )))) #2 }",
+        "SitesInOddNeutralRegions": "(sites (results from:(sites Empty) to:(from) (if (and (!= 0 (% (size Group at:(from) Orthogonal if:(is Empty (to))) 2) ) (= (count Pieces in:(intersection (sites State (mover)) (sites Around (sites Group at:(from) Orthogonal if:(is Empty (to))) <Scoring:direction> ))) (count Pieces in:(intersection (sites State (- 3 (mover))) (sites Around (sites Group at:(from) Orthogonal if:(is Empty (to))) <Scoring:direction> ))))) (from) (last To)",
+        "NeighborLimit": "(max 0 (+ (+ <Placement:qty> <DensityLimit:qty>) (+ <Separation:qty> <Variant:qty>",
+        "StandardPlacementLimits": "(or (= \"NeighborLimit\" 0) (>= \"NeighborLimit\" <Placement:method>)",
+        "CombinedMove": "(do (move Select (from (difference (sites Empty) (sites Around (sites State (<Placement:ban> #1)) <DensityLimit:direction>) )) (to (difference (<Separation:type>) (sites Around (sites State (<Placement:ban> #2)) <DensityLimit:direction>) ) if:(!= (to) (from)) ) (then (add (piece \"Disc0\") (to (last From) (apply (set State at:(to) #1))) (then (add (piece \"Disc0\") (to (last To) (apply (set State at:(to) #2)))) )))) ifAfterwards:(\"StandardPlacementLimits\")",
+        "MinimalRestrictedMove": "(do (\"CombinedMove\" #1 #2) ifAfterwards:(\"NoNeutralSingleton\")",
+        "FlipOption": "(priority (\"MinimalRestrictedMove\" #1 #2) (do (move Select (from (sites Around (difference (\"SitesInOddNeutralRegions\") (last To) ) Orthogonal if:(not (or (is Empty (to)) (= (to) (last To)) )))) (then (set State at:(last To) (- 3 (state at:(last To))))) ) ifAfterwards:(\"NoNeutralSingleton\")",
+        "RestrictedBelow4": "(do (\"CombinedMove\" #1 #2) ifAfterwards:(\"NoOddNeutralTerritoryCreatedSmallerThan\" (\"GroupSize\" 4) ~)",
+        "RestrictedBelow4Pass": "(or (move Pass) (do (\"CombinedMove\" #1 #2) ifAfterwards:(\"NoOddNeutralTerritoryCreatedSmallerThan\" (\"GroupSize\" 4) ~)",
+        "RestrictionsNotApplicableToNonPartisanGames": "(!= (mover) (\"Piece2\"",
+        "MustBePartisan": "(do (\"CombinedMove\" #1 #2) ifAfterwards:(or (\"RestrictionsNotApplicableToNonPartisanGames\") (\"NoOddNeutralTerritoryCreatedSmallerThan\" ~ ~)",
+        "RestrictedMove": "(or (move Pass) (do (\"CombinedMove\" #1 #2) ifAfterwards:(or (\"RestrictionsNotApplicableToNonPartisanGames\") (and (\"NoNeutralSingleton\") (\"NoOddNeutralTerritoryCreatedSmallerThan\" ~ (or (can Move (\"CombinedMove\" #1 #2)) (can Move (\"CombinedMove\" (- 3 #1) (- 3 #2))) )",
+        "DeeperRestrictedMove": "(or (move Pass) (do (\"CombinedMove\" #1 #2) ifAfterwards:(or (\"RestrictionsNotApplicableToNonPartisanGames\") (and (\"NoNeutralSingleton\") (\"NoOddNeutralTerritoryCreatedSmallerThan\" (or (can Move (\"MinimalRestrictedMove\" #1 #2)) (can Move (\"MinimalRestrictedMove\" (- 3 #1) (- 3 #2))) ) ~",
+        "TheTerritory": "(sites Group at:(from) Orthogonal if:(is In (to) (sites Empty))",
+        "Score4": "(+ (results from:(sites Empty) to:(forEach (sites {(from)}) if:(> (* 2 (size Array (array (intersection (sites State #1) (sites Around (\"TheTerritory\") <Scoring:direction>) )))) (size Array (array (sites Around (\"TheTerritory\") <Scoring:direction> if:(not (is Empty (to)))) )))) 1",
+        "GraphicsTerritoryOf": "(results from:(sites Empty) to:(forEach (sites {(from)}) if:(> (* 2 (size Array (array (intersection (sites State #1) (sites Around (\"TheTerritory\") <Scoring:direction>) )))) (size Array (array (sites Around (\"TheTerritory\") <Scoring:direction> if:(not (is Empty (to)))) )))) (from)",
+        "Piece2": "<Variant:piece2>",
+        "Matches": "(#1",
+        "Mismatches": "(- 3 #1",
+        "AnyMatch": "(+ 3 (* 0 #1",
+        "CountedPerPair": "(size Array (array (sites Around (sites {(last To) (last From)}) <DensityLimit:direction> if:(not (is Empty (to)))",
+        "CombinedTotalOfEach": "(+ (size Array (array (sites Around (sites {(last To)}) <DensityLimit:direction> if:(not (is Empty (to))) ))) (size Array (array (sites Around (sites {(last From)}) <DensityLimit:direction> if:(and (!= (to) (last To)) (not (is Empty (to)))) )))",
+        "CP1": "Black",
+        "CP2": "White"
+    },
+    "game": "\"Affinage\" (players 2) (equipment { (<Variant:board>) (piece \"Disc\" Neutral) } ) (rules (start (set Score Each \"NeighborLimit\")) (play (if (and (> 0 (counter)) (= 0 (% (count Sites in:(sites Board)) 2)) ) (move Add (piece \"Disc0\") (to (sites Empty) (apply (set State at:(to) (mover))))) (<Territory:neutralRestriction> (mover) <Variant:piece2>) )) (end { (if (and <Territory:endCondition> (!= (\"Score4\" 1) (\"Score4\" 2)) ) (byScore {(score P1 (\"Score4\" 1)) (score P2 (\"Score4\" 2))}) ) (if (and { <Territory:endCondition> (= (\"Score4\" 1) (\"Score4\" 2)) } ) (result Mover Win) ) }",
+    "option": {
+        "Board": {
+            "arguments": "<board> <piece2> <qty>",
+            "items": {}
+        },
+        "Place": {
+            "arguments": "<type> <direction> <qty>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

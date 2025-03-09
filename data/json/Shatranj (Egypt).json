@@ -1,0 +1,16 @@
+{
+    "define": {},
+    "game": "\"Shatranj (Egypt)\" <Variant>",
+    "option": {
+        "Variant": {
+            "arguments": "<variant>",
+            "items": {}
+        }
+    },
+    "rulesets": {
+        "Historical Information (Incomplete)": {
+            "Variant": "Incomplete"
+        }
+    },
+    "metadata": {}
+}

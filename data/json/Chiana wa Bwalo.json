@@ -1,0 +1,64 @@
+{
+    "define": {
+        "Columns": "<Board:size>",
+        "PiecesOwnedBy": "(+ (count Cell at:(handSite #1)) (count in:(sites #1 \"Home\""
+    },
+    "game": "\"Chiana wa Bwalo\" (players 2) (equipment { (mancalaBoard 4 \"Columns\" store:None { (track \"Track1\" \"0,E,N1,W\" loop:True P1) (track \"Track2\" <Board:track2> loop:True P2) } ) (regions \"Home\" P1 (sites Track \"Track1\")) (regions \"Home\" P2 (sites Track \"Track2\")) (regions \"Inner\" P1 (difference (sites Track \"Track1\") (sites Bottom))) (regions \"Inner\" P2 (difference (sites Track \"Track2\") (sites Top))) (piece \"Seed\" Shared) (hand Each) }) (rules (start (set Count 4 to:(union (sites Top) (sites Bottom)))) (play (move Select (from (sites Mover \"Home\") if:(> (count at:(from)) 0) ) (then (sow \"Track\" owner:(mover) apply:(if (and (= (count at:(to)) 1) (> (count at:(\"OppositePit\" (to))) 0) ) (fromTo (from (\"OppositePit\" (to))) (to (handSite Mover)) count:(count at:(\"OppositePit\" (to))) ) ) ) ) ) ) (end (\"MancalaByScoreWhen\" (no Moves Next))) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size> <track2>",
+            "items": {
+                "6": {
+                    "content": "6> <\"12,E,N1,W\"",
+                    "description": "Each player has 6 holes per row."
+                },
+                "8": {
+                    "content": "8> <\"16,E,N1,W\"",
+                    "description": "Each player has 8 holes per row."
+                },
+                "10": {
+                    "content": "10> <\"20,E,N1,W\"",
+                    "description": "Each player has 10 holes per row."
+                },
+                "12": {
+                    "content": "12> <\"24,E,N1,W\"",
+                    "description": "Each player has 12 holes per row."
+                },
+                "14": {
+                    "content": "14> <\"28,E,N1,W\"",
+                    "description": "Each player has 14 holes per row."
+                },
+                "16": {
+                    "content": "16> <\"32,E,N1,W\"",
+                    "description": "Each player has 16 holes per row."
+                },
+                "18": {
+                    "content": "18> <\"36,E,N1,W\"",
+                    "description": "Each player has 18 holes per row."
+                },
+                "20": {
+                    "content": "20> <\"40,E,N1,W\"",
+                    "description": "Each player has 20 holes per row."
+                },
+                "22": {
+                    "content": "22> <\"44,E,N1,W\"",
+                    "description": "Each player has 22 holes per row."
+                },
+                "24": {
+                    "content": "24> <\"48,E,N1,W\"",
+                    "description": "Each player has 24 holes per row."
+                },
+                "26": {
+                    "content": "26> <\"52,E,N1,W\"",
+                    "description": "Each player has 26 holes per row."
+                },
+                "28": {
+                    "content": "28> <\"56,E,N1,W\"",
+                    "description": "Each player has 28 holes per row."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Chiana wa Bwalo is a four-row mancala-style board game played by the Nyanja people of East Africa. It is generally played by children.\") (rules \"4 row board, of any number of holes. Four counters in each player's outer row. Sowing occurs from the player's rearmost hole and in an anti-clockwise direction. When the final counter lands in an empty hole in the inner row, any counters in the opposite hole in the opponent's inner row are captured. The player who captures all of the opponent's counters wins.\") (source \"Sanderson 1913: 735.\") (id \"1315\") (version \"1.3.14\") (classification \"board/sow/four rows\") (credit \"Eric Piette\") (origin \"This game was played in East Africa, around 1913.\") } ) (graphics { (board Style Mancala) }) (ai \"Chiana wa Bwalo_ai\" )"
+}

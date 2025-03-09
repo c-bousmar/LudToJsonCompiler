@@ -1,0 +1,60 @@
+{
+    "define": {
+        "Columns": "<Row:size>",
+        "PiecesOwnedBy": "(+ (count Cell at:(handSite #1)) (count in:(sites #1"
+    },
+    "game": "\"En Gehe\" (players 2) (equipment { (mancalaBoard 2 \"Columns\" store:None (track \"Track\" \"0,E,N,W\" loop:True) ) (regions P1 (sites Bottom)) (regions P2 (sites Top)) (piece \"Seed\" Shared) (hand Each) }) (rules (start (set Count 4 to:(sites Track))) (play (move Select (from (if (\"SameTurn\") \"LastHoleSowed\" (sites Mover) ) if:(> (count at:(from)) 0) ) (then (sow apply:(if (> (count at:(to)) 1) (moveAgain) (if (and (is In (to) (sites Mover)) (> (count at:(\"OppositePit\" (to))) 0) ) (and (fromTo (from (\"OppositePit\" (to))) (to (handSite Mover)) count:(count at:(\"OppositePit\" (to))) ) (fromTo (from (to)) (to (handSite Mover)) count:(count at:(to)) ) ) ) ) ) ) ) ) (end (\"MancalaByScoreWhen\" (no Moves Mover))) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "40": {
+                    "content": "40",
+                    "description": "Each row has 40 holes."
+                },
+                "41": {
+                    "content": "41",
+                    "description": "Each row has 41 holes."
+                },
+                "42": {
+                    "content": "42",
+                    "description": "Each row has 42 holes."
+                },
+                "43": {
+                    "content": "43",
+                    "description": "Each row has 43 holes."
+                },
+                "44": {
+                    "content": "44",
+                    "description": "Each row has 44 holes."
+                },
+                "45": {
+                    "content": "45",
+                    "description": "Each row has 45 holes."
+                },
+                "46": {
+                    "content": "46",
+                    "description": "Each row has 46 holes."
+                },
+                "47": {
+                    "content": "47",
+                    "description": "Each row has 47 holes."
+                },
+                "48": {
+                    "content": "48",
+                    "description": "Each row has 48 holes."
+                },
+                "49": {
+                    "content": "49",
+                    "description": "Each row has 49 holes."
+                },
+                "50": {
+                    "content": "50",
+                    "description": "Each row has 50 holes."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"En Geh\u00e9 is a two-row mancala-style game played by the Loitha and Misonga Masai in northern Tanzania. It is reported to be exclusively played by men, usually in two teams of eight people. It is played on a board with rows of holes dug into the ground.\") (aliases {\"En Geh\u00e9\" \"Guehe\" \"'n Geh\u00e9n\"}) (rules \"2x40-50 board. Each team controls one row. Play begins with each hole containing four counters (usually seeds or pebbles). A player picks up the counters in a hole in his team's row and sows them in a counterclockwise fashion, one in each consecutive hole. If the last counter is deposited into a hole containing counter, those counters are picked up and the player continues sowing. The turn continues in this fashion until the last counter falls into an empty hole. If this empty hole is on the player's side, the counters in the opposite hole in the other team's row are captured. The counter also causing the capture is taken. Play continues until one team cannot move, and the remaining counters are captured by the other team. The team with the most seeds wins.\") (source \"Merker 1904: 37.\") (id \"67\") (version \"1.3.14\") (classification \"board/sow/two rows\") (credit \"Eric Piette\") (origin \"This game was played in East Africa, around 1904.\") } ) (graphics { (board Style Mancala) }) (ai \"En Gehe_ai\" )"
+}

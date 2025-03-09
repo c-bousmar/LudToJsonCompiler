@@ -1,0 +1,108 @@
+{
+    "define": {
+        "RemoveSurrounded": "(forEach Site (sites Occupied by:Next) (if (= (count Liberties at:(site) Orthogonal) 0) (move Remove (site) (then (addScore Mover 1)))))"
+    },
+    "game": "\"BlooGo\" (players 2) (equipment { (board <Board> use:Vertex) (piece \"Ball\" Each) }) (rules (meta (no Repeat)) (play (move Add (to (sites Empty)) (then \"RemoveSurrounded\" ) ) ) (end { (if (>= (score Mover) <CapThreshold>) (result Mover Win) ) }) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "9x9": {
+                    "content": "(square 9)",
+                    "description": "The game is played on a 9x9 board"
+                },
+                "13x13": {
+                    "content": "(square 13)",
+                    "description": "The game is played on a 13x13 board"
+                },
+                "15x15": {
+                    "content": "(square 15)",
+                    "description": "The game is played on a 15x15 board"
+                },
+                "19x19": {
+                    "content": "(square 19)",
+                    "description": "The game is played on a 19x19 board"
+                }
+            }
+        },
+        "Capture Threshold": {
+            "arguments": "<size>",
+            "items": {
+                "1": {
+                    "content": "1",
+                    "description": "1 capture to win."
+                },
+                "2": {
+                    "content": "2",
+                    "description": "2 captures to win."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "2 captures to win."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "4 captures to win."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "5 captures to win."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "6 captures to win."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "7 captures to win."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "8 captures to win."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "9 captures to win."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "10 captures to win."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "15 captures to win."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "20 captures to win."
+                },
+                "25": {
+                    "content": "25",
+                    "description": "25 captures to win."
+                },
+                "30": {
+                    "content": "30",
+                    "description": "30 captures to win."
+                },
+                "35": {
+                    "content": "35",
+                    "description": "35 captures to win."
+                },
+                "40": {
+                    "content": "40",
+                    "description": "40 captures to win."
+                },
+                "45": {
+                    "content": "45",
+                    "description": "45 captures to win."
+                },
+                "50": {
+                    "content": "50",
+                    "description": "50 captures to win."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"BlooGo is a Go variant inspired by the game Blooms by Nick Bentley. In BlooGo, suicide is allowed, no passing is allowed, and the first player to capture a certain number of enemy stones wins.\") (rules \"Played on a square grid. The board begins empty. One player plays as Black, the other as White. Players alternate turns placing a piece of their colour on the board; Black plays first. Passing is not allowed. After a move, all opposing pieces without liberties are captured (a stone or group of stones has no liberties if all adjacent points to that stone are occupied). Stones cannot be placed to recreate a previous position. The game ends when one player captures a number of stones equal to a winning threshold agreed upon at the start of the game. Despite not having an explicit territorial goal, this variant produces final positions quite reminiscent of standard Go.\") (id \"1425\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/territory\") (author \"Nick Bentley and Luis Bola\u00f1os Mures\") (credit \"Eric Silverman\") (date \"2021\") } ) (graphics { (board Style Go) (player Colour P1 (colour Black)) (player Colour P2 (colour White)) }) (ai \"BlooGo_ai\" )"
+}

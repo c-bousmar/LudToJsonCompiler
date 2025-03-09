@@ -1,0 +1,104 @@
+{
+    "define": {
+        "GroupCount": "(max 0 (max (sizes Group \"ScoreConnectionDirection\" #1) ) )",
+        "GroupScore": "(set Var \"MoverScore\" (\"GroupCount\" Mover) (then (set Var \"NextScore\" (\"GroupCount\" Next) (then <TieScoring:tiebreaker> ) ) ) )",
+        "BonusMover": "(set Var \"MoverScore\" (+ (\"GroupCount\" Mover) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (mover))) ) (then (set Var \"NextScore\" (+ (\"GroupCount\" Next) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (next))) ) (then <TieScoring:tiebreaker> ) ) ) )",
+        "BonusOpponent": "(set Var \"MoverScore\" (+ (\"GroupCount\" Mover) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (next))) ) (then (set Var \"NextScore\" (+ (\"GroupCount\" Next) (count Groups \"ScoreConnectionDirection\" if:(= (who at:(to)) (mover))) ) (then <TieScoring:tiebreaker> ) ) ) )",
+        "CascadeScore": "(max 0 (max (difference (sizes Group \"ScoreConnectionDirection\" #1) (sizes Group \"ScoreConnectionDirection\" #2) ) ) )",
+        "NoTiebreaker": "(and (set Score Mover (var \"MoverScore\")) (set Score Next (var \"NextScore\")) )",
+        "CascadeTiebreaker": "(if (= (var \"MoverScore\") (var \"NextScore\")) (and (set Score Mover (* -1 (\"CascadeScore\" Mover Next))) (set Score Next (* -1 (\"CascadeScore\" Next Mover))) ) (\"NoTiebreaker\") )",
+        "AllHave1Connection2Edge": "(all Sites #1 if:(or (and (is Empty (site)) (is In (site) (sites Outer)) ) (!= Infinity (count Steps (step \"ConnectionDirection\" (to if:(is Empty (to))) ) (site) (difference (sites Outer) (site)) ) ) ) )",
+        "ScoreConnectionDirection": "<BoardShape:directionScored>",
+        "ConnectionDirection": "<BoardShape:directionUsed>",
+        "BoardUsed": "<BoardShape:gridType>",
+        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell",
+        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell",
+        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell",
+        "TriSquare": "(board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex",
+        "ColourBackground": "(colour 126 130 156"
+    },
+    "game": "\"Brain Coral\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" Each) (piece \"Disc\" Each) }) (rules (start (set Score Each 0)) (play (do (move Add (to (sites Empty))) ifAfterwards:(\"AllHave1Connection2Edge\" (sites Around (last To) \"ConnectionDirection\" includeSelf:True)) (then <Scoring:selScoring>) )) (end (if (no Moves Next) { (if (= (score Mover) (score Next)) <TieScoring:finalTie> ) (if (!= (score Mover) (score Next)) (byScore) ) }) ) )",
+    "option": {
+        "Size": {
+            "arguments": "<smallSide>",
+            "items": {
+                "3 (5 moves each)": {
+                    "content": "3",
+                    "description": "Order 3 board - about 5 moves each"
+                },
+                "4 (11 moves each)": {
+                    "content": "4",
+                    "description": "Order 4 board - about 11 moves each"
+                },
+                "5 (20 moves each)": {
+                    "content": "5",
+                    "description": "Order 5 board - about 20 moves each"
+                },
+                "6 (31 moves each)": {
+                    "content": "6",
+                    "description": "Order 6 board - about 31 moves each"
+                },
+                "7 (45 moves each)": {
+                    "content": "7",
+                    "description": "Order 7 board - about 45 moves each"
+                },
+                "8 (60 moves each)": {
+                    "content": "8",
+                    "description": "Order 8 board - about 60 moves each"
+                },
+                "9 (80 moves each)": {
+                    "content": "9",
+                    "description": "Order 9 board - about 80 moves each"
+                },
+                "11 (120 moves each)": {
+                    "content": "11",
+                    "description": "Order 11 board - about 120 moves each"
+                }
+            }
+        },
+        "Board Grid": {
+            "arguments": "<gridType> <directionUsed> <diagShow> <directionScored> <backgroundImage>",
+            "items": {
+                "TriSquare connections to edge All directions - Orthogonal only form groups": {
+                    "content": "\"TriSquare\"> <All> <ThinDotted> <Adjacent> <\"Disc\"",
+                    "description": "Triangle-Square N-2 all directions connect paths to edge - Orthogonal only form groups, about 10% more moves"
+                },
+                "TriSquare connections to edge orthogonal only - All directions form groups": {
+                    "content": "\"TriSquare\"> <Adjacent> <Hidden> <All> <\"Disc\"",
+                    "description": "Triangle-Square N-2 Orthogonal connections to edge - ALl direction form groups"
+                },
+                "Hex Limping": {
+                    "content": "\"HexLimp\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex N / N-1 Grid, about 20% less moves"
+                },
+                "Hex Double Limping": {
+                    "content": "\"Hex2Limp\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex N+1 / N-1 Grid"
+                },
+                "Hex Grid": {
+                    "content": "\"HexCell\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex Grid - Standard"
+                }
+            }
+        },
+        "Scoring": {
+            "arguments": "<selScoring>>",
+            "items": {}
+        },
+        "TieBreaker": {
+            "arguments": "<tiebreaker> <finalTie>",
+            "items": {
+                "A: Largest group, cascading LOSES": {
+                    "content": "(\"CascadeTiebreaker\")> <(result Mover Win)",
+                    "description": "Tiebreaker is largest group (excluding tied pairs) LOSES. If all are paired, last placement wins."
+                },
+                "B: Last to place": {
+                    "content": "(\"NoTiebreaker\")> <(result Mover Win)",
+                    "description": "Tiebreaker is last to place wins."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

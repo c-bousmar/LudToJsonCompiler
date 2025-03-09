@@ -1,0 +1,128 @@
+{
+    "define": {
+        "Capture": "(forEach Site (sites Board) (apply if:(and (is Next (who at:(site))) (= 0 (count Sites in:(intersection (sites Empty) (sites Around (site) includeSelf:True) ) ) ) ) (remove (site)) ) )",
+        "PlaceOutOfSight": "(move Add (to (sites Empty) if:(and (not \"TooClose\") (!= 0 (count Sites in:(sites Around (to) if:(is Empty (to))))) )) (then (set Var \"LM\" 3 (then (do (\"Capture\") next:(\"UpdateScore\")) ))) )",
+        "TooClose": "(is Within (id \"Disc\" Mover) in:(intersection (sites LineOfSight Piece at:(to)) (sites Direction from:(to) distance:<Placement:distance>) ) )",
+        "Move2Friends": "(move Step (to if:(and { (is Empty (to)) (< (count Pieces Mover in:(sites Around (from))) (- (count Pieces Mover in:(sites Around (to))) 1) ) (or { (not (was Pass)) (!= (from) (var \"LT\")) (!= (to) (var \"LF\")) } ) } ) ) (then (set Var \"LM\" 1 (then (do (\"Capture\") next:(\"UpdateScore\")) ))) )",
+        "MoveFromEnemies": "(move Step (to if:(and (is Empty (to)) (> (count Pieces Next in:(sites Around (from))) (count Pieces Next in:(sites Around (to))) ) ) ) (then (set Var \"LM\" 2 (then (do (\"Capture\") next:(\"UpdateScore\")) ))) )",
+        "UpdateScore": "(and (set Score Mover (/ (+ (results from:(sites Occupied by:Mover) to:(sites Around (from) if:(is Mover (who at:(to)))) 1 ) ) 2 ) ) (set Score Next (/ (+ (results from:(sites Occupied by:Next) to:(sites Around (from) if:(is Next (who at:(to)))) 1 ) ) 2 ) ) )",
+        "Goats": "(piece Foreground P1 \"Disc\" image:\"mountainGoat-alt3\" fillColour:(colour 255 255 255)) (piece Colour P1 \"Disc\" fillColour:(colour 255 255 255 120) strokeColour:(colour 62 72 55)) (piece Foreground P2 \"Disc\" image:\"mountainGoat-alt3\" fillColour:(colour 60 60 60)) (piece Colour P2 \"Disc\" fillColour:(colour 0 0 0 110) strokeColour:(colour 40 48 36)) (piece Rotate P2 degrees:180)",
+        "GoatsNeg": "(piece Foreground P1 \"Disc\" image:\"mountainGoat-alt3\" fillColour:(colour 255 255 255)) (piece Colour P1 \"Disc\" fillColour:(colour 255 255 255 120) strokeColour:(colour 62 72 55)) (piece Foreground P2 \"Disc\" image:\"mountainGoat-alt3\" fillColour:(colour 30 30 30) edgeColour:(colour 240 240 240)) (piece Colour P2 \"Disc\" fillColour:(colour 0 0 0 110) strokeColour:(colour 40 48 36)) (piece Rotate P2 degrees:180)"
+    },
+    "game": "\"Goats Wintering\" (players 2) (equipment { (board <BoardSize:gridType> use:Cell) (piece \"Disc\" P1) (piece \"Disc\" P2) }) (rules (start (set Score Each 0)) (play (or { (do (set Var \"LT\" (last To) (then (set Var \"LF\" (last From))) ) next:(move Pass (then (set Var \"LM\" 0))) ) (\"PlaceOutOfSight\") (forEach Piece (or (\"Move2Friends\") (if (and { (!= 2 (var \"LM\")) (< 0 (var \"LM\")) (not (can Move (\"Move2Friends\"))) } ) (\"MoveFromEnemies\") ) ) ) } ) ) (end { (if (and (all Passed) (> (score Mover) (score Next)) ) (result Mover Win) ) (if (and (all Passed) (<= (score Mover) (score Next)) ) (result Next Win) ) } ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<gridType>",
+            "items": {
+                "2 Limp": {
+                    "content": "(hex Limping 2)",
+                    "description": "Edge 2,3 Hex board"
+                },
+                "2-4 Hex": {
+                    "content": "(hex 2 4)",
+                    "description": "Edge 2,4 Hex board"
+                },
+                "3 Limp": {
+                    "content": "(hex Limping 3)",
+                    "description": "Edge 3,4 Hex board"
+                },
+                "4 Limp": {
+                    "content": "(hex Limping 4)",
+                    "description": "Edge 4,5 Hex board"
+                },
+                "5 Limp": {
+                    "content": "(hex Limping 5)",
+                    "description": "Edge 5,6 Hex board"
+                },
+                "6 Limp": {
+                    "content": "(hex Limping 6)",
+                    "description": "Edge 6,7 Hex board"
+                },
+                "10 limp": {
+                    "content": "(hex Limping 10)",
+                    "description": "Edge 10,11 Hex board"
+                },
+                "4x4": {
+                    "content": "(rotate 45 (square 4))",
+                    "description": "Order 4 Diamond board"
+                },
+                "5x5": {
+                    "content": "(rotate 45 (square 5))",
+                    "description": "Order 5 Diamond board"
+                },
+                "6x6": {
+                    "content": "(rotate 45 (square 6))",
+                    "description": "Order 6 Diamond board"
+                },
+                "7x7": {
+                    "content": "(rotate 45 (square 7))",
+                    "description": "Order 7 Diamond board"
+                },
+                "8x8": {
+                    "content": "(rotate 45 (square 8))",
+                    "description": "Order 8 Diamond board"
+                },
+                "9x9": {
+                    "content": "(rotate 45 (square 9))",
+                    "description": "Order 9 Diamond board"
+                },
+                "6 Tri": {
+                    "content": "(hex Triangle 6)",
+                    "description": "Order 4 Near Triangle board"
+                },
+                "7 Tri": {
+                    "content": "(hex Triangle 7)",
+                    "description": "Order 5 Near Triangle board"
+                },
+                "8 Tri": {
+                    "content": "(hex Triangle 8)",
+                    "description": "Order 6 Near Triangle board"
+                },
+                "9 Tri": {
+                    "content": "(hex Triangle 9)",
+                    "description": "Order 7 Near Triangle board"
+                },
+                "10 Tri": {
+                    "content": "(hex Triangle 10)",
+                    "description": "Order 8 Near Triangle board"
+                },
+                "11 Tri": {
+                    "content": "(hex Triangle 11)",
+                    "description": "Order 9 Near Triangle board"
+                }
+            }
+        },
+        "Placements": {
+            "arguments": "<distance>",
+            "items": {
+                "Gap 2": {
+                    "content": "2",
+                    "description": "Placements must leave a gap of 2 spaces if in sight of a friendly piece"
+                },
+                "Gap 3": {
+                    "content": "3",
+                    "description": "Placements must leave a gap of 3 spaces if in sight of a friendly piece"
+                }
+            }
+        },
+        "Graphics": {
+            "arguments": "<defs>",
+            "items": {
+                "Discs": {
+                    "content": "",
+                    "description": "No graphic on pieces"
+                },
+                "Goats": {
+                    "content": "\"Goats\"",
+                    "description": "Goat graphics - Custom if mountainGoat-alt3.svg is in Ludii directory"
+                },
+                "Goats Negative": {
+                    "content": "\"GoatsNeg\"",
+                    "description": "Goat (color reversal) - Custom if mountainGoat-alt3.svg is in Ludii directory"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"'Goats Wintering' gives the impression of goats gathering into herds in a sheltered area as winter approaches. The goal is to maximize the connections between the goats. However, goats may not be placed too close to others of their kind along sight-lines. So there is tension in who can place and move their goats together most efficiently. The novel movement mechanism is that a goat's movement is restricted to steps that increase its friendly contact, -- or, when increasing friendly contact is not available to it, steps that decrease its contact with competing goats. When goats get close enough to others of their kind, they can then thus move to join a flock and increase the connections. But frequently they will need the presence of the opponent's goats to be able to get this close to their own flocks. This is because goats allow movement choices for any goats near them: isolated goats can't move. So, the tension is in finding places to enter one's goats that are at a suitable range to gather them together. There is capture: Moves that fully surround any of the opponent's goats cause those goats to leave the play area. To prevent cycling, the subordinate kind of goat move is not allowed after a pass. This allows a player with a strong lead to pass until the other player runs out of moves and the game ends. The game is inspired from Infuse by the same Author, but the clumping here is more open and pronounced and clumps are distance-limited, not line-of-sight limited. It may be played on either hex grids with adjacent movement, or square grids with ortho-diagonal diagonal movement. Changes made to avoid cycles: 1) implement a no suicide rule: placement must be on a site that is also next to empty. 2) add a restriction to break a discovered cycling pattern without large impact on play: a move away from opponents is further restricted to not follow this kind of move by the opponent.\") (rules \"--- Goal: Have the warmest goats at end. The warmth of you goats is the total number of contacts they have with other goats. To find the winner, it is only necessary to count goat-to-goat contacts between their own kind. The game start on an empty board. Play alternates. On a turn either: 1. Place a goat on an empty cell that is next to another empty cell, and not too close to another goat of its color: -- If they are in line, they need gap of 2 or 3 spaces (as selected in Options.) 2. Group: Move one of your goats one step that increases its contact with goats of its own kind. 3. Stray: Move one of your goats one step that decreases its contact with the opponent's goats. Straying is limited. A given goat may not stray in any of these cases: -- If it can group. -- If the previous player's goat strayed. -- If the previous player passed. 4. Pass (sometimes this is forced) Note that after a pass, the other player is not allowed Stray. He may Group if this does not 'undo' his previous move. Capture -- After moving, simultaneously remove all individual enemy goats that have no adjacent space empty. -- Capturing does not happen on a passing turn: to capture one must play a piece. Ending the game -- The game ends with 2 passes. Then the number of connections are compared. -- In the case of a tie, the last to pass loses. Variants not implemented: No capture. / Score simple goat count.\") (id \"1327\") (version \"1.3.14\") (classification \"board/space/territory\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"19-11-2020\") } ) (graphics { (board Colour Phase0 (colour 124 145 111)) (board Colour InnerEdges (colour 62 72 55)) (board Colour OuterEdges (colour 62 72 55)) (board StyleThickness OuterEdges 2.0) <Goat:defs> } ) (ai \"Goats Wintering_ai\" )"
+}

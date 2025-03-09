@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Demala Diviyan Keliya\" (players 2) (equipment { (board <Board:type> use:Vertex) (hand P2) (piece \"Tiger\" P1 (or \"HopCapture\" \"StepToEmpty\")) (piece \"Dog\" P2 \"StepToEmpty\") }) (rules (start { (place \"Tiger1\" <Board:initTiger>) (place \"Dog2\" (handSite P2) count:15) }) phases:{ (phase \"Placement\" P2 (play (move (from (handSite P2)) (to (sites Empty)) ) ) (nextPhase (\"HandEmpty\" P2) \"Movement\") ) (\"PhaseMovePiece\" \"Movement\" (end (\"NoMovesLossAndLessNumPiecesPlayerLoss\" P2 7)) ) } )",
+    "option": {
+        "Board": {
+            "arguments": "<type> <initTiger>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Demala Diviyan Keliya is a hunt game known by many names played throughout South Asia, and documented since the early twentieth century.\") (aliases {\"Rafaya\" \"Koti Sellama\" \"Pulijudam\"}) (rules \"Played with three \\\"leopards\\\" and fifteen \\\"dogs.\\\" The pieces are placed on the intersections of the lines, and move along the lines to the next intersection. The game starts with the leopards on the board, but in the beginning the player controlling the dogs places one dog on an intersection until they are all on the board. After this, the dogs move in the same manner as the leopards. The leopard can hop over a dog as in draughts, capturing it. The leopard wins the game if it captures more than half of the dogs, the dogs win if they block the leopard from being able to move.\") (source \"Parker 1909: 581.\") (id \"397\") (version \"1.3.14\") (classification \"board/hunt\") (credit \"Eric Piette\") (origin \"This game was played in South Asia, around 1909.\") } ) (graphics { (piece Families {\"Abstract\" \"Themed\"}) (show Edges Diagonal Hidden) }) (ai \"Demala Diviyan Keliya_ai\" )"
+}

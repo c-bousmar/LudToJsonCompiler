@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Jagga Harran pi Tappin\" <Variant>",
+    "option": {
+        "Variant": {
+            "arguments": "<variant>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"J\u00e5gg\u00e5 H\u00e5rr\u00e5n pi T\u00e5ppin is a hunt game played in Norway. \") (aliases {\"J\u00e5gg\u00e5 H\u00e5rr\u00e5n pi T\u00e5ppin\"}) (rules \"A square, with diagonals and lines connecting the midpoints. Two triangles on opposite sides of the square, with a line drawn from the apex to the midpoint of the base. One player plays as three hounds, the other as a hare. The hounds begin on one triangle of the board, and must trap the hare in the triangle on the opposite end of the board.\") (source \"DLP evidence.\") (id \"1496\") (version \"1.3.9\") (classification \"board/hunt/reconstruction/pending\") (credit \"Eric Piette\") } ) (graphics { (show Edges Diagonal Hidden) }) (recon { (concept \"NumStartComponents\" 4) })"
+}

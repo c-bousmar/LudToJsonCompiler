@@ -1,0 +1,110 @@
+{
+    "define": {
+        "StarCells": "<Stars>"
+    },
+    "game": "\"Omny\" (players 2) (equipment { (board (hex <Shape> <Size>)) (piece \"Disc\" Each) }) (rules (play (if (= 1 (var)) (or (move Swap Players P1 P2) (move Add (to (sites Empty)) (then (set Var 0))) ) (move Add (to (sites Empty)) <Balance> ) ) ) (end (if (>= (count Sites in:(\"StarCells\") ) (max (results from:(difference (sites Board) (sites Group at:(last To)) ) to:2 (* (to) (count Sites in:(intersection (\"StarCells\") (sites Group at:(from) if:(not (is In (to) (sites Group at:(last To)) ) ) ) ) ) ) ) ) ) (result Mover <Result>) ) ) )",
+    "option": {
+        "Board Shape": {
+            "arguments": "<shape>",
+            "items": {
+                "Hex": {
+                    "content": "",
+                    "description": "A hex board is currently selected"
+                },
+                "Triangle": {
+                    "content": "Triangle",
+                    "description": "A triangular board is currently selected"
+                },
+                "Diamond": {
+                    "content": "Diamond",
+                    "description": "A diamond shaped board is currently selected"
+                },
+                "Star": {
+                    "content": "Star",
+                    "description": "A star shaped board is currently selected"
+                },
+                "Limping Hex": {
+                    "content": "Limping",
+                    "description": "A limping hex board is currently selected"
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3": {
+                    "content": "3",
+                    "description": "A size 3 board is currently selected"
+                },
+                "4": {
+                    "content": "4",
+                    "description": "A size 4 board is currently selected"
+                },
+                "5": {
+                    "content": "5",
+                    "description": "A size 5 board is currently selected"
+                },
+                "6": {
+                    "content": "6",
+                    "description": "A size 6 board is currently selected"
+                },
+                "7": {
+                    "content": "7",
+                    "description": "A size 7 board is currently selected"
+                },
+                "8": {
+                    "content": "8",
+                    "description": "A size 8 board is currently selected"
+                },
+                "9": {
+                    "content": "9",
+                    "description": "A size 9 board is currently selected"
+                },
+                "10": {
+                    "content": "10",
+                    "description": "A size 10 board is currently selected"
+                },
+                "11": {
+                    "content": "11",
+                    "description": "A size 11 board is currently selected"
+                },
+                "12": {
+                    "content": "12",
+                    "description": "A size 12 board is currently selected"
+                }
+            }
+        },
+        "Star Cells": {
+            "arguments": "<rule>",
+            "items": {}
+        },
+        "Balance Rule": {
+            "arguments": "<rule>",
+            "items": {
+                "12*": {
+                    "content": "(then (if (= 1 (% (+ 1 (count Moves)) 2)) (moveAgain) ) )",
+                    "description": "The 12* placement protocol is currently in force"
+                },
+                "None": {
+                    "content": "",
+                    "description": "No balance rule is currently in force"
+                }
+            }
+        },
+        "End Rule": {
+            "arguments": "<rule>",
+            "items": {
+                "Standard": {
+                    "content": "Win",
+                    "description": "The standard win condition is currently selected."
+                },
+                "Mis\u00e8re": {
+                    "content": "Loss",
+                    "description": "The mis\u00e8re win condition is currently selected"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Omny is a system of connection games that originated as a generalization of Mark Steere's Gyre. It includes Y as one of its many variations. Luis Bola\u00f1os Mures invented Omny in 2017.\") (rules \"Omny is played on the cells of any hexagonal grid where some or all of the cells are designated star cells. Players take turns placing a stone of one's own color on an empty cell. A group is a set of connected stones of the same color. A cut of a group X is any set of connected cells (empty or occupied by either player) including no stones in X. You win by making a group such that none of its cuts include more than half the cells of the board. For serious play it is advised to play with a balance rule in force. In Mis\u00e8re Omny you lose if you make a group whose cuts each contain no more than half of the star cells.\") (id \"1529\") (version \"1.3.14\") (classification \"board/space/group\") (author \"Luis Bola\u00f1os Mures (used with permission)\") (credit \"Michael Amundsen\") (date \"2017\") } ) (graphics { (show Symbol \"StarOutline\" (\"StarCells\") edgeColour:(colour 0 0 0 48) scale:0.5 ) (player Colour P1 (colour Black)) (player Colour P2 (colour White)) }) (ai \"Omny_ai\" )"
+}

@@ -1,0 +1,18 @@
+{
+    "define": {
+        "RemovePiece": "<Version:removeRule>",
+        "SlideOrChangeDirection": "(or (move Slide #1 (between #2) (to if:(\"IsEnemyAt\" (to)) (apply \"RemovePiece\") ) ) (move Set Rotation) )",
+        "StepOrChangeDirection": "(or (move Step #1 (to if:(not (\"IsFriendAt\" (to))) (apply \"RemovePiece\") ) #2 ) (move Set Rotation) )",
+        "CaptureCommandeOf": "(trigger \"CommanderCaptured\" #1",
+        "CommanderOfWasCapture": "(is Triggered \"CommanderCaptured\" #1"
+    },
+    "game": "\"Ploy\" (players <Version:numPlayers>) (equipment { (board (square 9) use:Vertex) <Version:rulesCommander> (piece \"Commander\" Each (\"StepOrChangeDirection\" (directions {FR FL BL BR} of:All))) (piece \"Shield\" Each (\"StepOrChangeDirection\" (directions Forward of:All) (then (moveAgain)))) (piece \"LanceW\" Each (\"SlideOrChangeDirection\" (directions Forwards of:All) (max 3))) (piece \"LanceY\" Each (\"SlideOrChangeDirection\" (directions {FR FL Backward} of:All) (max 3))) (piece \"LanceT\" Each (\"SlideOrChangeDirection\" (directions {Forward Rightward Leftward} of:All) (max 3))) (piece \"ProbeI\" Each (\"SlideOrChangeDirection\" (directions {Forward Backward} of:All) (max 2))) (piece \"ProbeMinV\" Each (\"SlideOrChangeDirection\" (directions {Forward FR} of:All) (max 2))) (piece \"ProbeBigV\" Each (\"SlideOrChangeDirection\" (directions {FR FL} of:All) (max 2))) }) (rules (start { <Version:start> }) (play (if \"SameTurn\" (or (move Set Rotation (to (last To))) (move Pass) ) (forEach Piece <Version:consequence>) ) ) <Version:endRules> )",
+    "option": {
+        "Version": {
+            "arguments": "<numPlayers> <rulesCommander> <removeRule> <start> <consequence> <endRules>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Ploy was invented by Frank Thibault in 1970. It can be played by two or four players and the goal is to capture the opponent's Commander.\") (rules \"The goal is to capture the enemy Commander, or reduce the opponent army to a single Commander. Each piece has an indicator which determines at which directions the piece can move. This can be altered by rotating the piece 45 degrees= to the left or right. Rotating the piece costs a move. Each player has 3 Shields, 5 Probes, 6 Lances, and one Commander. The Shield moves one step and has only one movement freedom at any time. The Probe slides two steps and has two freedoms. The Lance slides three steps and has three freedoms. The Commander has four, but can only move one step. A player must either make a direction move or a motion move. The three Shields are the only pieces that can perform a direction move immediately after a motion move. Capture occurs by displacement.\") (source \"<a href=\\\"http: (id \"408\") (version \"1.3.14\") (classification \"board/war/replacement/eliminate/target\") (author \"Frank Thibault\") (publisher \"3M, Dujardin, Grow Jogos e Brinquedos, Schmid\") (credit \"Eric Piette\") (date \"1970\") } ) (graphics { (player Colour P1 (colour Green)) (player Colour P2 (colour Red)) (player Colour P3 (colour Yellow)) (player Colour P4 (colour Blue)) (show Edges Outer Hidden) (show Edges Diagonal Thin (colour 102 0 153)) (show Edges Inner Thin (colour 102 0 153)) (board Background image:\"Square.svg\" fillColour:(colour 153 0 204) edgeColour:(colour 153 0 204) scale:1.3) (show Symbol \"Disc\" (sites Board) fillColour:(colour 102 0 153) edgeColour:(colour 102 0 153) scale:0.5) }) (ai \"Ploy_ai\" )"
+}

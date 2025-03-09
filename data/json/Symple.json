@@ -1,0 +1,80 @@
+{
+    "define": {
+        "Plant": "(move Add (to (sites Empty) if:(= 0 (count Sites in:(sites Around (to) Own Orthogonal) ) ) ) (then (\"UpdateScore\")) )",
+        "PlaceGrey": "(do (move Add (piece \"Marker0\") (to (sites Empty) if:(< 0 (count Sites in:(sites Around (to) Own Orthogonal) ) ) ) ) ifAfterwards:(all Groups Orthogonal of:(is Mover (who at:(to))) if:(> 2 (count Sites in:(intersection (sites Around (sites) NotEmpty Orthogonal) (sites Occupied by:Neutral) ) ) ) ) #1 )",
+        "ReplaceAllGrey": "(add (to (sites Occupied by:Neutral) (apply (remove (to))) ) (then (if (!= 1 (var \"HasGrown\")) (and (set Var \"HasGrown\" 1) (if (= (id P2) (mover)) (and (set Var \"MoveThatMustBePlant\" (count Moves)) (moveAgain) ) ) ) ) ) )",
+        "Grow": "(\"PlaceGrey\" (then (if (can Move (\"PlaceGrey\" ~)) (moveAgain) (do (\"ReplaceAllGrey\") next:(\"UpdateScore\") ) ) ) )",
+        "UpdateScore": "(set Score Mover (- (count Sites in:(sites Occupied by:Mover)) (* <P> (count Groups Orthogonal if:(is Mover (who at:(to)))) ) ) )"
+    },
+    "game": "\"Symple\" (players 2) (equipment { (board (square <Size>) use:Vertex) (piece \"Marker\" Each) (piece \"Marker\" Neutral) }) (rules (play (if (= (count Moves) (var \"MoveThatMustBePlant\")) (\"Plant\") (if (= 0 (count MovesThisTurn)) (or (\"Plant\") (\"Grow\") ) (\"Grow\") ) ) ) (end (if (is Full) (byScore) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "7": {
+                    "content": "7",
+                    "description": "A size 7 board is currently selected"
+                },
+                "9": {
+                    "content": "9",
+                    "description": "A size 9 board is currently selected"
+                },
+                "11": {
+                    "content": "11",
+                    "description": "A size 11 board is currently selected"
+                },
+                "13": {
+                    "content": "13",
+                    "description": "A size 13 board is currently selected"
+                },
+                "15": {
+                    "content": "15",
+                    "description": "A size 15 board is currently selected"
+                },
+                "17": {
+                    "content": "17",
+                    "description": "A size 17 board is currently selected"
+                },
+                "19": {
+                    "content": "19",
+                    "description": "A size 19 board is currently selected"
+                }
+            }
+        },
+        "Group Penalty": {
+            "arguments": "<p>",
+            "items": {
+                "0": {
+                    "content": "0",
+                    "description": "A group penalty of 0 points is currently selected"
+                },
+                "2": {
+                    "content": "2",
+                    "description": "A group penalty of 2 points is currently selected"
+                },
+                "4": {
+                    "content": "4",
+                    "description": "A group penalty of 4 points is currently selected"
+                },
+                "6": {
+                    "content": "6",
+                    "description": "A group penalty of 6 points is currently selected"
+                },
+                "8": {
+                    "content": "8",
+                    "description": "A group penalty of 8 points is currently selected"
+                },
+                "10": {
+                    "content": "10",
+                    "description": "A group penalty of 10 points is currently selected"
+                },
+                "12": {
+                    "content": "12",
+                    "description": "A group penalty of 12 points is currently selected"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Symple is an abstract strategy game in which two players strive to get as much area as possible with as few groups as possible.\") (rules \"Players alternate making a move. White plays with the white stones and makes the first move, Black plays with the black stones. On his turn, a player may choose either a) to place a stone on the board without contact to other stones of his color in order to start a new group, or b) to grow all possible groups by one stone. When you grow your groups in this implementation, you place grey stones adjacent to your groups until each of your groups is adjacent to exactly one grey stone. At no point may a group of yours be adjacent to more than one grey stone. When your turn ends, all grey stones are replaced with stones of your color. For balancing, there is an extra rule: Black is allowed to grow all his groups and place a single stone as long as neither player has not yet grown any groups. The game ends when the board is filled in. The score is the number of stones each player has on the board minus 'P' times the number of groups he has, where 'P' is en even number of 4 or higher (the Ludii implementation also allows 0 and 2 as values of 'P'). With an even penalty and an odd boardsize, draws are not possible.\") (id \"1962\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/group\") (author \"Christian Feeling, Benedick Rosenau\") (credit \"Michael Amundsen\") (date \"2010\") } ) (graphics { (player Colour P1 (colour White)) (player Colour P2 (colour Black)) (player Colour Neutral (colour Grey)) (board Colour InnerEdges (colour 178 151 100)) (board Colour OuterEdges (colour 178 151 100)) (board Colour Phase0 (colour 250 210 148)) (board Colour Phase1 (colour 250 210 148)) (board Style Board) })"
+}

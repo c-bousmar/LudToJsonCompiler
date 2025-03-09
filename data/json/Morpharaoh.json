@@ -1,0 +1,46 @@
+{
+    "define": {
+        "SitesEdge": "(union { <Board:north> <Board:south> <Board:east> <Board:west> })",
+        "DiagonallyAdjacent2": "(sites Direction from:#1 (difference (difference (difference (difference Diagonal N) S) E) W) distance:1 )",
+        "EdgeMajority": "(<= 2 (count Pieces Mover in:(sites Around (to) Orthogonal)) )",
+        "Majority": "(<= 3 (count Pieces Mover in:(sites Around (to) Orthogonal)) )",
+        "LobsidedVEmbrace": "(<= 1 (+ (results from:(to) to:(intersection (sites Around (from) Orthogonal) (sites Occupied by:Mover) ) (if (and (< 0 (count Sites in:(intersection { (sites Around (to) Orthogonal) (sites Around (from) Orthogonal) (sites Occupied by:Mover) } ) ) ) (< 0 (count Sites in:(intersection { (\"DiagonallyAdjacent2\" (to)) (sites Around (from) Orthogonal) (sites Occupied by:Mover) } ) ) ) ) 1 0 ) ) ) )",
+        "AdjacentPair": "(<= 1 (+ (results from:(to) to:(intersection (sites Around (from) Orthogonal) (sites Occupied by:Mover) ) (if (< 0 (count Sites in:(intersection { (sites Around (to) Orthogonal) (sites Around (from) Orthogonal) (sites Occupied by:Mover) } ) ) ) 1 0 ) ) ) )",
+        "Check4Win": "(if (is Mover P1) (if (is Connected Orthogonal { <Board:north> <Board:south> }) (trigger \"Win\" Mover) ) (if (is Connected Orthogonal { <Board:east> <Board:west> }) (trigger \"Win\" Mover) ) )"
+    },
+    "game": "\"Morpharaoh\" (players 2) (equipment { (board (trim <Board:type>) use:Cell) (piece \"Disc\" Each) (piece \"Disc\" Neutral) }) (rules (play (or { (move Add (to (sites Empty) ) ) (move Add (to (intersection (sites Occupied by:Next) (\"SitesEdge\")) if:(<Edge:controlType>) (apply (remove (to))) ) ) (move Add (to (difference (sites Occupied by:Next) (\"SitesEdge\")) if:(<Center:controlType>) (apply (remove (to))) ) ) } (then \"Check4Win\") ) ) (end (if (is Triggered \"Win\" Mover) (result Mover Win) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<type> <north> <south> <east> <west>",
+            "items": {}
+        },
+        "Edge Control": {
+            "arguments": "<controlType>",
+            "items": {
+                "Majority": {
+                    "content": "\"EdgeMajority\"",
+                    "description": "Any 2 of your pieces adjacent to an edge location give control of the location."
+                },
+                "Adjacent Pair": {
+                    "content": "\"AdjacentPair\"",
+                    "description": "A mutually adjacent pair of your pieces to an edge location gives control there."
+                }
+            }
+        },
+        "Mid-Board Control": {
+            "arguments": "<controlType>",
+            "items": {
+                "Majority": {
+                    "content": "\"Majority\"",
+                    "description": "but not next to pieces that already have more than 2 neighbors."
+                },
+                "Ortho plus diagonal embrace": {
+                    "content": "\"LobsidedVEmbrace\"",
+                    "description": "To control a site with your adjacent stones, one stone must connect to a second orthogonally, and to a third diagonally."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"The title of the game Morpharaoh is a nod to capture (morph), connection (a row), a previous square grid connection game by Luis Bola\u00f1os Mures' Morphos which inspired it, and to the Cairo tiling used for the board. The game solves the cross-cut problem of boards with cells that meet 4-to-a-vertex in some locations, by use of a capture based on a majority n of adjacencies, thus preventing immediate recapture. To minimise the amount of captures, and thus provide to a more strategic game than one based on simple majority captures, the captures are limited to those that resolve cross-cuts along an existing diagonal connection, using a lopsided 'V' pattern of surrounding stones. -- and restricting edge capture to captures adjacent to an adjacent pair of stones. Option is provided for independently relaxing these restrictions. A pie offer option has not yet been implemented. The boards provided are a 48 cell and 160 cell board, designed specifically to provide an odd number of neighbours to each cell: 5 in the interior, and 3 at every edge cell. The Cairo board is one of the few regular grids that permit such a condition. It also dilutes the possible cross-cuts to two per location, compared with 4 per location on a square grid.\") (rules \"Goal: Connect your opposite sides with a continuous chain of stones on edge-to-edge ('orthogonally adjacent') cells. Achieving the goal ends the game. Players take turns. There is no passing. -- On a turn the mover either places a stone from their supply on an empty space, or uses it to replace an opponent's stone on a space that the mover controls. Edge spaces are controlled by two orthogonally adjacent mover stones that are also orthogonally adjacent to each other. All other spaces are controlled by having at least 3 orthogonally adjacent mover stones, one of which that is both orthogonally adjacent to the second, and diagonally adjacent to the third.\") (id \"1585\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"experimental\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"18-07-2021\") } ) (define \"ColourP1\" (colour 229 92 0 #1)) (define \"ColourP2\" (colour 252 255 234 #1)) (graphics { (player Colour P1 (\"ColourP1\" ~)) (player Colour P2 (\"ColourP2\" ~)) (piece Scale Neutral \"Disc\" 1.2) (piece Scale P1 \"Disc\" 0.99) (piece Scale P2 \"Disc\" 0.97) (piece Colour P1 fillColour:(\"ColourP1\" ~) strokeColour:(colour 173 173 173)) (piece Colour P2 fillColour:(colour White) strokeColour:(colour 173 173 173)) (board Colour Phase0 (colour 246 236 213)) (board Colour OuterEdges (colour 0 0 0)) (board Colour InnerEdges (colour 0 0 0)) (board StyleThickness OuterEdges 1.0) (board StyleThickness InnerEdges 0.5) (region Colour P1 <Board:north> (\"ColourP1\" 100)) (region Colour P1 <Board:south> (\"ColourP1\" 100)) (region Colour P2 <Board:east> (\"ColourP2\" 180)) (region Colour P2 <Board:west> (\"ColourP2\" 180)) } ) (ai \"Morpharaoh_ai\" )"
+}

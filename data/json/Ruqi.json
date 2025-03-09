@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Ruqi\" <Variant>",
+    "option": {
+        "Variant": {
+            "arguments": "<variant>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Confucian board game of the Northern Zhou period. \") (rules \"Race and displacement game.\") (source \"DLP evidence.\") (id \"1584\") (version \"1.3.9\") (classification \"board/race/reconstruction/pending\") (credit \"Eric Piette\") } )"
+}

@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Wargtablo\" <Variant>",
+    "option": {
+        "Variant": {
+            "arguments": "<variant>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Wargtablo (\\\"Wolf Game\\\") is a game played by the S\u00e1mi people of northern Sweden in the twentieth century.\") (rules \"Played on a board.\") (source \"DLP Evidence.\") (id \"1569\") (version \"1.3.9\") (classification \"board/war/reconstruction/pending\") } )"
+}

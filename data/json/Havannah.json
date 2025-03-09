@@ -1,0 +1,54 @@
+{
+    "define": {},
+    "game": "\"Havannah\" (players 2) (equipment { (board (hex <Board>)) (piece \"Marker\" Each) }) (rules <Meta:rule> (play (move Add (to (sites Empty)))) (end (if (or { (is Loop) (is Connected 3 SidesNoCorners) (is Connected 2 Corners) }) (result Mover Win) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board"
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board"
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board"
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board"
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board"
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board"
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board"
+                }
+            }
+        },
+        "Swap Rules": {
+            "arguments": "<rule>",
+            "items": {
+                "On": {
+                    "content": "(meta (swap))",
+                    "description": "The game uses the swap rule."
+                },
+                "Off": {
+                    "content": "",
+                    "description": "The game does not use the swap rule."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Havannah is a connection game invented by Christian Freeling and played on a hexagonal board.\") (rules \"Players take turns placing pieces on the board. There are three winning conditions: 1. Connect any three edges (without corner points), or 2. Make a bridge connection between any two corners, or 3. loop around any site.\") (source \"<a href=\\\"https: (id \"391\") (version \"1.3.14\") (classification \"board/space/connection\") (author \"Christian Freeling\") (credit \"Eric Piette\") (date \"1981\") } ) (ai \"Havannah_ai\" )"
+}

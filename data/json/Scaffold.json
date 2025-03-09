@@ -1,0 +1,79 @@
+{
+    "define": {
+        "Connect": "(do (move Add (to (sites Around (sites Occupied by:Mover) Empty) (apply (set Var \"NumberOfFriendlyGroupsBeforePlacement\" (count Groups Orthogonal if:(is Mover (who at:(to))) ) ) ) ) ) ifAfterwards:(< (count Groups Orthogonal if:(is Mover (who at:(to))) ) (var \"NumberOfFriendlyGroupsBeforePlacement\") ) )"
+    },
+    "game": {},
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "4x4": {
+                    "content": "4",
+                    "description": "A 4x4 board is currently selected"
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "A 5x5 board is currently selected"
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "A 6x6 board is currently selected"
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "A 7x7 board is currently selected"
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "An 8x8 board is currently selected"
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "A 9x9 board is currently selected"
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "A 10x10 board is currently selected"
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": "An 11x11 board is currently selected"
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "A 12x12 board is currently selected"
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": "A 13x13 board is currently selected"
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "A 14x14 board is currently selected"
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": "A 15x15 board is currently selected"
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": "A 16x16 board is currently selected"
+                },
+                "17x17": {
+                    "content": "17",
+                    "description": "A 17x17 board is currently selected"
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": "An 18x18 board is currently selected"
+                },
+                "19x19": {
+                    "content": "19",
+                    "description": "A 19x19 board is currently selected"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Scaffold is a drawless square connection game invented by Andrew Lannan in 2022 with inspiration and input from the designers on Boardgamegeek.com's Abstract Game forum. Luis Bola\u00f1os Mures helped clarify the presentation of the rules. It is similar to Bill Taylor's Quadrex, but was discovered independently.\") (rules \"Definitions Group: Either a single stone (a group of one) or any number of stones of the same color connected through a continuous series of orthogonal adjacencies. Rules Scaffold is a drawless connection game played on the intersections of a square grid using stones (as in Go). Black is trying to connect N-S edges of the board, White E-W with an orthogonally connected group. First player places a single black stone on any grid intersection, after which the second player decides which color they will play (pie rule). Players then alternate taking turns. On your turn, place a stone of your color on an empty point. Then, if possible, place a stone of your color on an empty point that is orthogonally adjacent to two groups of your color, and keep making such placements until no more are possible.\") (id \"1971\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/connection\") (author \"Andrew Lannan\") (credit \"Michael Amundsen\") (date \"2022\") } ) (graphics { (player Colour P1 (colour Black)) (player Colour P2 (colour White)) (board Colour InnerEdges (colour 178 151 100)) (board Colour OuterEdges (colour Black)) (board Colour Phase0 (colour 250 210 148)) (board Colour Phase1 (colour 250 210 148)) (board Style Board) (board StyleThickness OuterEdges 3.0) (region Colour Edge (union (sites Top Edge) (sites Bottom Edge)) regionSiteType:Edge (colour Black)) (region Colour Edge (union (sites Left Edge) (sites Right Edge)) regionSiteType:Edge (colour White)) }) (ai \"Scaffold_ai\" )"
+}

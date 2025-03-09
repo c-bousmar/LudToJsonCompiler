@@ -1,0 +1,49 @@
+{
+    "define": {},
+    "game": "\"Unfair\" (players 2) (equipment { (board (square <Board:size>) use:Vertex) (piece \"Ball\" Each) }) (rules (play (or (move Add (to (sites Empty) if:(= (id P1) (mover))) (then (if (= 0 (count MovesThisTurn)) (moveAgain) ) ) ) (move Add (to (sites Empty) if:(= (id P2) (mover))) (then (if (< (count MovesThisTurn) 3) (moveAgain) ) ) ) ) ) (end { (if (and ((= (id P1) (mover)) (is Line 4 Orthogonal))) (result Mover Win)) (if (and ((= (id P2) (mover)) (is Line 7 Orthogonal))) (result Mover Win)) }) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "11": {
+                    "content": "11",
+                    "description": "Played on a size 11 board."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "Played on a size 12 board."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "Played on a size 13 board."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "Played on a size 14 board."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "Played on a size 15 board."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "Played on a size 16 board."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "Played on a size 17 board."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "Played on a size 18 board."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "Played on a size 19 board."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Unfair is an asymmetric N-in-a-row game invented by Stephen Tavener in 2015. The two players have different goals and place different numbers of pieces per turn.\") (rules \"Played on a square grid 11x11 or larger. White goes first and places two pieces every turn, Black places four pieces per turn. White wins if they make an orthogonal line of four pieces; Black wins if they make an orthogonal line of 7 pieces.\") (id \"1401\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/line\") (author \"Stephen Tavener\") (credit \"Eric Silverman\") (date \"2015\") } ) (graphics { (player Colour P1 (colour White)) (player Colour P2 (colour Black)) (board Style Go) }) (ai \"Unfair_ai\" )"
+}

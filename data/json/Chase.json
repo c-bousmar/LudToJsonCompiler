@@ -1,0 +1,426 @@
+{
+    "define": {
+        "NumRobots": "<Robots:num>",
+        "NumSafeTeleportation": "<SafeTeleportation:num>",
+        "CloserToHuman": "(> (count Steps Orthogonal (site) (where (id \"Human\"))) (count Steps Orthogonal (ahead (site) #1) (where (id \"Human\"))) )",
+        "MoveRobot": "(if (\"IsPieceAt\" \"Rubble\" Neutral (ahead (site) #1)) (remove (site)) (fromTo (from (site)) (to (ahead (site) #1) (apply (if (\"IsPieceAt\" \"Human\" P1 (to)) (remove (to)) ) ) ) ) )",
+        "GoCloser": "(if (\"CloserToHuman\" #1) (\"MoveRobot\" #1) #2 )",
+        "RobotThreat": "(forEach Site (sites Occupied by:Shared) (\"GoCloser\" NE (\"GoCloser\" NW (\"GoCloser\" SW (\"GoCloser\" SE (\"GoCloser\" E (\"GoCloser\" W (\"GoCloser\" N (\"GoCloser\" S) ) ) ) ) ) ) ) )",
+        "KillRobotsIfColliding": "(forEach Site (sites Occupied by:Shared) (if (>= (count at:(site)) 2) (and (remove (site)) (add (piece \"Rubble0\") (to (site))) ) ) )",
+        "Teleportation": "(fromTo (from (where (id \"Human\"))) (to (sites Random)) (then (\"RobotThreat\")) )",
+        "SafeTeleportation": "(fromTo (from (where (id \"Human\"))) (to (sites Random (difference (sites Empty) (sites Around (sites Occupied by:Shared)) ) ) ) (then (\"RobotThreat\")) )"
+    },
+    "game": "\"Chase\" (players 1) (equipment { (board (rectangle <Rows:num> <Columns:num>)) (piece \"Human\" P1 (\"StepToEmpty\" ~ (then (\"RobotThreat\") ) ) ) (piece \"Robot\" Shared) (piece \"Rubble\" Neutral) }) (rules (start { (place Random {\"Human\"}) (place Random {\"Robot\"} count:(\"NumRobots\")) (set Score P1 (\"NumSafeTeleportation\")) }) (play (or { (forEach Piece) (move Pass (then (\"Teleportation\"))) (if (< 0 (score P1)) (move Select (from (where (id \"Human\"))) (then (and (set Score Mover (- (score P1) 1)) (\"SafeTeleportation\") ) ) ) ) } (then (\"KillRobotsIfColliding\") ) ) ) (end { (if (no Pieces Mover) (result Mover Loss)) (if (no Pieces \"Robot\") (result Mover Win)) }) )",
+    "option": {
+        "Rows": {
+            "arguments": "<num>",
+            "items": {
+                "1": {
+                    "content": "1",
+                    "description": "The board has 1 row."
+                },
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 rows."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 rows."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 rows."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 rows."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 rows."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 rows."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 rows."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 rows."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 rows."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 rows."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "The board has 12 rows."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "The board has 13 rows."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 rows."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The board has 15 rows."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "The board has 16 rows."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "The board has 17 rows."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "The board has 18 rows."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 rows."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "The board has 20 rows."
+                },
+                "21": {
+                    "content": "21",
+                    "description": "The board has 21 rows."
+                },
+                "22": {
+                    "content": "22",
+                    "description": "The board has 22 rows."
+                },
+                "23": {
+                    "content": "23",
+                    "description": "The board has 23 rows."
+                },
+                "24": {
+                    "content": "24",
+                    "description": "The board has 24 rows."
+                },
+                "25": {
+                    "content": "25",
+                    "description": "The board has 25 rows."
+                },
+                "26": {
+                    "content": "26",
+                    "description": "The board has 26 rows."
+                },
+                "27": {
+                    "content": "27",
+                    "description": "The board has 27 rows."
+                },
+                "28": {
+                    "content": "28",
+                    "description": "The board has 28 rows."
+                },
+                "29": {
+                    "content": "29",
+                    "description": "The board has 29 rows."
+                },
+                "30": {
+                    "content": "30",
+                    "description": "The board has 30 rows."
+                }
+            }
+        },
+        "Columns": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 columns."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 columns."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 columns."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 columns."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 columns."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 columns."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 columns."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 columns."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 columns."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 columns."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "The board has 12 columns."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "The board has 13 columns."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 columns."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The board has 15 columns."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "The board has 16 columns."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "The board has 17 columns."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "The board has 18 columns."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 columns."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "The board has 20 columns."
+                },
+                "21": {
+                    "content": "21",
+                    "description": "The board has 21 columns."
+                },
+                "22": {
+                    "content": "22",
+                    "description": "The board has 22 columns."
+                },
+                "23": {
+                    "content": "23",
+                    "description": "The board has 23 columns."
+                },
+                "24": {
+                    "content": "24",
+                    "description": "The board has 24 columns."
+                },
+                "25": {
+                    "content": "25",
+                    "description": "The board has 25 columns."
+                },
+                "26": {
+                    "content": "26",
+                    "description": "The board has 26 columns."
+                },
+                "27": {
+                    "content": "27",
+                    "description": "The board has 27 columns."
+                },
+                "28": {
+                    "content": "28",
+                    "description": "The board has 28 columns."
+                },
+                "29": {
+                    "content": "29",
+                    "description": "The board has 29 columns."
+                },
+                "30": {
+                    "content": "30",
+                    "description": "The board has 30 columns."
+                }
+            }
+        },
+        "Safe Teleportations": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The player has 2 safe teleportations."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The player has 3 safe teleportations."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The player has 4 safe teleportations."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The player has 5 safe teleportations."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The player has 6 safe teleportations."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The player has 7 safe teleportations."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The player has 8 safe teleportations."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The player has 9 safe teleportations."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The player has 10 safe teleportations."
+                }
+            }
+        },
+        "Robots": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "2 robots."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "3 robots."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "4 robots."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "5 robots."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "6 robots."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "7 robots."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "8 robots."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "9 robots."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "10 robots."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "11 robots."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "12 robots."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "13 robots."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "14 robots."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "15 robots."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "16 robots."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "17 robots."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "18 robots."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "19 robots."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "20 robots."
+                },
+                "21": {
+                    "content": "21",
+                    "description": "21 robots."
+                },
+                "22": {
+                    "content": "22",
+                    "description": "22 robots."
+                },
+                "23": {
+                    "content": "23",
+                    "description": "23 robots."
+                },
+                "24": {
+                    "content": "24",
+                    "description": "24 robots."
+                },
+                "25": {
+                    "content": "25",
+                    "description": "25 robots."
+                },
+                "26": {
+                    "content": "26",
+                    "description": "26 robots."
+                },
+                "27": {
+                    "content": "27",
+                    "description": "27 robots."
+                },
+                "28": {
+                    "content": "28",
+                    "description": "28 robots."
+                },
+                "29": {
+                    "content": "29",
+                    "description": "29 robots."
+                },
+                "30": {
+                    "content": "30",
+                    "description": "30 robots."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Chase is a turn-based computer game in which players are tasked with escaping from robots programmed to pursue and kill them. The player attempts to destroy the robots by moving in such a way that the robots collide with each other or other obstacles.\") (rules \"Chase is played on a two-dimensional rectangular grid. The objective of the game is to escape from a number of robots, which have been programmed to kill the player. The game is turn-based. The player character and the robots start at randomly selected locations. Every time the player character moves a square in any direction (horizontally, vertically, or diagonally), each robot moves one square closer to their new location, in whichever direction is the shortest path. If the player character collides with a robot, they die and the game ends. The player attempts to survive by causing the robots to kill themselves by colliding with other objects on the map. When two robots collide each other a pile of rubble is created. The player can also teleport into a randomly selected location. Teleportation counts as a move, and the robots will respond by moving towards the new location. Because the location is randomly selected, it is possible that the player teleports right into the path of a robot. A safe teleport is also possible for the player but can be used only a limited number of times. The game is won when all of the robots are destroyed. In Ludii, the number of safe teleportations available is the score of the player. In clicking on the player a safe teleportation will be applied. To make a non safe teleportation, the button Pass has to be pressed.\") (id \"685\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"puzzle/planning\") (credit \"Eric Piette\") (date \"1970\") } ) (graphics { (no Sunken) (board Colour Phase0 (colour White)) (board Colour InnerEdges (colour White)) (board Colour OuterEdges (colour Black)) }) (ai \"Chase_ai\" )"
+}

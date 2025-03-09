@@ -1,0 +1,28 @@
+{
+    "define": {
+        "SlideToCapture": "(move Slide \"AllTracks\" (between if:(or (= (between) (from)) (is Empty (between)) ) ) <Slide:to> (then (set Counter)) )",
+        "NoCaptureProposal": "101",
+        "NPiecesOnTrack": "(end (forEach Track if:(> #1 (count Pieces Mover in:(sites Track))) (result Mover Loss) ) )"
+    },
+    "game": "\"Surakarta\" (players <Option:players>) (equipment { (surakartaBoard <Option:board>) (piece \"Marker\" Each (or { (move Step All <Step:to> ) (\"SlideToCapture\") }) ) }) (rules (start { (place \"Marker1\" <Option:start1>) (place \"Marker2\" <Option:start2>) <Option:start3> }) (play (if (is Proposed \"End\") (or (move Vote \"End\") (move Vote \"No\" (then (set Counter)))) (or (if (>= (counter) \"NoCaptureProposal\") (move Propose \"End\" (then (vote \"End\"))) ) (forEach Piece) ) ) ) <End:rules> )",
+    "option": {
+        "Corners Capture": {
+            "arguments": "<to>",
+            "items": {}
+        },
+        "Slide": {
+            "arguments": "<to>",
+            "items": {}
+        },
+        "End Rules": {
+            "arguments": "<rules>",
+            "items": {}
+        },
+        "Version": {
+            "arguments": "<players> <board> <start1> <start2> <start3>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Surakarta is purported to be from Java in Indonesia, but this claim may have been a marketing ploy by Ravensberger when the game was first published in Germany in 1971.\") (rules \"Played on a 6x6 board with corner loops. Each player has 12 pieces. Play is made on the intersections of the lines. pieces are captured by moving via the outer loops and occupying a space held by another player. The goal is to capture all of the opponent's pieces. If no further captures are possible, the player with the most remaining pieces wins.\") (source \"<a href=\\\"https: (id \"51\") (version \"1.3.14\") (classification \"board/war/replacement/eliminate/all\") (credit \"Eric Piette\") (date \"01-01-1970\") } ) (graphics { (board Style Surakarta) (show Score Never) }) (ai \"Surakarta_ai\" )"
+}

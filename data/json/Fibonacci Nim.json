@@ -1,0 +1,109 @@
+{
+    "define": {
+        "Max": "(if (= 1 (count Turns)) (- <Size:pile> 1) (* 2 (value Player (prev MoverLastTurn",
+        "NumRemove": "(+ 1 (count MovesThisTurn"
+    },
+    "game": "\"Fibonacci Nim\" (players 2) (equipment { (board (square 1)) (piece \"Marker\" Neutral) }) (rules (start (set Count <Size:pile> at:0)) (play (if \"SameTurn\" (or (if (<= \"NumRemove\" \"Max\") (move Select (from (last To)) (then (if (= (count at:(last To)) 1) (remove (last To)) (and (set Count at:(last To) (- (count at:(last To)) 1)) (moveAgain)) ) ) ) ) (move Pass (then (set Value Mover (- (\"NumRemove\") 1)))) ) (move Select (from (sites Occupied by:Neutral)) (then (if (= (count at:(last To)) 1) (remove (last To)) (and (set Count at:(last To) (- (count at:(last To)) 1)) (moveAgain) ) ) ) ) ) ) (end (if (no Moves Next) (result <Result> Win))) )",
+    "option": {
+        "End Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Last Mover Loses": {
+                    "content": "Next",
+                    "description": "The last mover loses."
+                },
+                "Last Mover Wins": {
+                    "content": "Mover",
+                    "description": "The last mover wins."
+                }
+            }
+        },
+        "Number Piles": {
+            "arguments": "<pile>",
+            "items": {
+                "5": {
+                    "content": "5",
+                    "description": "The game involves a pile of 5 pieces."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The game involves a pile of 10 pieces."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The game involves a pile of 15 pieces."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "The game involves a pile of 20 pieces."
+                },
+                "25": {
+                    "content": "25",
+                    "description": "The game involves a pile of 25 pieces."
+                },
+                "30": {
+                    "content": "30",
+                    "description": "The game involves a pile of 30 pieces."
+                },
+                "35": {
+                    "content": "35",
+                    "description": "The game involves a pile of 35 pieces."
+                },
+                "40": {
+                    "content": "40",
+                    "description": "The game involves a pile of 40 pieces."
+                },
+                "45": {
+                    "content": "45",
+                    "description": "The game involves a pile of 45 pieces."
+                },
+                "50": {
+                    "content": "50",
+                    "description": "The game involves a pile of 50 pieces."
+                },
+                "55": {
+                    "content": "55",
+                    "description": "The game involves a pile of 55 pieces."
+                },
+                "60": {
+                    "content": "60",
+                    "description": "The game involves a pile of 60 pieces."
+                },
+                "65": {
+                    "content": "65",
+                    "description": "The game involves a pile of 65 pieces."
+                },
+                "70": {
+                    "content": "70",
+                    "description": "The game involves a pile of 70 pieces."
+                },
+                "75": {
+                    "content": "75",
+                    "description": "The game involves a pile of 75 pieces."
+                },
+                "80": {
+                    "content": "80",
+                    "description": "The game involves a pile of 80 pieces."
+                },
+                "85": {
+                    "content": "85",
+                    "description": "The game involves a pile of 85 pieces."
+                },
+                "90": {
+                    "content": "90",
+                    "description": "The game involves a pile of 90 pieces."
+                },
+                "95": {
+                    "content": "95",
+                    "description": "The game involves a pile of 95 pieces."
+                },
+                "100": {
+                    "content": "100",
+                    "description": "The game involves a pile of 100 pieces."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Fibonacci Nim is a mathematical subtraction game, a variant of the game of Nim.\") (rules \"Fibonacci Nim is played by two players, who alternate removing coins or other counters from a pile. On the first move, a player is not allowed to take all of the coins, and on each subsequent move, the number of coins removed can be any number that is at most twice the previous move. According to the normal play convention, the player who takes the last coin wins. Or according to the Mis\u00e8re game, the player who takes the last coin loses.\") (id \"1158\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"math/nim\") (author \"Michael J. Whinihan\") (credit \"Eric Piette\") (date \"1963\") } ) (graphics { (no Board) }) (ai \"Fibonacci Nim_ai\" )"
+}

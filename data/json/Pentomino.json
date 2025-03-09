@@ -1,0 +1,192 @@
+{
+    "define": {},
+    "game": "\"Pentomino\" (players <Players:numPlayers>) (equipment { (board (rectangle <Rows:num> <Columns:num>)) (tile \"Z\" Shared {F R F F L F}) (tile \"Y\" Shared {F R F R R F R F F}) (tile \"X\" Shared {F L F L L F F L L F R F}) (tile \"W\" Shared {F L F R F L F}) (tile \"V\" Shared {F F R F F}) (tile \"U\" Shared {F L F F L F}) (tile \"T\" Shared {F F R F R R F F}) (tile \"P\" Shared {F F R F R F}) (tile \"N\" Shared {F R F L F F}) (tile \"L\" Shared {F R F F F}) (tile \"I\" Shared {F F F F}) (tile \"F\" Shared {F L F L L F L F R F}) (hand Shared size:12) }) (rules (start { (place \"F\" (handSite Shared 0)) (place \"I\" (handSite Shared 1)) (place \"L\" (handSite Shared 2)) (place \"N\" (handSite Shared 3)) (place \"P\" (handSite Shared 4)) (place \"T\" (handSite Shared 5)) (place \"U\" (handSite Shared 6)) (place \"V\" (handSite Shared 7)) (place \"W\" (handSite Shared 8)) (place \"X\" (handSite Shared 9)) (place \"Y\" (handSite Shared 10)) (place \"Z\" (handSite Shared 11)) }) (play (move (from (sites Hand Shared)) (to (sites Empty)))) (end (\"NoMoves\" <End:result>)) )",
+    "option": {
+        "Players": {
+            "arguments": "<numPlayers>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The game is played by 2 players"
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The game is played by 3 players"
+                }
+            }
+        },
+        "Rows": {
+            "arguments": "<num>",
+            "items": {
+                "1": {
+                    "content": "1",
+                    "description": "The board has 1 row."
+                },
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 rows."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 rows."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 rows."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 rows."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 rows."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 rows."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 rows."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 rows."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 rows."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 rows."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "The board has 12 rows."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "The board has 13 rows."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 rows."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The board has 15 rows."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "The board has 16 rows."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "The board has 17 rows."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "The board has 18 rows."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 rows."
+                }
+            }
+        },
+        "Columns": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 columns."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 columns."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 columns."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 columns."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 columns."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 columns."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 columns."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 columns."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 columns."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 columns."
+                },
+                "12": {
+                    "content": "11",
+                    "description": "The board has 12 columns."
+                },
+                "13": {
+                    "content": "11",
+                    "description": "The board has 13 columns."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 columns."
+                },
+                "15": {
+                    "content": "14",
+                    "description": "The board has 15 columns."
+                },
+                "16": {
+                    "content": "14",
+                    "description": "The board has 16 columns."
+                },
+                "17": {
+                    "content": "14",
+                    "description": "The board has 17 columns."
+                },
+                "18": {
+                    "content": "14",
+                    "description": "The board has 18 columns."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 columns."
+                }
+            }
+        },
+        "End": {
+            "arguments": "<result>",
+            "items": {
+                "Normal": {
+                    "content": "Loss",
+                    "description": "The Last player to play wins."
+                },
+                "Misere": {
+                    "content": "Win",
+                    "description": "The Last player to play loses."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Pentomino tiling puzzles and games are popular in recreational mathematics.\") (aliases {\"Golomb's Game\"}) (rules \"Two players have a collection of dominoes which they place on the grid in turn, covering up squares. One player places tiles vertically, while the other places them horizontally. The first player who cannot move loses.\") (id \"1664\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/blocking\") (credit \"Fabio Barbero\") } ) (graphics { (piece Colour \"F\" fillColour:(colour 221 187 153)) (piece Colour \"I\" fillColour:(colour 238 170 170)) (piece Colour \"L\" fillColour:(colour 204 204 136)) (piece Colour \"N\" fillColour:(colour 170 238 170)) (piece Colour \"P\" fillColour:(colour 187 221 153)) (piece Colour \"T\" fillColour:(colour 153 221 187)) (piece Colour \"U\" fillColour:(colour 136 204 204)) (piece Colour \"V\" fillColour:(colour 153 187 221)) (piece Colour \"W\" fillColour:(colour 170 170 238)) (piece Colour \"X\" fillColour:(colour 187 153 221)) (piece Colour \"Y\" fillColour:(colour 204 136 204)) (piece Colour \"Z\" fillColour:(colour 221 153 187)) }) (ai \"Pentomino_ai\" )"
+}

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "LudToJsonCompiler"
+version = "0.1.0"
+description = "A tool to fetch, clean, and parse Ludii .lud files into JSON format."
+authors = ["Cyril Bousmar <cyril.bousmar@student.uclouvain.be>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.2"
+tqdm = "^4.66.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+lud-to-json = "main:main"

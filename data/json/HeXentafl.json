@@ -1,0 +1,19 @@
+{
+    "define": {
+        "Custodial": "(custodial (from (last To)) Orthogonal (between (max 1) if:(and (!= (between) (\"Throne\")) (\"IsEnemyAt\" (between))) (apply (remove (between))) ) (to if:(\"IsFriendAt\" (to))) )",
+        "PiecesSurroundingAreNotAdjacent": "(all Sites (sites Around (between) Own) if:(all Sites (sites Around (site) Own) if:(not (is In (to) (sites Around (between) Own))) ) )",
+        "SurroundCorners": "(surround (from (last To)) Orthogonal (between if:(and { (is In (between) (sites \"Fortresses\")) (\"IsEnemyAt\" (between)) (\"PiecesSurroundingAreNotAdjacent\") }) (apply (remove (between))) ) (to if:(\"IsFriendAt\" (to))) except:1 )",
+        "SurroundThrone": "(surround (from (last To)) Orthogonal (between if:(and { (= (between) (\"Throne\")) (\"IsPieceAt\" \"Jarl\" P1 (between)) (\"PiecesSurroundingAreNotAdjacent\") }) (apply (remove (between))) ) (to if:(\"IsFriendAt\" (to))) except:3 )",
+        "JarlWasCaptured": "(\"IsOffBoard\" (where \"Jarl\" P1",
+        "Throne": "(centrePoint"
+    },
+    "game": "\"HeXentafl\" (players 2) (equipment { (board (rotate 90 (hex <Board:size>))) (piece \"Thrall\" P1 (move Slide (between if:(and (!= (between) (\"Throne\")) (is Empty (between)))) (then (and (\"SurroundCorners\") (\"Custodial\"))) ) ) (piece \"Thrall\" P2 (move Slide (between if:(and (!= (between) (\"Throne\")) (is Empty (between)))) (then (and {(\"SurroundThrone\") (\"SurroundCorners\") (\"Custodial\") })) ) ) (piece \"Jarl\" P1 (move <Board:kingMove> (then (and (\"SurroundCorners\") (\"Custodial\"))) ) ) (regions \"Fortresses\" (sites Corners)) }) (rules (start { (place \"Jarl1\" (\"Throne\")) <Board:start> }) (play (forEach Piece)) (end { (\"PieceTypeReachWin\" \"Jarl1\" (sites \"Fortresses\") P1) (if \"JarlWasCaptured\" (result P2 Win)) }) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size> <start> <kingMove>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"HeXentafl is an asymmetric abstract strategy game based on the ancient viking game Hnefatafl. One side (white) plays the attackers, and one side (black) plays the defenders.\") (rules \"HeXentafl can be played on a 4x4 or 5x5 hex grid. For the 4x4 version: The King sits on the central space, the throne, surrounded by three defenders. Six attackers sit on the outer corners of the grid. The attackers must capture the King in order to win. The defenders must escort the King to any of the six corners of the board in order to win. All pieces except the King move in a straight line, as many spaces as they like to an unoccupied space (like a rook in Chess). Only one piece at a time can occupy a space. A piece cannot jump over another piece. The King can move into any vacant adjacent space, moving one space at a time (similar to the king in Chess). Pieces are captured by surrounding them on two sides. Except for the corners, the pieces can be captured by surrounding them with two pieces which are not adjacents. You cannot \\\"capture\\\" your own piece by moving between two enemy pieces. The central space of the board is the throne. Only the King may occupy the throne. When the King is on the throne, he is harder to capture. He must be surrounded on three sides which are not adjacents each other. HeXentafl on a 5x5 grid is almost identical to a 4x4 grid, except there are more attackers and defenders, and the King moves just like the other pieces. It is not limited to one space at a time.\") (id \"718\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/war/custodial\") (author \"Kevin R. Kane\") (publisher \"<a href=\\\"https: (credit \"Eric Piette\") (date \"2019\") } ) (graphics { (player Colour P1 (colour Black)) (player Colour P2 (colour White)) (board Style Tafl) (show Symbol \"knotTriangle\" \"Fortresses\" scale:0.8) (piece Scale \"Thrall\" 0.8) (piece Scale \"Jarl\" 0.8) }) (ai \"HeXentafl_ai\" )"
+}

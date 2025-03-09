@@ -1,0 +1,17 @@
+{
+    "define": {
+        "PlaceOutOfSight": "(move Add (to (sites Empty) if:(not (is Within (id \"Disc\" Mover) in:(sites LineOfSight Piece at:(to)))) ) (then (addScore Mover 1)) )",
+        "StepMoves": "(or { (\"StepIteration\" \"S1\" 1) (\"StepIteration\" \"S2\" 2) (\"StepIteration\" \"S3\" 3) (\"StepIteration\" \"S4\" 4) (\"StepIteration\" \"S5\" 5) })",
+        "S1": "(intersection (sites Empty) (sites Around (from",
+        "S2": "(intersection (sites Empty) (sites Around (\"S1\"",
+        "S3": "(intersection (sites Empty) (sites Around (\"S2\"",
+        "S4": "(intersection (sites Empty) (sites Around (\"S3\"",
+        "S5": "(intersection (sites Empty) (sites Around (\"S4\"",
+        "StepIteration": "(if (<= #2 (count Pieces Next in:(sites Around (from)))) (move (from (from)) (to (#1)) ) )",
+        "BoardUsed": "(<BoardShape:gridType> <BoardSize:smallSide>"
+    },
+    "game": "\"Infuse\" (players 2) (equipment { (board \"BoardUsed\" use:Cell) (piece \"Disc\" Each) }) (rules (start (set Score Each 0)) (play (if (was Pass) (or (move Pass) (priority (\"PlaceOutOfSight\") (forEach Piece (do (\"StepMoves\") ifAfterwards:(can Move (add (to (sites Empty) if:(not (is Within (id \"Disc\" Mover) in:(sites LineOfSight Piece at:(to))))) ) ) ) ) ) ) (or { (\"PlaceOutOfSight\") (forEach Piece (\"StepMoves\")) (move Pass) }) ) ) (end { (if (and (all Passed) (> (score Mover) (score Next)) ) (result Mover Win) ) (if (and (all Passed) (<= (score Mover) (score Next)) ) (result Next Win) ) }) )",
+    "option": {},
+    "rulesets": {},
+    "metadata": "(info { (description \"Infuse is a game of entering the most pieces. They can only enter out of sight of your own pieces, but you make move your pieces that lie near to enemy pieces, in order to make new entry sites for yourself, or block entry sites for your opponent. The game may be played on either hex or square grids.\") (rules \"Start on an empty board. On a turn either enter a piece not in line of sight of your own pieces, or move a piece a number of independent single steps not to exceed the count of that piece's enemy neighbours. If one player passes, to avoid ending the game with a 2nd pass, the opponent must place a piece if possible, or if unable to place, he may move in a way that enables his future placement. Otherwise, he must pass and the game ends. The winner is the player with the most pieces in play. If equal, the last to pass loses.\") (id \"1142\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/territory\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"19-11-2020\") } ) (ai \"Infuse_ai\" )"
+}

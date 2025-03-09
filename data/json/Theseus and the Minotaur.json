@@ -1,0 +1,38 @@
+{
+    "define": {
+        "EdgeInCommon": "(intersection (sites Incident Edge of:Cell at:#1) (sites Incident Edge of:Cell at:#2) )",
+        "NoEdgeBetweenCells": "(\"NoSites\" (intersection (sites Occupied by:Shared on:Edge) (\"EdgeInCommon\" #1 #2)))",
+        "OriginalCloserToTheseus": "(> (count Steps Orthogonal (where (id \"Minotaur0\")) (where (id \"Theseus\"))) (count Steps Orthogonal (ahead (where (id \"Minotaur0\")) #1) (where (id \"Theseus\"))) )",
+        "SmartCloserToTheseus": "(> (count Steps (step (from (where (id \"Minotaur0\"))) Orthogonal (to if:(\"NoEdgeBetweenCells\" (from) (to)) ) ) (where (id \"Minotaur0\")) (where (id \"Theseus\")) ) (count Steps (step (from (ahead (where (id \"Minotaur0\")) #1)) Orthogonal (to if:(\"NoEdgeBetweenCells\" (from) (to)) ) ) (ahead (where (id \"Minotaur0\")) #1) (where (id \"Theseus\")) ) )",
+        "MoveMinotaur": "(fromTo (from (where (id \"Minotaur0\"))) (to (ahead (from) #1) (apply (if (= (id \"Theseus\") (what at:(to))) (remove (to) ) ) ) ) )",
+        "GoCloserToTheseus": "(if (and (\"NoEdgeBetweenCells\" (where (id \"Minotaur0\")) (ahead (where (id \"Minotaur0\")) #1)) (<Minotaur:move> #1) ) (\"MoveMinotaur\" #1) #2 #3 )",
+        "MinotaurThreatAgain": "(\"GoCloserToTheseus\" E (\"GoCloserToTheseus\" W (\"GoCloserToTheseus\" N (\"GoCloserToTheseus\" S) ) ) )",
+        "MinotaurThreat": "(\"GoCloserToTheseus\" E (\"GoCloserToTheseus\" W (\"GoCloserToTheseus\" N (\"GoCloserToTheseus\" S) ) ) (then (\"MinotaurThreatAgain\") ) )"
+    },
+    "game": "\"Theseus and the Minotaur\" (players 1) (equipment { (board <Board:type>) (piece \"Theseus\" P1 (move Step Orthogonal (to if:(and (is Empty (to)) (\"NoEdgeBetweenCells\" (from) (to))) ) ) ) (piece \"Minotaur\" Neutral) (piece \"Marker\" Shared) (regions \"Exit\" {<Board:exit>}) }) (rules (start { (place \"Theseus\" coord:<Board:startTheseus>) (place \"Minotaur0\" coord:<Board:startMinotaur>) (set Shared Edge (union (sites Outer Edge) (sites {<Board:walls>}) ) ) }) (play (or (forEach Piece) (move Pass) (then <Minotaur:threat> ) ) ) (end { (if (no Pieces Mover) (result Mover Loss)) (if (is In (where (id \"Theseus\")) (sites \"Exit\")) (result Mover Win)) }) )",
+    "option": {
+        "Board": {
+            "arguments": "<type> <startTheseus> <startMinotaur> <exit> <walls>",
+            "items": {}
+        },
+        "Play": {
+            "arguments": "<move>",
+            "items": {
+                "Original": {
+                    "content": "\"OriginalCloserToTheseus\"",
+                    "description": "The minotaur comes closer to Theseus in looking only the number of orthogonal steps without to take in account the walls."
+                },
+                "Smart": {
+                    "content": "\"SmartCloserToTheseus\"",
+                    "description": "The minotaur comes closer to Theseus in looking only the number of orthogonal steps in taking in account the walls."
+                }
+            }
+        },
+        "End": {
+            "arguments": "<threat>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Theseus and the Minotaur is a type of logic maze designed by Robert Abbott. In this maze, the player acts as Theseus, who is attempting to escape the Labyrinth.\") (rules \"The goal of Theseus is to escape of the labyrinth. Theseus can step orthogonally but after steeping the Minotaur comes closer to him twice faster. If the Minotaur catches him, Theseus dies.\") (id \"684\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"puzzle/planning\") (author \"Robert Abbott\") (credit \"Eric Piette\") (date \"1990\") } ) (graphics { (player Colour Neutral (colour Red)) (player Colour P1 (colour Blue)) (player Colour Shared (colour Dark)) (board Style PenAndPaper replaceComponentsWithFilledCells:False) (show Symbol \"door\" \"Exit\" fillColour:(colour 110 52 52) scale:0.5) (board Colour InnerVertices (colour Hidden)) (board Colour OuterVertices (colour Hidden)) }) (ai \"Theseus and the Minotaur_ai\" )"
+}

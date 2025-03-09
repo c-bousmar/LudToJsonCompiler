@@ -1,0 +1,78 @@
+{
+    "define": {
+        "Side1": "(union (sites Side NE) (sites Side N",
+        "Side2": "(union (sites Side SE) (sites Side S",
+        "Side3": "(union (sites Side NW) (sites Side SW",
+        "AddPieceOf": "(move Add (piece #1) (to (sites Empty)) #2"
+    },
+    "game": "\"Bipartisan Y\" (players 2) (equipment { (board <Board:size> use:Vertex) (piece \"Disc\" Each ) (piece \"Counter\" Neutral maxState:2) } ) (rules (play (if (\"SameTurn\") (\"AddPieceOf\" (next) ~) (\"AddPieceOf\" (mover) (then (moveAgain))) )) (end { (if (and (= 1 (who at:(last To))) (is Connected 3 {\"Side1\" \"Side2\" \"Side3\"}) ) (result P1 Win) ) (if (and (= 2 (who at:(last To))) (is Connected 3 {\"Side1\" \"Side2\" \"Side3\"}) ) (result P2 Win) ) }",
+    "option": {
+        "Board": {
+            "arguments": "<size>",
+            "items": {
+                "Triangle 5": {
+                    "content": "(tri 5)",
+                    "description": "Triangle-5 Board (15)"
+                },
+                "Triangle 6": {
+                    "content": "(tri 6)",
+                    "description": "Triangle-6 Board (21)"
+                },
+                "Triangle 8*": {
+                    "content": "(tri 8)",
+                    "description": "Triangle-8 Board (36)"
+                },
+                "Triangle 9": {
+                    "content": "(tri 9)",
+                    "description": "Triangle-9 Board (45)"
+                },
+                "Triangle 11": {
+                    "content": "(tri 11)",
+                    "description": "Triangle-11 Board (66)"
+                },
+                "Triangle 12": {
+                    "content": "(tri 12)",
+                    "description": "Triangle-12 Board (78)"
+                },
+                "Triangle 14": {
+                    "content": "(tri 14)",
+                    "description": "Triangle-14 Board (105)"
+                },
+                "Triangle 15*": {
+                    "content": "(tri 15)",
+                    "description": "Triangle-15 Board (120)"
+                },
+                "Triangle 17": {
+                    "content": "(tri 17)",
+                    "description": "Triangle-17 Board (153)"
+                },
+                "Hex 3-4": {
+                    "content": "(tri Limping 3)",
+                    "description": "Hex 4-5 Board (48)"
+                },
+                "Hex 4-5*": {
+                    "content": "(tri Limping 4)",
+                    "description": "Hex 4-5 Board (48)"
+                },
+                "Hex 5-6": {
+                    "content": "(tri Limping 5)",
+                    "description": "Hex 5-6 Board (75)"
+                },
+                "Hex 6-7*": {
+                    "content": "(tri Limping 6)",
+                    "description": "Hex 6-7 Board (108)"
+                },
+                "Hex 7-8": {
+                    "content": "(tri Limping 7)",
+                    "description": "Hex 7-8 Board (146)"
+                },
+                "Hex 8-9": {
+                    "content": "(tri Limping 8)",
+                    "description": "Hex 8-9 Board (146)"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Bipartisan Y is variant in which each player must place a piece of each color, but wins when all 3 sides are connected with his own color. Play is somewhat in between that of Y and Y Not.\") (rules \"Goal: Connect all three edge colors with a single group of connected stones of your own color. (As in 'Y') Turns alternate. The player seeking to connect with the darker color starts. On each turn the current player places one stone of each color (friendly stone first) onto an empty intersection of the board.\") (id \"3975\") (version \"1.3.14\") (classification \"board/space/connection\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"11-03-2023\") } ) (graphics { (player Colour P1 \"P1Colour\") (player Colour P2 \"P2Colour\") (board StyleThickness OuterEdges 4.0) (region Colour Edge (\"EdgesOfSide\" \"Side1\") regionSiteType:Edge (colour Red)) (region Colour Edge (\"EdgesOfSide\" \"Side2\") regionSiteType:Edge (colour Blue)) (region Colour Edge (\"EdgesOfSide\" \"Side3\") regionSiteType:Edge (colour Yellow)) (board Style Board) (board Colour Phase0 \"BoardColour\") (board Colour InnerEdges (colour 120 100 40 190) ) (board Colour OuterEdges (colour 120 100 40 190) ) (piece Scale .7) }"
+}

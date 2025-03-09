@@ -1,0 +1,23 @@
+{
+    "define": {
+        "ColumnSize": "6",
+        "EmptyTop": "(intersection (sites Top) (sites Empty",
+        "LastColumn": "(sites Column (column of:(last To",
+        "Distance": "(count Sites in:(intersection (sites Empty) \"LastColumn\"",
+        "Drop": "(slide (from (last To)) S (between (exact \"Distance\""
+    },
+    "game": "\"Connect Four\" (players 2) (equipment { <Model:board> (piece \"Disc\" Each) }) (rules <Model:rules> )",
+    "option": {
+        "Modelisation": {
+            "arguments": "<board> <rules>",
+            "items": {
+                "2D": {
+                    "content": "(board (rectangle 6 7))> < (play (move Add (to (\"EmptyTop\")) (then \"Drop\") ) ) (end (if (is Line 4 through:(last To afterConsequence:True)) (result Mover Win)))",
+                    "description": "\" ) }) (metadata (info { (description \"Connect Four is a two-player connection game that was designed by Howard Wexler and Ned Strongin, and was first sold under this name by Milton Bradley in 1974."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

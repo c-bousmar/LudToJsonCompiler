@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Hamiltonian Maze\" (players 1) (equipment { (board <Board:type> use:Vertex) }) (rules (play (move Add (to Edge (sites Empty Edge) ) ) ) (end { (if (is Path Edge Mover length:(exact (count Sites \"Board\")) closed:True) (result Mover Win) ) (if (is Path Edge Mover length:(max (count Moves)) closed:True) (result Mover Loss) ) }) )",
+    "option": {
+        "Board": {
+            "arguments": "<type>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"A Hamiltonian cycle is a closed loop on a graph, where every node of the graph is visited exactly once. The goal of this puzzle is to colour edges such that the coloured edges form a Hamiltonian cycle.\") (rules \"Colour edges of the graph, by selecting them, until they form a path that passes through every vertex exactly once and returns to its starting point. \") (id \"616\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"math/graph\") (author \"Erich Friedman\") (credit \"Tahmina Begum\") (date \"2009\") } ) (graphics { (player Colour P1 (colour Red)) (board Style PenAndPaper replaceComponentsWithFilledCells:True) (show Edges Orthogonal ThinDotted (colour 127 127 127)) }) (ai \"Hamiltonian Maze_ai\" )"
+}

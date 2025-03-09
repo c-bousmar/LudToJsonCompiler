@@ -1,0 +1,15 @@
+{
+    "define": {
+        "Columns": "6",
+        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1"
+    },
+    "game": "\"FairKalah\" (players 2) (equipment { (mancalaBoard 2 \"Columns\" (track \"Track\" \"0,ESE,E,ENE,WNW,N,W\" loop:True) ) (regions P1 (sites Bottom)) (regions P2 (sites Top)) (map {(pair P1 LastSite) (pair P2 FirstSite)}) (piece \"Seed\" Shared) }) (rules (start { <Board:start> }) (play (move Select (from (sites Mover) if:(> (count at:(from)) 0) ) (then (sow apply:(if (= (to) (mapEntry (mover))) (moveAgain) (if (and { (is In (to) (sites Mover)) (= (count at:(to)) 1) (>= (count at:(\"OppositePit\" (to))) 0) }) (and (fromTo (from (to)) (to (mapEntry (mover))) count:(count at:(to)) ) (fromTo (from (\"OppositePit\" (to))) (to (mapEntry (mover))) count:(count at:(\"OppositePit\" (to))) ) ) ) ) skipIf:(= (to) (mapEntry (next))) ) ) ) ) (end (\"MancalaByScoreWhen\" (or (= (count in:(sites Bottom)) 0) (= (count in:(sites Top)) 0) ) ) ) )",
+    "option": {
+        "Board #": {
+            "arguments": "<start>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"FairKalah is a William Julius Champion's Kalah with fair initial states.\") (rules \"The board has two rows of six play pits with a larger scoring pit on either end. Play begins with four seeds in each hole, with one or two seeds moved to make the initial position fair, i.e. two perfect players will draw. Each player controls the row nearest them. Play consists of choosing one of the player's non-empty play pits, removing the pieces from it, and sowing the pieces one per pit consecutively in a counterclockwise pattern including the player's own scoring pit but not the opponent's. If the last piece is placed in a player's empty pit, that piece and any opposite are captured and put in the player's scoring pit. If the last seed falls in the scoring pit, the player gets another turn. When one player has no pieces in any of their play pits, the game ends. The other player captures all of the other pieces, and the player with the most scored pieces wins.\") (id \"1665\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/sow/two rows\") (credit \"Todd Neller based on Kalah by Eric Piette\") (date \"1940\") } ) (graphics { (board Style Mancala) }) (ai \"FairKalah_ai\" )"
+}

@@ -1,0 +1,101 @@
+{
+    "define": {
+        "SimpleScoring": "(set Score Mover (max (sizes Group <BoardShape:directionsUsed> Mover)) )",
+        "SimpleOrthoScoring": "(set Score Mover (max (sizes Group Orthogonal Mover)) )",
+        "SpecialScoring": "(and (set Score Mover (* (max (sizes Group <BoardShape:directionsUsed> Mover)) (count Pieces Next) ) ) (set Score Next (* (max (sizes Group <BoardShape:directionsUsed> Next)) (count Pieces Mover) ) ) )",
+        "SpecialOrthoScoring": "(and (set Score Mover (* (max (sizes Group Orthogonal Mover)) (count Pieces Next) ) ) (set Score Next (* (max (sizes Group Orthogonal Next)) (count Pieces Mover) ) ) )",
+        "PiePhase": "(phase \"Pie\" (play (if (is Mover P1) (or { (move Add (piece (mover)) (to (sites Empty))) (move Add (piece (next)) (to (sites Empty))) (move Pass) } (then (if (< 0 (counter)) (set NextPlayer (player (next))) (moveAgain) ) ) ) (or (move Propose \"Accept Pie Offer and Move\" (then (set NextPlayer (player (mover)))) ) (move Propose \"Swap Pieces\" (then (do (forEach Site (sites Occupied by:Mover) (remember Value (site)) ) next:(forEach Site (sites Occupied by:Next) (and (remove (site)) (add (piece (mover)) (to (site))) ) ) (then (forEach Value (values Remembered) (and (remove (value)) (add (piece (next)) (to (value))) ) (then (and (forget Value All) (set NextPlayer (player (next))) ) ) ) ) ) ) ) ) ) ) (nextPhase (or (is Proposed \"Swap Pieces\") (is Proposed \"Accept Pie Offer and Move\") ) \"Placement\" ) )",
+        "Connection": "<BoardShape:directionsUsed>",
+        "BoardUsed": "<BoardShape:gridType>",
+        "SquareGrid": "(board (square <BoardSize:smallSide>) use:Vertex",
+        "HexLimp": "(board (tri Limping (- <BoardSize:smallSide> 1)) use:Vertex",
+        "TriSquare": "(board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex",
+        "HexHex": "(board (tri Hexagon <BoardSize:smallSide>) use:Vertex",
+        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell",
+        "Icosahedron": "(board (add (remove (tri Limping 4) vertices:{0 1 3 4 5 6 7 8 9 10 11 13 15 17 18 19 20 23 24 25 26 27 31 32 34 35 36 37 39 40 42 43 44 45 46 47}) edges:{ {0 1} {0 2} {0 3} {0 9} {0 10} {1 2} {1 4} {1 6} {6 11} {7 11} {8 11} {1 9} {2 3} {3 5} {3 8} {3 10} {6 9} {8 10} {9 10} {9 11} {10 11} }) use:Vertex"
+    },
+    "game": "\"Faraday\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" P1) (piece \"Ball\" P2) }) (rules (meta (no Repeat Positional)) (start (set Score Each 0)) phases:{ \"PiePhase\" (phase \"Placement\" (play (move Add (piece (mover)) (to (sites Empty) if:(or (<= <BoardShape:ForcedFillLevel> (count Pieces Next in:(sites Around (to) <BoardShape:directionsUsed>))) (< 0 (- (count Pieces Next in:(sites Around (to) <BoardShape:directionsUsed>)) (count Pieces Mover in:(sites Around (to) <BoardShape:directionsUsed>)) ) ) ) ) (then (and { (<Scoring:calculation>) (set Var \"Last2Move\" (mover)) (if (not (no Moves Mover)) (moveAgain)) } ) ) ) ) (end (if (all Passed) { (if (!= (score Mover) (score Next)) (byScore) ) (if (and (= (score Mover) (score Next)) (= (var \"Last2Move\") (mover)) ) (result Mover Loss) ) (if (and (= (score Mover) (score Next)) (!= (var \"Last2Move\") (mover)) ) (result Mover Loss) ) } (byScore) ) ) ) } )",
+    "option": {
+        "Board Grid": {
+            "arguments": "<gridType> <directionsUsed> <DiagShow> <ForcedFillLevel>",
+            "items": {
+                "TriSquare Omni": {
+                    "content": "\"TriSquare\"> <All> <ThinDashed> <4",
+                    "description": "Triangle-Square Omni-Grid - Recommended Variant"
+                },
+                "TriSquare Grid": {
+                    "content": "\"TriSquare\"> <Orthogonal> <Hidden> <3",
+                    "description": "Triangle-Square Grid"
+                },
+                "Hex Limping": {
+                    "content": "\"HexLimp\"> <Orthogonal> <Hidden> <3",
+                    "description": "Hex N / N-1 Grid"
+                },
+                "Hex Grid": {
+                    "content": "\"HexHex\"> <Orthogonal> <Hidden> <3",
+                    "description": "Hex Grid - Standard"
+                },
+                "Hex Omni": {
+                    "content": "\"HexCell\"> <All> <Hidden> <7",
+                    "description": "Hex Grid - Standard"
+                },
+                "Square Omni": {
+                    "content": "\"SquareGrid\"> <All> <ThinDashed> <4",
+                    "description": "Square Omni-Grid"
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<smallSide>",
+            "items": {
+                "Order 4": {
+                    "content": "4",
+                    "description": "Order 4 board"
+                },
+                "Order 5": {
+                    "content": "5",
+                    "description": "Order 5 board"
+                },
+                "Order 6": {
+                    "content": "6",
+                    "description": "Order 6 board"
+                },
+                "Order 7": {
+                    "content": "7",
+                    "description": "Order 7 board"
+                },
+                "Order 8": {
+                    "content": "8",
+                    "description": "Order 8 board"
+                },
+                "Order 11": {
+                    "content": "11",
+                    "description": "Order 11 board"
+                }
+            }
+        },
+        "Scoring Variants": {
+            "arguments": "<calculation>",
+            "items": {
+                "Simple Orthogonal Scoring": {
+                    "content": "\"SimpleOrthoScoring\"",
+                    "description": "Largest orthogonal group scores 1 point per piece."
+                },
+                "Special Orthogonal Scoring": {
+                    "content": "\"SpecialOrthoScoring\"",
+                    "description": "Largest orthogonal group scores 1 point per piece times the total count of the opponent's pieces"
+                },
+                "Simple Scoring": {
+                    "content": "\"SimpleScoring\"",
+                    "description": "Largest group scores 1 point per piece."
+                },
+                "Special Scoring": {
+                    "content": "\"SpecialScoring\"",
+                    "description": "Largest group scores 1 point per piece times the total count of the opponent's pieces"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"'Faraday' is a two-player, maximal-group-connection game that can be played on a variety of grids but is best on a hexagonal grid, or on a semiregular triangle-square grid with diagonals. The gist of this placement game is that pieces, like localized electric charges, attract opposites and repel similar charges, so placement can only be on cells surrounded by excess of the opposite charge; or else, where at least half of the surrounding cells are oppositely charged. The result is a conflict between attempting to connect your pieces together, but to do so, needing the opponent's pieces near at hand where they may also obstruct.\") (rules \"Goal: End the game with the highest scoring group. A group scores one point for each stone it contains. Definitions: A group, as in Go, is every stone that can be reached from a selected stone through a series of adjacent stones of the same color. Play: Start with a pie offer of 1 to 3 stones of any color combination. (Player 1 does this by making 3 placements, or passes; after which Player 2 may choose to play, or to have the pieces exchanged with the opposite colors) Turns alternate. On a turn, a player places a series of stones, one at a time, (as described below) until no more placements are possible, and then passes. Order of placement matters. Placements are made to empty cells that: -- 1) have more neighbors that are oppositely charged than similarly charged, or -- 2) have 3 or more oppositely charged neighbors. The game ends when neither player can play. The largest group for each player is then scored. In case of a tie the last to place a stone loses. Variants: Exception for Surplus Charge Immediately after placing to a cell with 4 or more oppositely charged neighbors, the player MUST, if possible, place the next stone on an otherwise unplayable empty cell with an equal number of both types of charge around it.\") (id \"1531\") (version \"1.3.14\") (classification \"experimental\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"26-03-2021\") } ) (graphics { (no Sunken) (player Colour P1 (colour Black)) (player Colour P2 (colour Cream)) (piece Scale 0.96) (board Style Graph) (board StyleThickness InnerVertices .6) (board StyleThickness InnerEdges .25) (board Colour InnerVertices (colour DarkGrey)) (board Colour InnerEdges (colour DarkGrey)) (show Edges Diagonal <BoardShape:DiagShow> (colour DarkGrey)) (board Background image:\"Disc\" fillColour:(colour 155 160 195) edgeColour:(colour 155 160 195) scaleX:1.2 scaleY:1.15 offsetX:0.021 offsetY:-0.015) } ) (ai \"Faraday_ai\" )"
+}

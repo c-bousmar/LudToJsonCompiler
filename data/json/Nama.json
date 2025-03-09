@@ -1,0 +1,153 @@
+{
+    "define": {
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1",
+        "SiteToMove": "(if (= (from) (handSite Mover)) (\"SiteToMoveOnTrack\" from:0 (- (\"ThrowValue\") 1)) (\"SiteToMoveOnTrack\" from:(from) (\"ThrowValue\")) )",
+        "SiteHyenaToMove": "(\"SiteToMoveOnTrack\" from:(where \"Hyena\" Shared) (* 2 (\"ThrowValue\")))",
+        "HyenaPlayer": "(var",
+        "SetHyenaPlayer": "(and (add (piece \"Hyena\") (to 0) stack:True) (set Var (id Mover)) )"
+    },
+    "game": "\"Nama\" (players <Player:num>) (equipment { (board (rectangle <Board:size> 1) (track \"Track\" <Board:track> directed:True) ) (hand Each) (hand Shared) (piece \"Marker\" Each (if (\"IsOffBoard\" (\"SiteToMove\")) (move Remove (from) level:(level) (then (if (\"IsOffBoard\" (where \"Hyena\" Shared)) (\"SetHyenaPlayer\") ) ) ) (move (from (from) level:(level)) (to (\"SiteToMove\")) stack:True ) ) ) (piece \"Hyena\" Shared) (\"StickDice\" 4) (map \"Throw\" {(pair 0 0) (pair 1 0) (pair 2 2) (pair 3 0) (pair 4 20) }) }) (rules (start (place \"Marker\" \"Hand\") ) (play (\"RollMove\" (if (< 0 (\"ThrowValue\")) (if (= (\"HyenaPlayer\") (id Mover)) (if (\"IsOffBoard\" (\"SiteHyenaToMove\")) (move Remove (where \"Hyena\" Shared) (then (forEach Site (sites Board) (if (is Occupied (site)) (remove (site) count:(size Stack at:(site))) ) ) ) ) (move (from (where \"Hyena\" Shared)) (to (\"SiteHyenaToMove\")) (then (forEach Value min:1 max:(- (* 2 (\"ThrowValue\")) 1) (if (is Occupied (\"SiteToMoveOnTrack\" from:(last From) (value))) (remove (\"SiteToMoveOnTrack\" from:(last From) (value)) count:(size Stack at:(\"SiteToMoveOnTrack\" from:(last From) (value))) ) ) ) ) ) ) (or (forEach Piece) (forEach Piece container:(mover))) ) ) ) ) (end { (forEach Player if:(and { (> (\"HyenaPlayer\") 0) (!= (player) (\"HyenaPlayer\")) (\"IsOffBoard\" (where \"Hyena\" Shared)) }) (result Player Loss) ) (if (and (= (id Mover) (\"HyenaPlayer\")) (\"IsOffBoard\" (where \"Hyena\" Shared))) (result Mover Win) ) (forEach Player if:(and (!= (player) (\"HyenaPlayer\")) (no Pieces of:(player))) (result Player Loss) ) }) )",
+    "option": {
+        "Players": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The game involves 2 players."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The game involves 3 players."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The game involves 4 players."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The game involves 5 players."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The game involves 6 players."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The game involves 7 players."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The game involves 8 players."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The game involves 9 players."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The game involves 10 players."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The game involves 11 players."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "The game involves 12 players."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "The game involves 13 players."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The game involves 14 players."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The game involves 15 players."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "The game involves 16 players."
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size> <track>",
+            "items": {
+                "20": {
+                    "content": "20> <{0..19}",
+                    "description": "The track is composed of 20 spaces"
+                },
+                "25": {
+                    "content": "25> <{0..24}",
+                    "description": "The track is composed of 25 spaces"
+                },
+                "30": {
+                    "content": "30> <{0..29}",
+                    "description": "The track is composed of 30 spaces"
+                },
+                "35": {
+                    "content": "35> <{0..34}",
+                    "description": "The track is composed of 35 spaces"
+                },
+                "40": {
+                    "content": "40> <{0..39}",
+                    "description": "The track is composed of 40 spaces"
+                },
+                "45": {
+                    "content": "45> <{0..44}",
+                    "description": "The track is composed of 45 spaces"
+                },
+                "50": {
+                    "content": "50> <{0..49}",
+                    "description": "The track is composed of 50 spaces"
+                },
+                "55": {
+                    "content": "55> <{0..54}",
+                    "description": "The track is composed of 55 spaces"
+                },
+                "60": {
+                    "content": "60> <{0..59}",
+                    "description": "The track is composed of 60 spaces"
+                },
+                "65": {
+                    "content": "65> <{0..64}",
+                    "description": "The track is composed of 65 spaces"
+                },
+                "70": {
+                    "content": "70> <{0..69}",
+                    "description": "The track is composed of 70 spaces"
+                },
+                "75": {
+                    "content": "75> <{0..74}",
+                    "description": "The track is composed of 75 spaces"
+                },
+                "80": {
+                    "content": "80> <{0..79}",
+                    "description": "The track is composed of 80 spaces"
+                },
+                "85": {
+                    "content": "85> <{0..84}",
+                    "description": "The track is composed of 85 spaces"
+                },
+                "90": {
+                    "content": "90> <{0..89}",
+                    "description": "The track is composed of 90 spaces"
+                },
+                "95": {
+                    "content": "95> <{0..94}",
+                    "description": "The track is composed of 95 spaces"
+                },
+                "100": {
+                    "content": "100> <{0..99}",
+                    "description": "The track is composed of 100 spaces"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Nama is a race game played in S\u00e9gou, Mali. The board is made in the sand, and nut shells are used as dice. The first player who reaches the end plays as the hyena, which eats up the remaining players' pieces.\") (rules \"The board is a track of any number of spaces, made in the sand. Any number of players, playing with one piece. One piece is the hyena. Four nut shells are used as dice, with the following throws: four of all the same side = 20; two of the same side = 2; any other throw = 0. The first player to reach the end of the track then plays as the hyena. The hyena moves twice the value of the throw. When the hyena overtakes a player's piece, it is removed from the board and the player loses. \") (source \"B\u00e9art 1955: 432.\") (id \"1194\") (version \"1.3.14\") (classification \"board/race/escape\") (credit \"Eric Piette\") (origin \"This game was played in Mali, around 1955.\") } ) (graphics { (show Edges Hidden) (piece Scale 0.5) (stackType 0 Ground) (board Colour Phase0 (colour 223 178 110)) (board Colour InnerEdges (colour Black)) (board Colour OuterEdges (colour Black)) })"
+}

@@ -1,0 +1,21 @@
+{
+    "define": {},
+    "game": "\"Niranchy\" (players 2) (equipment { (board (concentric Square rings:3 joinCorners:True) use:Vertex) (hand Each) (piece \"Marker\" Each (\"StepToEmpty\")) }) (rules (start (place \"Marker\" \"Hand\" count:12)) phases:{ (phase \"Placement\" (play (move (from (handSite Mover)) (to (sites Empty)) ) ) (nextPhase Mover (\"HandEmpty\" Mover) \"Movement\") ) (\"PhaseMovePiece\" \"Movement\") } (end { (if (no Moves <Players:player1>) (result <Players:player2> Win)) (if (is Line 3 <Players:player1>) (result <Players:player1> Win)) }) )",
+    "option": {
+        "Player Order": {
+            "arguments": "<player1> <player2>",
+            "items": {
+                "Player 1 wins by blocking": {
+                    "content": "P2> <P1",
+                    "description": "Player 1 wins by blocking."
+                },
+                "Player 2 wins by blocking": {
+                    "content": "P1> <P2",
+                    "description": "Player 2 wins by blocking."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Niranchy is a game of alignment played in Sri Lanka during the nineteenth century. It was a common game played by people of all ages, often played in breaks between \\\"intervals of business.\\\"\") (aliases {\"Nerenchi\"}) (rules \"Three concentric squares, with lines connecting the midpoints and diagonals of the squares. Twelve pieces per player. Players alternate turns placing one of their pieces on the board. When all of the pieces are placed, the pieces may be moved to an empty adjacent spot on the board. One player wins by placing three of their pieces in a row. The other player wins by blocking their opponent from being able to move.\") (source \"Ludovisi 1873: 34, Diagram C.\") (id \"740\") (version \"1.3.14\") (classification \"board/space/line\") (credit \"Matthew Stephenson\") (origin \"This game was played in Sri Lanka, around 1873.\") } ) (ai \"Niranchy_ai\" )"
+}

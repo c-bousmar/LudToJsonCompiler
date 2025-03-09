@@ -1,0 +1,7 @@
+{
+    "define": {},
+    "game": "\"Un\" (players 2) (equipment { (board (hex 5)) (piece \"Marker\" Neutral (move Slide (between trail:(id \"Marker\" Shared)) ) ) (piece \"Marker\" Shared) }) (rules (meta (swap)) phases:{ (phase \"Init\" (play (move Add (piece \"Marker0\") (to (sites Empty)))) (nextPhase \"Main\") ) (phase \"Main\" (play (forEach Piece Neutral) ) ) } (end (if (no Moves Next) (result Mover Win))) )",
+    "option": {},
+    "rulesets": {},
+    "metadata": "(info { (description \"Slide a shared piece and be the last to do it.\") (rules \"One player drops the neutral stone on a cell and the other chooses who starts. On each turn, each player slides the neutral stone a number of empty cells in a straight line and each cell passed becomes unavailable for the rest of the game. The first player that cannot move loses.\") (id \"4304\") (source \"<a href=\\\\\"https: (version \"1.3.14\") (classification \"board/space/blocking\") (author \"Jo\u00e3o Neto\") (credit \"Eric Piette\") (date \"2003\") } ) (graphics { (player Colour Neutral (colour Black)) })"
+}

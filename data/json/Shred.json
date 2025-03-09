@@ -1,0 +1,10 @@
+{
+    "define": {
+        "ConnectionSites": "(difference (sites Occupied by:Mover) #1",
+        "IsConnected": "(and { (< 0 (count Sites in:(sites Around #1 Orthogonal if:(is Empty (to))) )) (< 0 (count Sites in:(sites Around (\"ConnectionSites\" #1) Orthogonal if:(is Empty (to))) )) (!= Infinity (count Steps Orthogonal (step Orthogonal (to if:(is Empty (to)))) #1 (sites Around (\"ConnectionSites\" #1) Orthogonal if:(is Empty (to))) )) }"
+    },
+    "game": {},
+    "option": {},
+    "rulesets": {},
+    "metadata": {}
+}

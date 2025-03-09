@@ -1,0 +1,14 @@
+{
+    "define": {
+        "Move": "(move (from) (to (sites LineOfSight Farthest at:(from) Orthogonal)) (then (fromTo (from (sites Occupied by:P1)) (to (sites LineOfSight Farthest at:(from) SameDirection)) ) ) )"
+    },
+    "game": "\"Labirintus\" (players 1) (equipment { (board (rectangle 16 20)) (piece \"Square\" Neutral) (piece \"Ball1\" P1 \"Move\") (piece \"Ball2\" P1 \"Move\") (regions \"Exit2\" {<Board:start1>}) (regions \"Exit1\" {<Board:start2>}) (regions \"Walls\" {<Board:walls>}) }) (rules (start { (place \"Ball1\" <Board:start1>) (place \"Ball2\" <Board:start2>) (place \"Square0\" (sites \"Walls\")) }) (play (forEach Piece)) (end { (if (and (is In (where (id \"Ball1\")) (sites \"Exit1\")) (is In (where (id \"Ball2\")) (sites \"Exit2\")) ) (result Mover Win) ) }) )",
+    "option": {
+        "Board": {
+            "arguments": "<walls> <start1> <start2>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"The basic idea of the game is to rearrange the balls within the labyrinth rather than finding your way out.\") (rules \"The balls will roll until collision in the direction of the arrow to be selected for each step. For example, while you are trying to send the red ball to the desired place the other ball will roll to and fro as well.\") (id \"1624\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"puzzle/planning\") (author \"L\u00e1szl\u00f3 Nagy\") (credit \"Matthew Stephenson\") } ) (graphics { (piece Colour \"Ball1\" fillColour:(colour Red)) (piece Colour \"Ball2\" fillColour:(colour Green)) (player Colour Neutral (colour DarkGrey)) (piece Colour \"Square0\" strokeColour:(colour 0 0 0 0)) (region Colour \"Walls\" (colour DarkGrey)) (board Colour Phase0 (colour 255 250 160)) (board Colour InnerEdges (colour 0 0 0 0)) (board Colour OuterEdges (colour 0 0 0 0)) (show Symbol \"disc\" (sites \"Exit1\") fillColour:(colour Red) scale:0.5) (show Symbol \"disc\" (sites \"Exit2\") fillColour:(colour Green) scale:0.5) (no Sunken) }) (ai \"Labirintus_ai\" )"
+}

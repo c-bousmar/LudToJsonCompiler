@@ -1,0 +1,108 @@
+{
+    "define": {
+        "Size": "<Board:size>",
+        "Nbors": "(count Sites in:(intersection (sites Around #1) (sites Occupied by:#2) ) )",
+        "TriCorners": "",
+        "HexCorners": "(start { (place \"Ball1\" { 0 (- (/ (- (* {3 #1 #1}) #1) 2) 1) (+ 1 (- (* {3 #1 #1}) (* 4 #1))) } ) (place \"Ball2\" {(- #1 1) (+ 1 (/ (- (* {3 #1 #1}) (* 5 #1)) 2)) (- (* {3 #1 #1}) (* 3 #1)) } ) })",
+        "LimpCorners": "(start { (place \"Ball1\" { 0 (- (/ (+ (* {3 #1 #1}) #1) 2) 1) (- (* 3 (* #1 #1)) #1) } ) (place \"Ball2\" { #1 (/ (- (* {3 #1 #1}) (* 3 #1)) 2) (- (* 3 (* #1 #1)) 1) } ) })"
+    },
+    "game": "\"HexTrike\" (players 2) (equipment { (board (hex <Boundary:shape> <Board>)) (piece \"Ball\" Each) }) (rules (meta (swap)) <Boundary:cornerSetup> phases:{ (phase \"Opening\" P1 (play (move Add (to (sites Empty)) (then (set Var (last To)) ) ) ) (nextPhase) ) (phase \"Play\" (play (move Add (to (sites LineOfSight Empty at:(var))) (then (set Var (last To)) ) ) ) ) } (end { (if (no Moves Next) { (if (> (\"Nbors\" (last To) P1) (\"Nbors\" (last To) P2)) (result P1 Win) ) (if (> (\"Nbors\" (last To) P2) (\"Nbors\" (last To) P1)) (result P2 Win) ) (if (and (= (\"Nbors\" (last To) P1) (\"Nbors\" (last To) P2)) (is Mover P1)) (result P1 Win) ) (if (and (= (\"Nbors\" (last To) P1) (\"Nbors\" (last To) P2)) (is Mover P2)) (result P2 Win) ) } ) }) )",
+    "option": {
+        "Board Shape": {
+            "arguments": "<shape> <cornerSetup>",
+            "items": {
+                "Hexhex": {
+                    "content": "Hexagon> <(\"TriCorners\")",
+                    "description": "Played on a Hexagonal Board."
+                },
+                "Limping Hex": {
+                    "content": "Limping> <(\"TriCorners\")",
+                    "description": "Played on a Hexagonal (N,N+1 edged) Board."
+                },
+                "Hexhex-corners": {
+                    "content": "Hexagon> <(\"HexCorners\" \"Size\")",
+                    "description": "Played on a Hexagonal Board, pre-filled corners."
+                },
+                "Limping-corners": {
+                    "content": "Limping> <(\"LimpCorners\" \"Size\")",
+                    "description": "Played on a Hexagonal (N,N+1 edged) Board, pre-filled corners."
+                }
+            }
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3": {
+                    "content": "3",
+                    "description": "Played on a size 3 board."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "Played on a size 4 board."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "Played on a size 5 board."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "Played on a size 6 board."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "Played on a size 7 board."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "Played on a size 8 board."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "Played on a size 9 board."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "Played on a size 10 board."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "Played on a size 11 board."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "Played on a size 12 board."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "Played on a size 13 board."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "Played on a size 14 board."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "Played on a size 15 board."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "Played on a size 16 board."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "Played on a size 17 board."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "Played on a size 18 board."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "Played on a size 19 board."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Place stones in line of sight of the most recent stone until it is trapped. Whoever dominates the trapped area wins.\") (rules \"Play on a hexagonal grid composed of hexagons. Use a neutral pawn and black/white checkers. Players take turns moving a neutral pawn around on the board (passing is not allowed). The neutral pawn can move any number of empty points, in any direction in a straight line, but cannot move onto, or jump over occupied points. When a player moves the pawn, first they place a checker of their own color, onto the destination point. Then they move the pawn on top of it. When the pawn is trapped, the game is over. At the end of the game, each player gets a point for each checker of their own color adjacent to the pawn; if the number of adjacent checkers is equal, the checker under the trapped pawn breaks the tie. The person with the highest score wins.\") (id \"1388\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"board/space/territory\") (author \"Alek Erickson\") (publisher \"Alek Erickson\") (credit \"Alek Erickson\") } ) (ai \"HexTrike_ai\" )"
+}

@@ -1,0 +1,110 @@
+{
+    "define": {},
+    "game": "\"Master Y\" (players 2) (equipment { (board (hex Triangle <Board>)) (piece \"Disc\") }) (rules phases:{ (phase \"Opening\" P1 (play (move Add (to (sites Empty)))) (nextPhase \"Playing\") ) (phase \"Playing\" (play (move Add (to (sites Empty)) (then (if (= 0 (count MovesThisTurn)) (moveAgain) ) ) ) ) ) } (end (if (is Connected 3 Sides) (result Mover <Result>) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3": {
+                    "content": "3",
+                    "description": "Played on a size 3 board."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "Played on a size 4 board."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "Played on a size 5 board."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "Played on a size 6 board."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "Played on a size 7 board."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "Played on a size 8 board."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "Played on a size 9 board."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "Played on a size 10 board."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "Played on a size 11 board."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "Played on a size 12 board."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "Played on a size 13 board."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "Played on a size 14 board."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "Played on a size 15 board."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "Played on a size 16 board."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "Played on a size 17 board."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "Played on a size 18 board."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "Played on a size 19 board."
+                },
+                "20": {
+                    "content": "20",
+                    "description": "Played on a size 20 board."
+                },
+                "21": {
+                    "content": "21",
+                    "description": "Played on a size 21 board."
+                },
+                "22": {
+                    "content": "19",
+                    "description": "Played on a size 22 board."
+                },
+                "23": {
+                    "content": "19",
+                    "description": "Played on a size 23 board."
+                }
+            }
+        },
+        "End Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Standard": {
+                    "content": "Win",
+                    "description": "The first player to connect all three sides wins."
+                },
+                "Misere": {
+                    "content": "Loss",
+                    "description": "The first player to connect all three sides loses."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Place pieces to connect all three board sides.\") (rules \"Players take turns placing two pieces of their colour on empty cells. White places only one stone on their first turn. A player wins by connecting all three board sides with a connected group of their pieces.\") (id \"1389\") (source \"Mudcrack Y and Poly-Y, Kadon Press, 1975.\") (version \"1.3.14\") (classification \"board/space/connection\") (author \"Craige Schensted and Charles Titus\") (credit \"Eric Silverman\") } ) (ai \"Master Y_ai\" )"
+}

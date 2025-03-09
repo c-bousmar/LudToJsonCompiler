@@ -1,0 +1,131 @@
+{
+    "define": {
+        "AnyOfTheseSitesMeetThisCondition": "(< 0 (size Array (array (forEach #1 #2))))",
+        "Side1": "(union (sites Side NE) (sites Side N",
+        "Side2": "(union (sites Side SE) (sites Side S",
+        "Side3": "(union (sites Side NW) (sites Side SW",
+        "NeighborCountOf": "(count Pieces #1 in:(sites Around (to) Orthogonal))",
+        "AddToEmpty": "(move Add (to (sites Empty)) (then <Protocol:type>",
+        "FlipFromTo": "(move Add (piece (id \"Disc\" #2)) (to (sites Occupied by:#1) if:(< (\"NeighborCountOf\" #2) ((\"NeighborCountOf\" #1))) (apply (remove (to)))",
+        "StonesOfIn": "(intersection (sites Occupied by:#1) #2",
+        "IsWinningConnectionAtSite": "(is Connected 3 at:#1 { \"Side1\" \"Side2\" \"Side3\" })",
+        "IsConnectedAtStartOfFirstMove": "(and (is Next (next)) (\"IsConnectedPlayer\")) (and (= 1) (\"IsConnectedPlayer\" ))",
+        "P1Colour": "(colour DarkGreen",
+        "P2Colour": "(colour White",
+        "BoardColour": "(colour 215 203 170",
+        "EdgesOfSide": "(intersection (sites Outer Edge) (forEach of:(difference #1 (sites Corners Vertex)) (sites Incident Edge of:Vertex at:(site))"
+    },
+    "game": "\"00'Y'\" (players 2) (equipment { (board <Board:size> use:Vertex) (piece \"Disc\" Each ) (piece \"Counter\" Neutral maxState:2) } ) (rules (play (priority { (if (\"SameTurn\") <Flipping:move> ) (\"AddToEmpty\") } (then (if (or (= 1 (var \"MoveInTurn\")) (can Move <Flipping:move>) ) (moveAgain) (if (\"AnyOfTheseSitesMeetThisCondition\" (sites Occupied by:<Winning:player>) if:(\"IsWinningConnectionAtSite\" (site)) ) (trigger \"Win\" <Winning:player> ) ))))) (end { (if (is Triggered \"Win\" <Winning:player>) (result <Winning:player> Win) ) (if (and (no Moves Mover) (\"AnyOfTheseSitesMeetThisCondition\" (sites Occupied by:<Winning:player>) if:(\"IsWinningConnectionAtSite\" (site)) )) (result <Winning:player> Win) ) }",
+    "option": {
+        "Protocol": {
+            "arguments": "<type>",
+            "items": {
+                "Alternating": {
+                    "content": "(set Var \"MoveInTurn\" 0)",
+                    "description": "Alternating"
+                },
+                "Turns 122*": {
+                    "content": "(set Var \"MoveInTurn\" (% (+ 3 (var \"MoveInTurn\")) 2))",
+                    "description": "Turns 122*"
+                }
+            }
+        },
+        "Flipping": {
+            "arguments": "<move>",
+            "items": {
+                "All colors, Cascading (00'Y')": {
+                    "content": "(or (\"FlipFromTo\" Next Mover) (\"FlipFromTo\" Mover Next))",
+                    "description": "All, Cascading (00'Y')"
+                },
+                "Opponents into Friends": {
+                    "content": "(\"FlipFromTo\" Next Mover)",
+                    "description": "Opponent pieces become friends (Defector Y)"
+                },
+                "Friends into Enemies": {
+                    "content": "(\"FlipFromTo\" Mover Next)",
+                    "description": "Friendly pieces become Opponent's pieces"
+                }
+            }
+        },
+        "Winning": {
+            "arguments": "<player>",
+            "items": {
+                "At beginning of turn": {
+                    "content": "Next",
+                    "description": "Win with connections before you start your move."
+                },
+                "At end of turn": {
+                    "content": "Mover",
+                    "description": "Win with connections at the end of your last move in your last turn"
+                }
+            }
+        },
+        "Board": {
+            "arguments": "<size>",
+            "items": {
+                "Triangle 5": {
+                    "content": "(tri 5)",
+                    "description": "Triangle-5 Board (15)"
+                },
+                "Triangle 6": {
+                    "content": "(tri 6)",
+                    "description": "Triangle-6 Board (21)"
+                },
+                "Triangle 8*": {
+                    "content": "(tri 8)",
+                    "description": "Triangle-8 Board (36)"
+                },
+                "Triangle 9": {
+                    "content": "(tri 9)",
+                    "description": "Triangle-9 Board (45)"
+                },
+                "Triangle 11": {
+                    "content": "(tri 11)",
+                    "description": "Triangle-11 Board (66)"
+                },
+                "Triangle 12": {
+                    "content": "(tri 12)",
+                    "description": "Triangle-12 Board (78)"
+                },
+                "Triangle 14": {
+                    "content": "(tri 14)",
+                    "description": "Triangle-14 Board (105)"
+                },
+                "Triangle 15*": {
+                    "content": "(tri 15)",
+                    "description": "Triangle-15 Board (120)"
+                },
+                "Triangle 17": {
+                    "content": "(tri 17)",
+                    "description": "Triangle-17 Board (153)"
+                },
+                "Hex 3-4": {
+                    "content": "(tri Limping 3)",
+                    "description": "Hex 4-5 Board (48)"
+                },
+                "Hex 4-5*": {
+                    "content": "(tri Limping 4)",
+                    "description": "Hex 4-5 Board (48)"
+                },
+                "Hex 5-6": {
+                    "content": "(tri Limping 5)",
+                    "description": "Hex 5-6 Board (75)"
+                },
+                "Hex 6-7*": {
+                    "content": "(tri Limping 6)",
+                    "description": "Hex 6-7 Board (108)"
+                },
+                "Hex 7-8": {
+                    "content": "(tri Limping 7)",
+                    "description": "Hex 7-8 Board (146)"
+                },
+                "Hex 8-9": {
+                    "content": "(tri Limping 8)",
+                    "description": "Hex 8-9 Board (146)"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Double-'0' Y ('00'-Y / 'Double Agent Y') is based on 'Defector Y' but causes sequential cascading flips after piece placement. This is applied to every piece that is surrounded by an excess of its own kind, -- not just the flipping of opponents into friends. Since the flips cascade, they are resolved immediately and unlike Defector Y are not pending from previous turns. Therefore the flips are evaluated after each placement, rather than before the last placement of a turn. These changes allow a tactic of placing your piece, then immediately flipping it in order to flip an opponent's piece on the opposite side to become your own; which can be effective for breaking chains. Since chains can be broken, the end condition is evaluated before one's turn rather than after, lessening the sharpness of compared to Defector Y. Note that options can be selected that make the game very close to Defector Y, but there remains a difference in the Alternating Turn versions: conversion here is after placement, originally it was before. However, the Double turn version should be equivalent. The 3rd option, where friends flip to enemies, has a very cold feeling to it especially if the win is at the beginning of the turn.\") (rules \"Goal: Connect all three edge colors with a single group of connected stones of your own color. (As in 'Y') First turn is a single move. In the standard game subsequent turns have two placements each. The player seeking to connect with the darker color starts. The moves consist of two parts: placement, then conditional 'flipping' of stones: - Placement is to any empty location. - 'Flipping' means changing the color of a stone that has more neighbors of its own color than enemy neighbors. Flipping is restricted to the selected option. Stones are flipped one at a time until no more can flip. Options are: -- 00'Y': All - Each applicable stone flips, one at a time with cascading effects, until no more can flip. -- Defector Y: Enemies flip into Friends - these might be pieces near/at the stone just placed placed, and/or a stone the opponent flipped. -- Friends flip into Enemies - these might be pieces near/at the opponent's last placements or flips. The first player to connect all 3 sides after the all flips have been made is the winner.\") (id \"4035\") (version \"1.3.14\") (classification \"board/space/connection\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"14-05-2023\") } ) (graphics { (player Colour P1 \"P1Colour\") (player Colour P2 \"P2Colour\") (board StyleThickness OuterEdges 7.5) (region Colour Edge (\"EdgesOfSide\" \"Side1\") regionSiteType:Edge (colour Red)) (region Colour Edge (\"EdgesOfSide\" \"Side2\") regionSiteType:Edge (colour Blue)) (region Colour Edge (\"EdgesOfSide\" \"Side3\") regionSiteType:Edge (colour Yellow)) (board Style Board) (board Colour Phase0 \"BoardColour\") (board Colour InnerEdges (colour 120 100 40 190) ) (board Colour OuterEdges (colour 120 100 40 190) ) (piece Scale .7) }"
+}

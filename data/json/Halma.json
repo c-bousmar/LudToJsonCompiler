@@ -1,0 +1,91 @@
+{
+    "define": {
+        "FromIsOnTheRegionToFill": "(is In #1 (sites (player (mapEntry (mover",
+        "ToIsOnTheRegionToFill": "(is In #1 (sites (player (mapEntry (mover",
+        "Hop": "(move Hop (from #1) (between if:(is Occupied (between))) (to if:(and (\"IsEmptyAndNotVisited\" (to)) (or (not (\"FromIsOnTheRegionToFill\" #1)) (\"ToIsOnTheRegionToFill\" (to)) ) ) ) #2 )",
+        "HopSequence": "(\"Hop\" #1 (then (if (can Move (\"Hop\" (last To))) (moveAgain",
+        "Dim": "<Board:size>"
+    },
+    "game": "\"Halma\" (players <Version:numPlayers>) (equipment { (board (square (\"Dim\"))) (piece \"Counter\" Each) <Version:home> }) (rules (start { <Version:start> }) phases:{ (phase \"Movement\" (play (forEach Piece (or (\"HopSequence\" (from)) (move Step (to if:(and (is Empty (to)) (or (not (\"FromIsOnTheRegionToFill\" (from))) (\"ToIsOnTheRegionToFill\" (to)) ) ) ) ) ) ) ) (nextPhase (is Mover (next)) \"MultiJump\") ) (phase \"MultiJump\" (play (or (\"HopSequence\" (last To)) (move Pass) ) ) (nextPhase (not (is Mover (next))) \"Movement\") ) } (end (\"FillWin\" (sites (player (mapEntry (mover)))))) )",
+    "option": {
+        "Players": {
+            "arguments": "<numPlayers> <home> <start>",
+            "items": {}
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board."
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board."
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board."
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board."
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board."
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board."
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board."
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": "The game is played on a 11x11 board."
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "The game is played on a 12x12 board."
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": "The game is played on a 13x13 board."
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "The game is played on a 14x14 board."
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": "The game is played on a 15x15 board."
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": "The game is played on a 16x16 board."
+                },
+                "17x17": {
+                    "content": "17",
+                    "description": "The game is played on a 17x17 board."
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": "The game is played on a 18x18 board."
+                },
+                "19x19": {
+                    "content": "19",
+                    "description": "The game is played on a 19x19 board."
+                },
+                "20x20": {
+                    "content": "20",
+                    "description": "The game is played on a 20x20 board."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Halma was invented in 1883 by George Howard Monks in Boston, and inspired other games such as Chinese Checkers.\") (rules \"Played on a 16x16 checkered board. Can be played with two or four players. It is played with nineteen pieces for a two-player game, thirteen for a four-player game. The pieces begin play in opposing corners of the board, called the \\\"camp.\\\" Pieces can move in any direction to an adjacent square. Players can also jump any adjacent piece, including the player's own. Jumping does not capture. Multiple jumps in one turn by the same piece are allowed. The goal is to move all of one's pieces into the opposing player's camp. Once a piece has moved into the camp, it cannot leave.\") (source \"<a href=\\\"https: (id \"72\") (version \"1.3.14\") (classification \"board/race/fill\") (credit \"Eric Piette\") } ) (graphics { (region Colour \"Home\" Edge (colour Black)) (board Checkered) (board Colour InnerEdges (colour 0 0 0 0)) (board Colour OuterEdges (colour 150 75 0)) (board Colour Phase0 (colour 200 150 75)) (board Colour Phase1 (colour 250 221 144)) (board StyleThickness InnerEdges 2.0) (board StyleThickness OuterEdges 2.0) }) (ai \"Halma_ai\" )"
+}

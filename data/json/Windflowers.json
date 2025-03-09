@@ -1,0 +1,105 @@
+{
+    "define": {
+        "Scoring": "(if (all Passed) (do (forEach Player (remember Value \"Scores\" #1) ) next:(do (forEach Player (if (\"Tied4FirstPlace\" #1) (and (remember Value \"Tied\" (player)) (set Score Player #1) ) (set Score Player #1) ) ) next:(do (forEach Value (values Remembered \"Tied\") (forEach (players All if:(is In (player) (values Remembered \"Tied\"))) (addScore (player (player)) <TType:selTiebreaker>) ) ) next:(forget Value \"Scores\" All (then (forget Value \"Tied\" All) ) ) ) ) ) (forEach Player (set Score Player #1)) )",
+        "CascadeWins": "(max 0 (- (\"LargerGroup\" (player) (value)) (\"LargerGroup\" (value) (player",
+        "CascadeLoses": "(max 0 (- (\"LargerGroup\" (value) (player)) (\"LargerGroup\" (player) (value",
+        "LargerGroup": "(max 0 (max (difference (sizes Group \"ScoreConnection\" of:#1) (sizes Group \"ScoreConnection\" of:#2) ) ) )",
+        "Tied4FirstPlace": "(= (#1) (max (difference (values Remembered \"Scores\") #1 ) ) )",
+        "GroupCount": "(max 0 (max (sizes Group \"ScoreConnection\" of:#1)))",
+        "StoneCount": "(count Sites in:(sites Occupied by:Player))",
+        "LessQtyAroundSiteThanAnother": "(> (max 0 (count Pieces of:#1 in:(sites Around (site) \"ConnectionDirection\"))) (max 0 (count Pieces of:(mover) in:(sites Around (site) \"ConnectionDirection\"))) )",
+        "Anemone": "(or { (move Pass) (move Claim (to (sites Empty))) (forEach Site (difference (difference (sites Board) (sites Empty)) (sites Occupied by:Mover) ) (if (\"LessQtyAroundSiteThanAnother\" (who at:(site))) (move Remove (site) (then (claim (to (last To))) ) ) ) ) } (then <SType:selScoring>) )",
+        "ScoreConnection": "<BoardShape:directionScored>",
+        "ConnectionDirection": "<BoardShape:directionUsed>",
+        "BoardUsed": "<BoardShape:gridType>",
+        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell",
+        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell",
+        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell",
+        "TriSquare": "(board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex",
+        "SquareGrid": "(board (square <BoardSize:smallSide>) use:Cell",
+        "SquareDiagonal": "(board (square (- (* 2 <BoardSize:smallSide>) 2)) use:Vertex",
+        "ColourBackground": "(colour 136 175 96"
+    },
+    "game": "\"Windflowers\" (players <HowMany:playerCount>) (equipment { \"BoardUsed\" (piece \"Ball\" Each) }) (rules (start (set Score Each 0) ) (play \"Anemone\" ) (end (if (all Passed) (byScore) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<smallSide> <backgroundSize>",
+            "items": {
+                "3 (20 moves)": {
+                    "content": "3> <1.30",
+                    "description": "Order 3 board"
+                },
+                "4 (45 moves)": {
+                    "content": "4> <1.20",
+                    "description": "Order 4 board"
+                },
+                "5 (75 moves)": {
+                    "content": "5> <1.15",
+                    "description": "Order 5 board"
+                }
+            }
+        },
+        "Board Grid": {
+            "arguments": "<gridType> <directionUsed> <diagShow> <directionScored> <backgroundImage>",
+            "items": {
+                "Hex Double Limping": {
+                    "content": "\"Hex2Limp\"> <Orthogonal> <Hidden> <Orthogonal> <\"Disc\"",
+                    "description": "Hex N+1 / N-1 Grid"
+                },
+                "TriSquare 7 direction majorities": {
+                    "content": "\"TriSquare\"> <All> <ThinDotted> <Adjacent> <\"Disc\"",
+                    "description": "Triangle-Square N-2: Capture-compare all 7 adjacent directions. Scoring - groups connect only in the 5 edge-edge directions."
+                },
+                "Square 8 direction majorities": {
+                    "content": "\"SquareDiagonal\"> <All> <ThinDotted> <Orthogonal> <\"Square-alt1\"",
+                    "description": "Square Grid 2N-2: Capture-compare all 8 adjacent directions. Scoring - groups connect only in the 4 edge-edge directions."
+                }
+            }
+        },
+        "Scoring": {
+            "arguments": "<selScoring>",
+            "items": {
+                "Stone count": {
+                    "content": "(\"Scoring\" (\"StoneCount\" (player)))",
+                    "description": "Score a point for each stone placed."
+                },
+                "Largest group": {
+                    "content": "(\"Scoring\" (\"GroupCount\" (player)))",
+                    "description": "Score a point for each piece in your largest group"
+                }
+            }
+        },
+        "Tie Breaker": {
+            "arguments": "<selTiebreaker>",
+            "items": {
+                "Cascading wins": {
+                    "content": "(\"CascadeWins\")",
+                    "description": "While ignoring paired groups of equal size, if your group is larger, augment your score by the difference between your largest group and the largest group for every tied opponent."
+                },
+                "Cascading loses": {
+                    "content": "(\"CascadeLoses\")",
+                    "description": "While ignoring paired groups of equal size, if your largest group is SMALLER, augment your score by the difference between your largest group and the largest group for every tied opponent."
+                }
+            }
+        },
+        "Players": {
+            "arguments": "<playerCount>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "2 players"
+                },
+                "3": {
+                    "content": "3",
+                    "description": "3 players"
+                },
+                "4": {
+                    "content": "4",
+                    "description": "4 players"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

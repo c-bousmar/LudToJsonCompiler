@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Killer Sudoku\" (players 1) (equipment { (board (square 9) (values Cell (range 1 9))) <Challenge> (regions {Columns Rows SubGrids}) (regions \"RegionHint\" HintRegions) }) (rules (play (satisfy { (is Sum \"RegionHint\" (hint)) (all Different) }) ) (end (if (is Solved) (result P1 Win))) )",
+    "option": {
+        "Challenge": {
+            "arguments": "<hints>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Killer Sudoku is a puzzle that combines elements of Sudoku and Kakuro. Despite the name, the simpler Killer Sudokus can be easier to solve than regular Sudokus, depending on the solver's skill at mental arithmetic; the hardest ones, however, can take hours to crack.\") (aliases {\"Killer Su Doku\" \"Sumdoku\" \"Sum Doku\" \"Sumoku\" \"Addoku\" \"Samunamupure\"}) (rules \"Numbers from 1 to 9 have to be placed in the squares such that each row, column, cage has each number appearing only once, and the numbers in each cage add up to the assigned number.\") (id \"113\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"puzzle/deduction\") (publisher \"The Times\") (credit \"Eric Piette\") (date \"2005\") } ) (graphics { (board Style Sudoku) })"
+}

@@ -1,0 +1,107 @@
+{
+    "define": {},
+    "game": "\"Nex\" (players 2) (equipment { (board (hex Diamond <Board>)) (piece \"Marker\" Each) (piece \"Marker\" Neutral) (regions P1 {(sites Side NE) (sites Side SW) }) (regions P2 {(sites Side NW) (sites Side SE) }) }) (rules <Meta:rule> (play (if (\"SameTurn\") (if (is Pending) (move Select (from (sites Occupied by:Mover) if:(and (!= (from) (last From)) (!= (from) (last To)))) (then (and (remove (last From)) (add (piece \"Marker0\") (to (last From))) ) ) ) (move Add (piece \"Marker0\") (to (sites Empty))) ) (or (if (> (count Pieces \"Marker0\") 1) (move Select (from (sites Occupied by:Neutral)) (to (sites Occupied by:Neutral) if:(!= (from) (to))) (then (and { (remove (last From)) (remove (last To)) (add (piece (mover)) (to (last From))) (add (piece (mover)) (to (last To))) (moveAgain) (set Pending) }) ) ) ) (move Add (to (sites Empty)) (then (moveAgain)) ) ) ) ) (end (if (is Connected Mover) (result Mover <Result>))) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "3x3": {
+                    "content": "3",
+                    "description": "The game is played on a 3x3 board."
+                },
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board."
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board."
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board."
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board."
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board."
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board."
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board."
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": "The game is played on a 11x11 board."
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "The game is played on a 12x12 board."
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": "The game is played on a 13x13 board."
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "The game is played on a 14x14 board."
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": "The game is played on a 15x15 board."
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": "The game is played on a 16x16 board."
+                },
+                "17x17": {
+                    "content": "17",
+                    "description": "The game is played on a 17x17 board."
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": "The game is played on a 18x18 board."
+                },
+                "19x19": {
+                    "content": "19",
+                    "description": "The game is played on a 19x19 board."
+                }
+            }
+        },
+        "Swap Rules": {
+            "arguments": "<rule>",
+            "items": {
+                "On": {
+                    "content": "(meta (swap))",
+                    "description": "The game uses the swap rule."
+                },
+                "Off": {
+                    "content": "",
+                    "description": "The game does not use the swap rule."
+                }
+            }
+        },
+        "End Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Standard": {
+                    "content": "Win",
+                    "description": "The first player to connect their two sides wins."
+                },
+                "Misere": {
+                    "content": "Loss",
+                    "description": "The first player to connect their two sides loses."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"The objective of Nex is to create a connected chain of a player's stones linking the opposite edges of the board marked by the player's color.\") (rules \"The game begins with an empty board. Each player has an allocated color, usually Red and Blue. Players take turns making one of the following: Place a stone of their color AND a neutral stone on empty cells; OR Replace two neutral stones with stones of their color, AND replace a different stone of their color on the board to neutral stone.\") (id \"4286\") (version \"1.3.14\") (classification \"board/space/connection\") (author \"Eric Piette\") (credit \"Eric Piette\") (date \"2024\") } ) (graphics { (player Colour P1 (colour Red)) (player Colour P2 (colour Blue)) (board Colour Phase0 (colour VeryLightGrey)) (board Style ConnectiveGoal) })"
+}

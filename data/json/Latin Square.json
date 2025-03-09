@@ -1,0 +1,149 @@
+{
+    "define": {},
+    "game": "\"Latin Square\" (players 1) (equipment { (board (square <Size>) (values Cell (range 1 <Size>))) (regions {Columns Rows}) }) (rules (play (satisfy (all Different))) (end (if (is Solved) (result P1 Win))) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "2x2": {
+                    "content": "2",
+                    "description": ""
+                },
+                "3x3": {
+                    "content": "3",
+                    "description": ""
+                },
+                "4x4": {
+                    "content": "4",
+                    "description": ""
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": ""
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": ""
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": ""
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": ""
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": ""
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": ""
+                },
+                "11x11": {
+                    "content": "11",
+                    "description": ""
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": ""
+                },
+                "13x13": {
+                    "content": "13",
+                    "description": ""
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": ""
+                },
+                "15x15": {
+                    "content": "15",
+                    "description": ""
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": ""
+                },
+                "17x17": {
+                    "content": "17",
+                    "description": ""
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": ""
+                },
+                "19x19": {
+                    "content": "19",
+                    "description": ""
+                },
+                "20x20": {
+                    "content": "20",
+                    "description": ""
+                },
+                "21x21": {
+                    "content": "21",
+                    "description": ""
+                },
+                "22x22": {
+                    "content": "22",
+                    "description": ""
+                },
+                "23x23": {
+                    "content": "23",
+                    "description": ""
+                },
+                "24x24": {
+                    "content": "24",
+                    "description": ""
+                },
+                "25x25": {
+                    "content": "25",
+                    "description": ""
+                },
+                "26x26": {
+                    "content": "26",
+                    "description": ""
+                },
+                "27x27": {
+                    "content": "27",
+                    "description": ""
+                },
+                "28x28": {
+                    "content": "28",
+                    "description": ""
+                },
+                "29x29": {
+                    "content": "29",
+                    "description": ""
+                },
+                "30x30": {
+                    "content": "30",
+                    "description": ""
+                },
+                "31x31": {
+                    "content": "31",
+                    "description": ""
+                },
+                "32x32": {
+                    "content": "32",
+                    "description": ""
+                },
+                "33x33": {
+                    "content": "33",
+                    "description": ""
+                },
+                "34x34": {
+                    "content": "34",
+                    "description": ""
+                },
+                "35x35": {
+                    "content": "35",
+                    "description": ""
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"A Latin Square is a mathematical puzzle which appears in various cultures around the world, probably independently invented.\") (rules \"A Latin Square puzzle is one in which an n x n grid is filled with n symbols, which cannot repeat in a row or column of the grid.\") (source \"<a href=\\\"https: (id \"70\") (version \"1.3.14\") (classification \"puzzle/deduction\") (credit \"Eric Piette\") } ) (graphics { (board Colour Phase0 (colour 223 178 110)) (board Colour InnerEdges (colour Black)) (board Colour OuterEdges (colour Black)) })"
+}

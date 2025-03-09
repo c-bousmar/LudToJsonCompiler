@@ -1,0 +1,92 @@
+{
+    "define": {
+        "NoPlacementAvailable": "(all Sites (sites Empty) if:(not (no Pieces Mover in:(sites Around (site) All))))"
+    },
+    "game": "\"Make Muster\" (players 2) (equipment { (board (rotate (- 90 <Orient:amount>) (square <Board:poly>) ) use:Cell ) (piece \"Disc\" Each (\"StepToEmpty\")) }) (rules (play (priority (move Add (to (sites Empty) if:(no Pieces Mover in:(sites Around (to) Adjacent)) ) ) (forEach Piece) ) ) (end (if (or (and { (\"IsSingleGroup\" Mover All) (< 1 (count Pieces Mover)) }) (< 1 (count Groups All if:(!= (mover) (who at:(to))))) ) (result Mover Win) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<poly> <limit>",
+            "items": {
+                "Muster 2": {
+                    "content": "\"Order2\"> <{0..19}",
+                    "description": "Board: Muster order 2 board - 20 positions"
+                },
+                "Muster 2+": {
+                    "content": "\"Order2plus\"> <{0..32}",
+                    "description": "Board: Muster order 2+ board - 33 positions"
+                },
+                "Muster 3": {
+                    "content": "\"Order3\"> <{0..44}",
+                    "description": "Board: Muster order 3 board - 45 positions"
+                },
+                "Muster 3+": {
+                    "content": "\"Order3plus\"> <{0..63}",
+                    "description": "Board: Muster order 3+ board - 64 positions"
+                },
+                "Muster 4": {
+                    "content": "\"Order4\"> <{0..79}",
+                    "description": "Board: Muster order 4 board - 80 positions"
+                },
+                "Muster 4+": {
+                    "content": "\"Order4plus\"> <{0..104}",
+                    "description": "Board: Muster order 4+ board - 105 positions"
+                },
+                "Muster 5": {
+                    "content": "\"Order5\"> <{0..136}",
+                    "description": "Board: Muster order 5 board - 137 positions"
+                },
+                "Muster 5+": {
+                    "content": "\"Order5plus\"> <{0..143}",
+                    "description": "Board: Muster order 5+ board - 144 positions"
+                },
+                "Muster 6": {
+                    "content": "\"Order6\"> <{0..179}",
+                    "description": "Board: Muster order 6 board - 180 positions"
+                },
+                "Muster 6+": {
+                    "content": "\"Order6plus\"> <{0..216}",
+                    "description": "Board: Muster order 6+ board - 217 positions"
+                },
+                "Diagonal 3+": {
+                    "content": "\"Diag3plus\"> <{0..23}",
+                    "description": "Board: Diagonal order 3+ board - 24 positions"
+                },
+                "Diagonal 4+": {
+                    "content": "\"Diag4plus\"> <{0..39}",
+                    "description": "Board: Diagonal order 4+ board - 40 positions"
+                },
+                "Diagonal 5+": {
+                    "content": "\"Diag5plus\"> <{0..59}",
+                    "description": "Board: Diagonal order 5+ board - 60 positions"
+                },
+                "Diagonal 6+": {
+                    "content": "\"Diag6plus\"> <{0..83}",
+                    "description": "Board: Diagonal order 6+ board - 84 positions"
+                },
+                "Diagonal 7+": {
+                    "content": "\"Diag7plus\"> <{0..111}",
+                    "description": "Board: Diagonal order 6+ board - 112 positions"
+                }
+            }
+        },
+        "Orientation": {
+            "arguments": "<amount>",
+            "items": {
+                "Orthogonal": {
+                    "content": "0",
+                    "description": "Orthogonal"
+                },
+                "Angled": {
+                    "content": "62",
+                    "description": "Angled cells"
+                },
+                "Diagonal": {
+                    "content": "45",
+                    "description": "Diagonal boards"
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Make Muster is one of several unification games that can be played on the Muster board. The Muster board is a rotated square board with ragged edges and 8 directions of connectivity. Standard sizes are order 2 through order 6. Each order board has 5 x the order squared playing positions. New '+' sizes with 'double corners' have been added, as some may be used in an upcoming release, and this serves to reduce the ease of executing 'corner traps' (Dec 2023) \") (rules \"On your turn, place a single piece of your color on an empty position that is not next to another friendly piece. This is compulsory whenever it is possible to do so. When it is not possible to place a piece; then instead, step one of your pieces to an adjacent empty position. You win either: -- when all your pieces become connected, or -- when you cut-off your opponent from being able to connect theirs.\") (id \"1669\") (version \"1.3.14\") (classification \"board/space/group\") (author \"Dale W. Walton\") (credit \"Dale W. Walton\") (date \"13-01-2020\") } ) (graphics { (board Colour Phase0 (colour 232 229 212)) (board Colour InnerEdges (colour 232 229 212)) (board Colour OuterEdges (colour 232 229 212)) (board StyleThickness OuterEdges 8) (board Background image:\"Square.svg\" fillColour:(colour 218 215 200 ) edgeColour:(colour 218 215 200) scale:1.1) (show Edges All Adjacent connection:true Thick (colour 157 155 141)) (show Symbol \"square-alt1.svg\" <Board:limit> fillColour:(colour 218 215 200 180) edgeColour:(colour 157 155 141) scale:0.80 rotation:<Orient:amount> ) (player Colour P1 (colour DarkBlue)) (player Colour P2 (colour LightRed)) (piece Colour P1 fillColour:(colour DarkBlue) strokeColour:(colour 39 38 35)) (piece Colour P2 fillColour:(colour LightRed) strokeColour:(colour 80 80 72)) (piece Scale \"Disc\" 0.97) } ) (ai \"Make Muster_ai\" )"
+}

@@ -1,0 +1,63 @@
+{
+    "define": {
+        "ReverseBoundedPieces": "(custodial (from (site)) (between if:(is Enemy (state at:(between))) (apply (allCombinations (add (piece \"Disc0\" state:(mover)) (to (site))) (flip (between)) ) ) ) (to if:(is Friend (state at:(to)))) )"
+    },
+    "game": "\"Reversi\" (players 2) (equipment { (board (square <Board:size>)) (piece \"Disc\" Neutral (flips 1 2)) }) (rules <Rules:start> phases:{ <Rules:play> (phase \"Playing\" (play (forEach Site (sites Empty) (append \"ReverseBoundedPieces\" (then (and (set Score P1 (count Sites in:(sites State 1)) ) (set Score P2 (count Sites in:(sites State 2)) ) ) ) ) ) ) ) } (end (if (all Passed) (byScore) ) ) )",
+    "option": {
+        "Start Rules": {
+            "arguments": "<start> <play>",
+            "items": {}
+        },
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "4x4": {
+                    "content": "4",
+                    "description": "The board is a square board of size 4x4."
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The board is a square board of size 6x6."
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The board is a square board of size 8x8."
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The board is a square board of size 10x10."
+                },
+                "12x12": {
+                    "content": "12",
+                    "description": "The board is a square board of size 12x12."
+                },
+                "14x14": {
+                    "content": "14",
+                    "description": "The board is a square board of size 14x14."
+                },
+                "16x16": {
+                    "content": "16",
+                    "description": "The board is a square board of size 16x16."
+                },
+                "18x18": {
+                    "content": "18",
+                    "description": "The board is a square board of size 18x18."
+                },
+                "20x20": {
+                    "content": "20",
+                    "description": "The board is a square board of size 20x20."
+                },
+                "22x22": {
+                    "content": "22",
+                    "description": "The board is a square board of size 22x22."
+                },
+                "24x24": {
+                    "content": "24",
+                    "description": "The board is a square board of size 24x24."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Reversi is a game purportedly invented in the early nineteenth century by either Lewis Waterman or John W. Mollett, but may actually be an older game. It is currently sold and marketed as Othello worldwide.\") (aliases {\"Othello\"}) (rules \"Reversi is played on an 8x8 board. Pieces are double-sided, with each side distinct in some way from the other. Each side designates ownership of that pieces to a certain player when face-up. Play begins with the players taking turns placing pieces into the central four squares until they are full. Then players may place their pieces next to an opponent's piece, a long as a straight line can be drawn between the new piece and an existing piece belonging to that player that goes through the opponent's piece. The opponent's pieces between the new piece and the old piece are then flipped and now belong to the player who just played. If a player cannot make a legal move, they pass. Play continues until the board is full or neither player cannot make a legal move. The player with the most pieces on the board wins.\") (source \"<a href=\\\"https: (id \"104\") (version \"1.3.14\") (classification \"board/space/territory\") (credit \"Eric Piette\") } ) (graphics { (piece Colour state:1 fillColour:(colour Black)) (piece Colour state:2 fillColour:(colour White)) (board Colour OuterEdges (colour Black)) (board Colour InnerEdges (colour Black)) (board StyleThickness InnerEdges 0.5) (board Colour Symbols (colour Black)) (board Colour Phase0 (colour 52 158 52)) (player Colour P1 (colour Black)) (player Colour P2 (colour White)) (useFor \"Board Size/4x4\" (show Symbol \"dot\" Vertex {16 18 6 8} scale:0.2)) (useFor \"Board Size/6x6\" (show Symbol \"dot\" Vertex {36 40 12 8} scale:0.2)) (useFor \"Board Size/8x8\" (show Symbol \"dot\" Vertex {20 24 56 60} scale:0.2)) (useFor \"Board Size/10x10\" (show Symbol \"dot\" Vertex {90 96 30 24} scale:0.2)) (useFor \"Board Size/12x12\" (show Symbol \"dot\" Vertex {132 140 36 28} scale:0.2)) (useFor \"Board Size/14x14\" (show Symbol \"dot\" Vertex {182 192 42 32} scale:0.2)) (useFor \"Board Size/16x16\" (show Symbol \"dot\" Vertex {240 252 48 36} scale:0.2)) (useFor \"Board Size/18x18\" (show Symbol \"dot\" Vertex {306 320 54 40} scale:0.2)) (useFor \"Board Size/20x20\" (show Symbol \"dot\" Vertex {380 396 60 44} scale:0.2)) (useFor \"Board Size/22x22\" (show Symbol \"dot\" Vertex {462 48 480 66} scale:0.2)) (useFor \"Board Size/24x24\" (show Symbol \"dot\" Vertex {552 572 72 52} scale:0.2)) }) (ai \"Reversi_ai\" )"
+}

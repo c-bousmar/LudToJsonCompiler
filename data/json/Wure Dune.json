@@ -1,0 +1,7 @@
+{
+    "define": {},
+    "game": "\"Wure Dune\" (players 2) (equipment { (\"ThreeMensMorrisBoard\") (hand Each) (piece \"Marker\" Each (\"StepToEmpty\" All)) }) (rules (start (place \"Marker\" \"Hand\" count:3)) phases:{ (phase \"Placement\" (play (move (from (handSite Mover)) (to (sites Empty)))) (nextPhase (\"HandEmpty\" P2) \"Movement\") ) (\"PhaseMovePiece\" \"Movement\") } (end (\"Line3Win\" Orthogonal)) )",
+    "option": {},
+    "rulesets": {},
+    "metadata": "(info { (description \"Wur\u00e9 Dun\u00e9 (\\\"Devil's Game\\\") is a simple game of alignment played in many cultures in West Africa. \") (aliases {\"Wur\u00e9 Dun\u00e9\" \"Uri Jin\u00e9\" \"Wuh\u00e9 Din'\u00e9\"}) (rules \"3x3 intersecting lines, with diagonals. Three pieces per player. Players alternate turns placing one of their pieces on the board. Once all of the pieces are placed, players take turns moving one of their pieces to an adjacent empty spot. The first player to make an orthogonal line with their pieces wins.\") (source \"B\u00e9art 1955: 453-454.\") (id \"780\") (version \"1.3.14\") (classification \"board/space/line\") (origin \"This game was played in West Africa, around 1955.\") } ) (ai \"Wure Dune_ai\" )"
+}

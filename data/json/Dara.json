@@ -1,0 +1,21 @@
+{
+    "define": {},
+    "game": "\"Dara\" (players 2) (equipment { (board (rectangle 5 6)) (hand Each) (piece \"Marker\" Each (\"StepToEmpty\" Orthogonal (then (\"ReplayIfLine3\" Orthogonal)) ) ) }) (rules (start (place \"Marker\" \"Hand\" count:12)) phases:{ (phase \"Placement\" <Rules> (nextPhase (\"HandEmpty\" P2) \"Movement\") ) (phase \"Movement\" (play (if \"SameTurn\" (\"RemoveAnyEnemyPieceNotInLine3\" Orthogonal) (do (forEach Piece) ifAfterwards:(not (is Line 4 Orthogonal)) ) ) ) ) } (end (\"HavingLessPiecesLoss\" Next 2)) )",
+    "option": {
+        "Rules": {
+            "arguments": "<type>",
+            "items": {
+                "Basic": {
+                    "content": "(play (do (move (from (handSite Mover)) (to (sites Empty))) ifAfterwards:(not (is Line 4 Orthogonal))))",
+                    "description": "Lines of 4 cannot be made during the drop phase."
+                },
+                "Niger": {
+                    "content": "(play (do (move (from (handSite Mover)) (to (sites Empty))) ifAfterwards:(not (is Line 3 Orthogonal))))",
+                    "description": "Lines of 3 cannot be made during the drop phase."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Dara is a game that is said to be played in West Africa, particularly among the Dakarkari people of Nigeria and the Zarma of Niger. It is also known as \\\"dill,\\\" \\\"doki\\\" (horse), or \\\"derrah.\\\" It is described on Wikipedia and other websites, but without reference to where the cultural information was obtained.\") (aliases {\"Dill\" \"Doki\" \"Derrah.\"}) (rules \"5x6 board. Players have 12 pieces each. They take turns placing pieces on an empty board.Once all pieces are placed, players can move pieces orthogonally to an adjacent space, attempting to make three in a row. When three in a row are made, an opponent's piece is removed from the board that is not in a three in a row pattern. Placing more than three in a row is not allowed. Three in a row during the initial phase of the game does not count. When a player has only two pieces left, they lose.\") (source \"<a href=\\\"https: (id \"89\") (version \"1.3.14\") (classification \"board/space/line\") (credit \"Matthew Stephenson\") } ) (ai \"Dara_ai\" )"
+}

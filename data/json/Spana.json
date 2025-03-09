@@ -1,0 +1,12 @@
+{
+    "define": {},
+    "game": "\"Spana\" <Variant>",
+    "option": {
+        "Variant": {
+            "arguments": "<variant>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"\u0160pana is an alignment game played in the former Yugoslavia. \") (aliases {\"\u0160pana\"}) (rules \"Three concentric squares, with lines connecting the corners and the midpoints of the squares.\") (source \"DLP evidence.\") (id \"1422\") (version \"1.3.9\") (classification \"board/space/line/reconstruction/pending\") (credit \"Eric Piette\") } ) (recon { (concept \"NumStartComponents\" minValue:6 maxValue:27) })"
+}

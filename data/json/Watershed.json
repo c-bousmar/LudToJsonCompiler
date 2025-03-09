@@ -1,0 +1,61 @@
+{
+    "define": {
+        "GroupCount": "(max 0 (max (sizes Group \"ScoreConnectionDirection\" #1) ) )",
+        "CascadeScore": "(max 0 (max (difference (sizes Group \"ScoreConnectionDirection\" #1) (sizes Group \"ScoreConnectionDirection\" #2) ) ) )",
+        "CascadeTie": "(and (set Score Mover (var \"MoverScore\")) (set Score Next (var \"NextScore\")) )",
+        "CascadeTiebreaker": "(if (= (var \"MoverScore\") (var \"NextScore\")) (and (set Score Mover (* <Variant:tieFactor> (\"CascadeScore\" Mover Next))) (set Score Next (* <Variant:tieFactor> (\"CascadeScore\" Next Mover))) ) (\"CascadeTie\") )",
+        "Scoring": "(set Var \"MoverScore\" (+ (value Piece at:(handSite Mover)) (\"GroupCount\" Mover) ) (then (set Var \"NextScore\" (+ (value Piece at:(handSite Next)) (\"GroupCount\" Next) ) (then (\"CascadeTiebreaker\") ) ) ) )",
+        "CapturingAtScoreWhat4Who": "(forEach Value (array #1) (if (> 2 (count Sites in:(sites Around (value) \"ConnectionDirection\" if:(is Empty (to))))) (if (is #2 (who at:(value))) (remove (value) (then (if (is Empty (handSite #3)) (add (piece (id \"Disc\" #2)) (to (handSite #3)) (then (set Value at:(handSite #3) (+ 1 (value Piece at:(handSite #3)))) )) (set Value at:(handSite #3) (+ 1 (value Piece at:(handSite #3)))) ) ) ) (remove (value)) ) ) )",
+        "AllHave1Connection2Edge": "(all Sites #1 if:(or (and (is Empty (site)) (is In (site) (sites Outer)) ) (!= Infinity (count Steps (step \"ConnectionDirection\" (to if:(is Empty (to))) ) (site) (difference (sites Outer) (site)) ) ) ) )",
+        "ColourBackground1": "(colour 126 130 156",
+        "ColourBackground2": "(colour 156 130 126",
+        "ColourBackground": "<Variant:backgroundColour>"
+    },
+    "game": "\"Watershed\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" Each) (piece \"Disc\" Each) (hand Each size:1) }) (rules (start (set Score Each 0)) (play (do (move Add (to (sites Empty) if:(< 1 (count Sites in:(intersection (sites Around (to) \"ConnectionDirection\") (sites Empty) ) ) ) ) ) ifAfterwards:(\"AllHave1Connection2Edge\" (intersection (sites Around (last To) \"ConnectionDirection\") (sites Empty) ) ) (then (do (\"CapturingAtScoreWhat4Who\" (intersection (sites Occupied by:All) (sites Around (last To) \"ConnectionDirection\") ) Next <Variant:bonus2> ) next:(\"Scoring\") ) ) ) ) (end (if (no Moves Next) { (if (= (score Mover) (score Next)) (result Mover Win) ) (if (!= (score Mover) (score Next)) (byScore) ) } ) ) ) ) /----------------------------------------- (define \"ScoreConnectionDirection\" <Variant:directionScored>) (define \"ConnectionDirection\" <Variant:directionUsed>) (define \"BoardUsed\" <Variant:gridType>) (define \"SquareGrid\" (board (square <BoardSize:smallSide>) use:Cell)) (define \"SquareDiagonal\" (board (square <BoardSize:smallSide>) use:Vertex",
+    "option": {
+        "Board Size": {
+            "arguments": "<smallSide> <backgroundSize>",
+            "items": {
+                "Order 5": {
+                    "content": "5> <1.4",
+                    "description": "Order 5 board"
+                },
+                "Order 7": {
+                    "content": "7> <1.3",
+                    "description": "Order 7 board"
+                },
+                "Order 9": {
+                    "content": "9> <1.23",
+                    "description": "Order 9 board"
+                },
+                "Order 11": {
+                    "content": "11> <1.2",
+                    "description": "Order 11 board"
+                },
+                "Order 13": {
+                    "content": "13> <1.18",
+                    "description": "Order 13 board"
+                },
+                "Order 19": {
+                    "content": "19> <1.13",
+                    "description": "Order 19 board"
+                }
+            }
+        },
+        "Variant": {
+            "arguments": "<gridType> <directionUsed> <diagShow> <directionScored> <backgroundColour> <bonus2> <tieFactor>",
+            "items": {
+                "Plateau - Omni connectivity - Orthogonal groups": {
+                    "content": "\"SquareDiagonal\"> <All> <ThinDotted> <Orthogonal> <(colour 156 130 126)> <Mover> <-1",
+                    "description": "Watershed Plateau: Omni-Square Grid - Orthogonal group scoring, Bonus for opponent's captured, Largest group loses a tie."
+                },
+                "Floodplains - Orthogonal connectivity - Omni groups": {
+                    "content": "\"SquareDiagonal\"> <Orthogonal> <Hidden> <All> <(colour 130 156 126)> <Next> <-1",
+                    "description": "Watershed Floodplains: Square Grid - Omni directional group scoring, Bonus for sites you lost, Largest group loses in a tie."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": {}
+}

@@ -1,0 +1,170 @@
+{
+    "define": {
+        "EatBottomRight": "(forEach Site (sites Occupied by:Shared) (if (and (>= (row of:(last To)) (row of:(site))) (<= (column of:(last To)) (column of:(site))) ) (remove (site)) ) )",
+        "EatChocolate": "(move Remove (sites Occupied by:Shared) (then (\"EatBottomRight\")) )",
+        "EatTopLeftCorner": "(is In (last To) (intersection (sites Top) (sites Left)))"
+    },
+    "game": "\"Chomp\" (players 2) (equipment { (board (rectangle <Rows:num> <Columns:num>)) (piece \"Chocolate\" Shared) }) (rules (start (place \"Chocolate\" (sites Board))) (play (\"EatChocolate\")) (end (if (\"EatTopLeftCorner\") (result Mover Loss) ) ) )",
+    "option": {
+        "Rows": {
+            "arguments": "<num>",
+            "items": {
+                "1": {
+                    "content": "1",
+                    "description": "The board has 1 row."
+                },
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 rows."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 rows."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 rows."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 rows."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 rows."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 rows."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 rows."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 rows."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 rows."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 rows."
+                },
+                "12": {
+                    "content": "12",
+                    "description": "The board has 12 rows."
+                },
+                "13": {
+                    "content": "13",
+                    "description": "The board has 13 rows."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 rows."
+                },
+                "15": {
+                    "content": "15",
+                    "description": "The board has 15 rows."
+                },
+                "16": {
+                    "content": "16",
+                    "description": "The board has 16 rows."
+                },
+                "17": {
+                    "content": "17",
+                    "description": "The board has 17 rows."
+                },
+                "18": {
+                    "content": "18",
+                    "description": "The board has 18 rows."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 rows."
+                }
+            }
+        },
+        "Columns": {
+            "arguments": "<num>",
+            "items": {
+                "2": {
+                    "content": "2",
+                    "description": "The board has 2 columns."
+                },
+                "3": {
+                    "content": "3",
+                    "description": "The board has 3 columns."
+                },
+                "4": {
+                    "content": "4",
+                    "description": "The board has 4 columns."
+                },
+                "5": {
+                    "content": "5",
+                    "description": "The board has 5 columns."
+                },
+                "6": {
+                    "content": "6",
+                    "description": "The board has 6 columns."
+                },
+                "7": {
+                    "content": "7",
+                    "description": "The board has 7 columns."
+                },
+                "8": {
+                    "content": "8",
+                    "description": "The board has 8 columns."
+                },
+                "9": {
+                    "content": "9",
+                    "description": "The board has 9 columns."
+                },
+                "10": {
+                    "content": "10",
+                    "description": "The board has 10 columns."
+                },
+                "11": {
+                    "content": "11",
+                    "description": "The board has 11 columns."
+                },
+                "12": {
+                    "content": "11",
+                    "description": "The board has 12 columns."
+                },
+                "13": {
+                    "content": "11",
+                    "description": "The board has 13 columns."
+                },
+                "14": {
+                    "content": "14",
+                    "description": "The board has 14 columns."
+                },
+                "15": {
+                    "content": "14",
+                    "description": "The board has 15 columns."
+                },
+                "16": {
+                    "content": "14",
+                    "description": "The board has 16 columns."
+                },
+                "17": {
+                    "content": "14",
+                    "description": "The board has 17 columns."
+                },
+                "18": {
+                    "content": "14",
+                    "description": "The board has 18 columns."
+                },
+                "19": {
+                    "content": "19",
+                    "description": "The board has 19 columns."
+                }
+            }
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Chomp is a two-player strategy game played on a rectangular grid made up of smaller square cells, which can be thought of as the blocks of a chocolate bar.\") (rules \"The players take it in turns to choose one block and \\\"eat it\\\" (remove from the board), together with those that are below it and to its right. The top left block is \\\"poisoned\\\" and the player who eats this loses.\") (id \"679\") (source \"<a href=\\\"https: (version \"1.3.14\") (classification \"math/nim\") (author \"Frederik Schuh.\") (credit \"Eric Piette\") (date \"1943\") } ) (graphics { (player Colour Shared (colour 102 61 20)) (piece Scale \"Chocolate\" 1.1) (no Board) }) (ai \"Chomp_ai\" )"
+}

@@ -1,0 +1,29 @@
+{
+    "define": {
+        "NextCanNotMove": "(not (can Move (do (forEach Piece Next) ifAfterwards:(not (\"KingCheck\" Next)))))",
+        "KingCheck": "(is Threatened (id \"King\" #1) at:(where \"King\" #1))",
+        "KingInTheInitialPlace": "(= (what at:(mapEntry \"King\" (mover))) (id \"King\" Mover))",
+        "HasNeverMoved": "(= (state at:(mapEntry #1 (mover))) 1)",
+        "ThatPieceNeverMoved": "(= (state at:(mapEntry #1 (mover))) 1)",
+        "PieceHasMoved": "(set State at:(last To) 0)",
+        "RememberPieceHasMoved": "(then (if (= (state at:(last To)) 1) \"PieceHasMoved\" ) )",
+        "KingNotCheckedAndToEmpty": "(and (is Empty (to)) (not (is Threatened (id \"King\" Mover) at:(to))) )",
+        "DoCastle": "(move Slide (from (mapEntry #1 (mover))) #2 (between (exact #3) if:#4 ) #5 )",
+        "SmallCastling": "(\"DoCastle\" \"King\" E 2 \"KingNotCheckedAndToEmpty\" (then (and (\"PieceHasMoved\") (\"DoCastle\" \"RookRight\" W 2 True))))",
+        "BigCastling": "(\"DoCastle\" \"King\" W 2 \"KingNotCheckedAndToEmpty\" (then (and (\"PieceHasMoved\") (\"DoCastle\" \"RookLeft\" E 3 True))))",
+        "Castling": "(if (and { \"KingInTheInitialPlace\" (\"HasNeverMoved\" \"King\") (not (\"KingCheck\" Mover)) }) (or (if (and (\"HasNeverMoved\" \"RookLeft\") (can Move (\"DoCastle\" \"RookLeft\" E 3 (is Empty (to)))) ) \"BigCastling\" ) (if (and (\"HasNeverMoved\" \"RookRight\") (can Move (\"DoCastle\" \"RookRight\" W 2 (is Empty (to)))) ) \"SmallCastling\" ) ) )",
+        "SetEnPassantLocation": "(then (set Pending (ahead (last To) Backward)) )",
+        "InLocationEnPassant": "(and (is Pending) (= (to) (value Pending)) )",
+        "EnPassant": "(move Step (directions {FR FL}) (to if:\"InLocationEnPassant\") (then (remove (ahead (last To) Backward) ) ) )",
+        "InitialPawnMove": "(if (is In (from) (sites Start (piece (what at:(from))))) (\"DoubleStepForwardToEmpty\" \"SetEnPassantLocation\") )"
+    },
+    "game": "\"Chess Puzzle\" (\"TwoPlayersNorthSouth\") (equipment { (board (square 8)) (\"ChessPawn\" \"Pawn\" (or \"InitialPawnMove\" \"EnPassant\" ) (then (and (\"ReplayInMovingOn\" (sites Mover \"Promotion\")) (set Counter) ) ) ) (\"ChessRook\" \"Rook\" (then (set Counter)) (\"RememberPieceHasMoved\")) (\"ChessKing\" \"King\" (then (set Counter)) (\"RememberPieceHasMoved\")) (\"ChessBishop\" \"Bishop\" (then (set Counter))) (\"ChessKnight\" \"Knight\" (then (set Counter))) (\"ChessQueen\" \"Queen\" (then (set Counter))) (map \"King\" {(pair 1 \"E1\") (pair 2 \"E8\")}) (map \"RookLeft\" {(pair 1 \"A1\") (pair 2 \"A8\")}) (map \"RookRight\" {(pair 1 \"H1\") (pair 2 \"H8\")}) (regions \"Promotion\" P1 (sites Top)) (regions \"Promotion\" P2 (sites Bottom)) }) (rules (start { <challenge:start> }) (play (if \"SameTurn\" (move Promote (last To) (piece {\"Queen\" \"Knight\" \"Bishop\" \"Rook\"}) Mover) (do (or (forEach Piece) (\"Castling\") ) ifAfterwards:(not (\"KingCheck\" Mover)) ) ) ) (end { (if (and { (\"KingCheck\" Next) \"NextCanNotMove\" (<= (count Turns) <challenge:limit>) }) (result P1 Win) ) (if (or (no Moves Next) (and (= <challenge:limit> (count Turns)) (not (is Mover Next)))) (result P1 Loss)) }) )",
+    "option": {
+        "Challenge": {
+            "arguments": "<start> <limit>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"In this Chess Puzzle, you must checkmate the black king with the smallest number of moves possible with the white pieces.\") (rules \"Play using the standard rules of chess.\") (source \"<a href=\\\"https: (id \"455\") (version \"1.3.14\") (classification \"puzzle/planning\") (credit \"Eric Piette\") } ) (graphics { (show Check \"King\") (piece Scale \"Pawn\" 0.825) (piece Families {\"Defined\" \"Microsoft\" \"Pragmata\" \"Symbola\"}) (board Style Chess) (adversarialPuzzle) }) (ai \"Chess Puzzle_ai\" )"
+}

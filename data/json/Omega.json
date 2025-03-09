@@ -1,0 +1,45 @@
+{
+    "define": {},
+    "game": "\"Omega\" (players <Version:numPlayers>) (equipment { (board (hex <Board>)) (piece \"Marker\" Each) }) (rules (play (move Add (piece (+ 1 (% (count Moves) (count Players)))) (to (sites Empty)) (then (if (!= (count MovesThisTurn) (- (count Players) 1)) (moveAgain) ) ) ) ) (end (if (and { (not (is Mover P1)) (is Next P1) (> (pow (count Players) 2) (count Sites in:(sites Empty)) ) }) (byScore <Version:endScore>) ) ) )",
+    "option": {
+        "Board Size": {
+            "arguments": "<size>",
+            "items": {
+                "4x4": {
+                    "content": "4",
+                    "description": "The game is played on a 4x4 board"
+                },
+                "5x5": {
+                    "content": "5",
+                    "description": "The game is played on a 5x5 board"
+                },
+                "6x6": {
+                    "content": "6",
+                    "description": "The game is played on a 6x6 board"
+                },
+                "7x7": {
+                    "content": "7",
+                    "description": "The game is played on a 7x7 board"
+                },
+                "8x8": {
+                    "content": "8",
+                    "description": "The game is played on a 8x8 board"
+                },
+                "9x9": {
+                    "content": "9",
+                    "description": "The game is played on a 9x9 board"
+                },
+                "10x10": {
+                    "content": "10",
+                    "description": "The game is played on a 10x10 board"
+                }
+            }
+        },
+        "Players": {
+            "arguments": "<numPlayers> <endScore>",
+            "items": {}
+        }
+    },
+    "rulesets": {},
+    "metadata": "(info { (description \"Omega was invented by N\u00e9stor Romeral Andr\u00e9s in 2010. It is described as a cross between Hex and Go.\") (rules \"Players take turns placing a piece of each color in an empty site. Play ends at the start of the first players turn, if all the players would not be able to complete their turn. Example: for 2 players less than 4 empty sites. Scores are awarded based on the sizes of the groups of each color on the board, which are multiplied. The player with the highest score wins.\") (source \"<a href=\\\"https: (id \"447\") (version \"1.3.14\") (classification \"board/space/group\") (author \"N\u00e9stor Romeral Andr\u00e9s\") (publisher \"<a href=\\\"https: (credit \"Eric Piette\") (date \"2010\") } ) (ai \"Omega_ai\" )"
+}
