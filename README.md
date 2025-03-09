@@ -1,6 +1,8 @@
 # Compiler from .lud to .json (WIP)
 This is a compiler made to create .json files based on .lud files while keeping content integrity.
 
+Note: idealy, should change the behavior of the parser to work char by char for the entire file.
+
 ## TODO parsing
 - [x] define
 - [ ] game

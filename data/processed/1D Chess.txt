@@ -21,6 +21,8 @@
     )
 )
 
+#------------------------------------------------------------------------------
+
 (option "BoardSize" <BoardSize> args:{ <BoardSize> <PiecePlacement> }
     {
     (item "8" 	

@@ -110,7 +110,7 @@
 )
 
 (define "Order" <Board:size>)
-
+//------------------------------------------------------------------------------
 (game "Allemande"
     (players 2)
     (equipment {
@@ -136,6 +136,7 @@
     (piece "Square" Each) // ("Placements" ~)) 
     (hand Each size:4)
 })
+//------------------------------------------------------------------------------
 (rules
     (start {
         (place "Square1"
