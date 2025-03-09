@@ -1,8 +1,8 @@
 {
     "define": {
         "IfThisRotationDo": "(if (= 0 (size Array (difference (results from:(sites Group at:#4) to:(from) (+ (+ (* 32 #1) (#2)) (+ (max (results from:(sites Group at:#4) to:(from) (- (* 32 #1)) ) ) (max (results from:(sites Group at:#4) to:(from) (- (#2)) ) ) ) ) ) (results from:(sites) to:(from) (value Piece at:(from)) ) ) ) ) #3 )",
-        "DRow": "(/ (value Piece at:(from)) 32",
-        "DCol": "(% (value Piece at:(from)) 32",
+        "DRow": "(/ (value Piece at:(from)) 32)",
+        "DCol": "(% (value Piece at:(from)) 32)",
         "IsSameSizeAsShapeAtValue": "(= (size Array (array (sites))) (size Array (array (sites Group at:#1))))",
         "IfShapessMatchDo": "(if (\"IsSameSizeAsShapeAtValue\" #2) (priority { (\"IfThisRotationDo\" (\"DRow\") (\"DCol\") #1 #2) (\"IfThisRotationDo\" (\"DRow\") (- \"DRow\" \"DCol\") #1 #2) (\"IfThisRotationDo\" (- \"DRow\" \"DCol\") (\"DRow\") #1 #2) (\"IfThisRotationDo\" (\"DCol\") (\"DRow\") #1 #2) (\"IfThisRotationDo\" (- \"DCol\") (- \"DRow\" \"DCol\") #1 #2) (\"IfThisRotationDo\" (- \"DCol\" \"DRow\") (\"DCol\") #1 #2) (\"IfThisRotationDo\" (- \"DRow\") (- \"DCol\") #1 #2) (\"IfThisRotationDo\" (- \"DRow\") (- \"DCol\" \"DRow\") #1 #2) (\"IfThisRotationDo\" (- \"DCol\" \"DRow\") (- \"DRow\") #1 #2) (\"IfThisRotationDo\" (- \"DCol\") (- \"DRow\") #1 #2) (\"IfThisRotationDo\" (\"DCol\") (- \"DCol\" \"DRow\") #1 #2) (\"IfThisRotationDo\" (- \"DRow\" \"DCol\") (- \"DCol\") #1 #2) } ) )",
         "RecordShapeVectorsAsValues": "(set Var \"LastRow\" (row of:(max (array (sites Group at:(last To))))) (then (set Var \"LastCol\" (max (results from:(sites Group at:(last To)) to:(from) (column of:(from)))) (then (forEach Site (sites Group at:(last To)) (set Value at:(site) (+ (* 32 (- (var \"LastRow\") (row of:(site)))) (- (var \"LastCol\") (column of:(site))) ) ) ) ) ) ) )",

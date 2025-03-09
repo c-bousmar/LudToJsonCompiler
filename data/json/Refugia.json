@@ -1,6 +1,6 @@
 {
     "define": {
-        "TieBreaker": "(count Pieces #1",
+        "TieBreaker": "(count Pieces #1)",
         "Unfriendlies": "(count Sites in:(intersection (sites Around #1) (union (sites Occupied by:Next) (sites Occupied by:Neutral) ) ) )",
         "MoveAllowed": "(< (\"Unfriendlies\" (to)) (\"Unfriendlies\" (from)))",
         "NonAdjacent": "(not (is Within (id \"Disc\" Mover) in:(sites Around (to))))",

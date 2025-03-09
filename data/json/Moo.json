@@ -1,8 +1,8 @@
 {
     "define": {
         "HopMan": "(move Hop (from #1) Diagonal (between if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between))) (apply (remove (between) at:EndOfTurn)) ) (to if:(is Empty (to))) #2 )",
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To",
-        "JumpToPromotionZone": "(is In (last To) (sites Next",
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To))",
+        "JumpToPromotionZone": "(is In (last To) (sites Next))",
         "HopKingAgain": "(move Hop (from (last To)) SameDirection (between before:(count Rows) (range 1 9) after:(count Rows) if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between))) (apply (remove (between))) ) (to if:(is Empty (to))) (then (\"ReplayIfCanMove\" (hop (from (last To)) SameDirection (between before:(count Rows) (range 1 (count Rows)) after:(count Rows) if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between)) ) (apply (remove (between))) ) (to if:(is Empty (to))) ) ) ) )",
         "HopKing": "(move Hop (from) Diagonal (between before:(count Rows) (range 1 9) after:(count Rows) if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between))) (apply (remove (between))) ) (to if:(is Empty (to))) (then (\"ReplayIfCanMove\" (hop (from (last To)) SameDirection (between before:(count Rows) (range 1 (count Rows)) after:(count Rows) if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between)) ) (apply (remove (between))) ) (to if:(is Empty (to))) ) ) ) )"
     },

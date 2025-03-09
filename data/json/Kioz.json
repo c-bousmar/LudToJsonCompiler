@@ -1,11 +1,11 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
         "SpecialThrows": "(is In (\"ThrowValue\") (sites {1 4 6}))",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to)) )",
-        "ActivatePiece": "(set State at:#1 1",
-        "PieceActivated": "(!= 0 (state at:#1",
-        "Tab": "(= 1 (\"ThrowValue\"",
+        "ActivatePiece": "(set State at:#1 1)",
+        "PieceActivated": "(!= 0 (state at:#1))",
+        "Tab": "(= 1 (\"ThrowValue\"))",
         "CountOwnPiecesInHome": "(count Pieces Mover in:(sites Mover \"Home\"))",
         "Move": "(if (and { (if (\"PieceActivated\" (from)) True (\"Tab\") ) #1 }) (if (is In (from) (sites Mover \"Home\")) (if (not (\"IsFriendAt\" (\"NextSiteOnTrack\" (\"ThrowValue\") \"Track\"))) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\") \"Track\") \"CaptureEnemyPiece\" ) (then (if (and (not (\"PieceActivated\" (last To))) (= 1 (\"ThrowValue\"))) (\"ActivatePiece\" (last To)) ) ) ) ) (if (not (\"IsFriendAt\" (\"NextSiteOnTrack\" (\"ThrowValue\") \"MiddleTrack\"))) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\") \"MiddleTrack\") \"CaptureEnemyPiece\" ) ) ) ) )"
     },

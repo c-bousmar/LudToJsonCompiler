@@ -4,7 +4,7 @@
         "PieceHasMoved": "(set State at:#1 0)",
         "RememberPieceHasMoved": "(then (if (= (state at:(last To)) 1) (\"PieceHasMoved\" (last To)) ) )",
         "CaptureToPiece": "(apply (if (\"IsEnemyAt\" (to)) (and (remember Value \"CapturedPieces\" (what at:(to))) (remove (to)) ) ) )",
-        "WasCaptured": "(is In #1 (values Remembered \"CapturedPieces\"",
+        "WasCaptured": "(is In #1 (values Remembered \"CapturedPieces\"))",
         "AtLeastAStrongPieceWasCapture": "(or { (\"WasCaptured\" (id \"Queen\" Mover)) (\"WasCaptured\" (id \"Knight\" Mover)) (\"WasCaptured\" (id \"Rook\" Mover)) (\"WasCaptured\" (id \"Bishop\" Mover)) })",
         "KingNotCheckedAndToEmpty": "(and (is Empty (to)) (not (\"IsInCheck\" \"King\" Mover at:(to))) )",
         "DecideToCastle": "(move Slide (from (mapEntry #1 (mover))) #2 (between (exact #3) if:#4 ) (to if:True (apply (\"PieceHasMoved\" (from))) ) #5 )",

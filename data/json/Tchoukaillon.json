@@ -1,9 +1,8 @@
 {
     "define": {
-        "Rumba": "0",
-        "AllSitesNotRumba": "(difference (sites Board) \"Rumba\"",
-        "LastHole": "(last To afterConsequence:True",
-        "AllCountersInRumba": "(= 0 (count Sites in:(difference (\"AllSitesNotRumba\") (sites Empty"
+        "AllSitesNotRumba": "(difference (sites Board) \"Rumba\")",
+        "LastHole": "(last To afterConsequence:True)",
+        "AllCountersInRumba": "(= 0 (count Sites in:(difference (\"AllSitesNotRumba\") (sites Empty))))"
     },
     "game": "\"Tchoukaillon\" (players 1) (equipment { (board (rectangle 1 <Start:int>) (track \"Track\" \"<Start:end>,W\" loop:False) use:Vertex ) (piece \"Seed\" Shared) }) (rules (start <Start:lst>) (play (move Select (from (\"AllSitesNotRumba\") if: (and (!= 0 (count at:(from))) (= (from) (count at:(from))) ) ) (then (sow)) ) ) (end { (if (\"AllCountersInRumba\") (result Mover Win)) (if (and (= 1 (count at:(\"LastHole\"))) (!= (\"LastHole\") (\"Rumba\"))) (result Mover Loss) ) }) )",
     "option": {

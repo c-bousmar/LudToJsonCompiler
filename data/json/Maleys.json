@@ -8,7 +8,7 @@
         "DoubleCounterMove": "(or { (do (move Slide) ifAfterwards:(is In (last To) (sites Phase 0)) ) (\"DiagonalHopCaptureDoubleCounter\" (from) (\"DoubleCounterMoveAgainIfCanCaptureAgain\")) (\"OrthogonalHopCaptureDoubleCounter\" (from) (\"DoubleCounterMoveAgainIfCanCaptureAgain\")) })",
         "CounterMoveAgainIfCanCaptureAgain": "(then (and (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") (\"ReplayIfCanMove\" (or (\"DiagonalHopCaptureCounter\" (from (last To))) (\"OrthogonalHopCaptureCounter\" (from (last To))) ) ) ) )",
         "CounterMove": "(or { (\"StepToEmpty\" (directions {FR FL}) (then (\"PromoteIfReach\" (sites Next) \"DoubleCounter\")) ) (\"DiagonalHopCaptureCounter\" (from) (\"CounterMoveAgainIfCanCaptureAgain\")) (\"OrthogonalHopCaptureCounter\" (from) (\"CounterMoveAgainIfCanCaptureAgain\")) })",
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To"
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To))"
     },
     "game": "\"Maleys\" (\"TwoPlayersNorthSouth\") (\"DraughtsEquipment\" (square 10)) (rules (\"BlackCellsSetup\" 4) (play (if (\"SameTurn\") (or (if (\"IsUnpromoted\") (or (\"DiagonalHopCaptureCounter\" (from (last To)) (\"CounterMoveAgainIfCanCaptureAgain\")) (\"OrthogonalHopCaptureCounter\" (from (last To)) (\"CounterMoveAgainIfCanCaptureAgain\")) ) (or (\"DiagonalHopCaptureDoubleCounter\" (from (last To)) (\"DoubleCounterMoveAgainIfCanCaptureAgain\")) (\"OrthogonalHopCaptureDoubleCounter\" (from (last To)) (\"DoubleCounterMoveAgainIfCanCaptureAgain\")) ) ) (move Pass) ) (or (forEach Piece \"Counter\" \"CounterMove\") (forEach Piece \"DoubleCounter\" \"DoubleCounterMove\") ) ) ) (end (\"CaptureAll\" Next)) )",
     "option": {},

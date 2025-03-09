@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "6",
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "OneOrLessPieceOnBoard": "(>= 1 (count Pieces All in:(sites Board)))",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",

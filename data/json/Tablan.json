@@ -1,13 +1,13 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "IsSpecialThrow": "(is In (\"ThrowValue\") (sites {2 8 12}",
-        "ThrowToActivate": "(= 2 (\"ThrowValue\"",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1",
-        "ActivatedPiece": "(= (state at:#1) 1",
-        "ActivePiece": "(set State at:#1 1",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "IsSpecialThrow": "(is In (\"ThrowValue\") (sites {2 8 12}))",
+        "ThrowToActivate": "(= 2 (\"ThrowValue\"))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1)",
+        "ActivatedPiece": "(= (state at:#1) 1)",
+        "ActivePiece": "(set State at:#1 1)",
         "CaptureMove": "(if (\"IsEnemyAt\" (to)) (remove (to)) )",
-        "PlayedHalfThrow": "(= 1 (var",
+        "PlayedHalfThrow": "(= 1 (var))",
         "PiecesOwnedOnEnemyHomedBy": "(count Sites in:(forEach (sites #1 \"Home\") if:(= (who at:(site)) #2)))",
         "NumPieceNotInEnemyHome": "(count Sites in:(forEach (sites Occupied by:#1) if:(not (is In (site) (sites #2 \"Home\")))))"
     },

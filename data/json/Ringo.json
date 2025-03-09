@@ -1,6 +1,5 @@
 {
     "define": {
-        "NumberOfDiscs": "10",
         "AllDiscsPlaced": "(>= (count Turns) (- (* (count Players) (\"NumberOfDiscs\")) 1) )",
         "AddDisc": "(move Add (piece (id \"Disc\" Mover)) (to (sites Occupied by:All component:\"Ring\") level:0 if:(\"IsSingletonStack\" (to)) ) stack:True (then (moveAgain)) )",
         "MoveRing": "(move (from (last To)) (to (sites Around (difference (sites Occupied by:All component:\"Ring\") (last To)) Orthogonal if:(is Empty (to)) ) ) )",

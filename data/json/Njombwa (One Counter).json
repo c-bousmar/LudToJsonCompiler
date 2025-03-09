@@ -1,8 +1,7 @@
 {
     "define": {
-        "Columns": "<Row:size>",
-        "NoPiece": "(all Sites (sites Player) if:(= 0 (count at:(site",
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NoPiece": "(all Sites (sites Player) if:(= 0 (count at:(site))))",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "RightMostHole": "(if (is Mover P1) (intersection (sites Mover \"Outer\") (sites Right)) (intersection (sites Mover \"Outer\") (sites Left)) )",
         "SecondToRightInnerRow": "(if (is Mover P1) (intersection (sites Mover \"Inner\") (difference (expand (sites Right)) (sites Right))) (intersection (sites Mover \"Inner\") (difference (expand (sites Left)) (sites Left))) )",
         "AllSitesNoMoreThanOne": "(all Sites (sites Mover \"Home\") if:(>= 1 (count at:(site))))"

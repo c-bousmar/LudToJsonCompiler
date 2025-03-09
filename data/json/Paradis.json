@@ -1,7 +1,7 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1"
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1)"
     },
     "game": "\"Paradis\" (players <Player:num>) (equipment { (board (concentric {<Player:num> <Player:num> <Player:num> <Player:num> <Player:num> <Player:num> <Player:num> <Player:num> <Player:num> <Player:num>}) <Player:tracks> use:Vertex ) (\"StickDice\" 2) (piece \"Marker\" Each (move (from (from)) (to (\"SiteToMoveOnTrack\" (\"ThrowValue\")) (apply (if (or (and (= 1 (\"ThrowValue\")) (= (mapEntry \"Center\" Mover) (to))) (and (= 2 (\"ThrowValue\")) (or (= (mapEntry \"Center\" Mover) (to)) (= (mapEntry \"Center\" Mover) (\"SiteToMoveOnTrack\" 1)))) ) (addScore Mover 1) ) ) ) ) ) (map \"Throw\" {(pair 0 2) (pair 1 0) (pair 2 1)}) <Player:center> }) (rules <Player:start> (play (\"RollMove\" (if (!= (\"ThrowValue\") 0) (forEach Piece)) ) ) (end (if (= (score Mover) 3) (result Mover Win))) )",
     "option": {

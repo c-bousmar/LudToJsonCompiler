@@ -1,12 +1,12 @@
 {
     "define": {
-        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1",
-        "PlayableSites": "(sites (values Remembered \"Playable\"",
-        "WestHole": "(ahead (to) W",
-        "WestHoleExist": "(!= (to) (\"WestHole\"",
-        "EastHole": "(ahead (to) E",
-        "EastHoleExist": "(!= (to) (\"EastHole\"",
-        "NoPieceOnBoard": "(all Sites (union (sites Top) (sites Bottom)) if:(= 0 (count at:(site",
+        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1)))",
+        "PlayableSites": "(sites (values Remembered \"Playable\"))",
+        "WestHole": "(ahead (to) W)",
+        "WestHoleExist": "(!= (to) (\"WestHole\"))",
+        "EastHole": "(ahead (to) E)",
+        "EastHoleExist": "(!= (to) (\"EastHole\"))",
+        "NoPieceOnBoard": "(all Sites (union (sites Top) (sites Bottom)) if:(= 0 (count at:(site))))",
         "OneRowIsEmpty": "(or (all Sites (sites Bottom) if:(= 0 (count at:(site)))) (all Sites (sites Top) if:(= 0 (count at:(site)))) )",
         "LeftMostEmpty": "(trackSite FirstSite from:(mapEntry \"LeftMost\" Mover) if:(is Empty (to)) )"
     },

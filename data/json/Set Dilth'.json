@@ -1,8 +1,8 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1",
-        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #1)",
+        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2)",
         "MadeACompleteCircuit": "(is In (mapEntry \"Start\" Mover) (sites Track Mover \"Track\" from:(\"NextSite\" (last From) \"Track\") to:(last To)))",
         "Move": "(move (from (from) level:(level)) (to (\"SiteToMoveOnTrack\" (\"ThrowValue\")) if:True (\"HittingCapture\" (mapEntry \"Start\" (who at:(to)))) ) (then (forEach Site (sites Track Mover \"Track\" from:(\"NextSite\" (last From) \"Track\") to:(last To)) (if (\"IsEnemyAt\" (site)) (forEach Level (site) (move (from (site) level:(level)) (to (mapEntry \"Start\" (who at:(site) level:(level)))) ) ) ) ) ) )"
     },

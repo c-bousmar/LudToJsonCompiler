@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "PossibleSowFrom": "(if (is Mover P1) (not (is In (from) (values Remembered \"CapturedP2\"))) (not (is In (from) (values Remembered \"CapturedP1\"))) )",
         "CapturedByOpponent": "(if (= #1 P1) (is In #2 (values Remembered \"CapturedP2\")) (is In #2 (values Remembered \"CapturedP1\")) )",

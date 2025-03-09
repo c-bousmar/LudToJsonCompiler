@@ -1,7 +1,5 @@
 {
     "define": {
-        "NumRobots": "<Robots:num>",
-        "NumSafeTeleportation": "<SafeTeleportation:num>",
         "CloserToHuman": "(> (count Steps Orthogonal (site) (where (id \"Human\"))) (count Steps Orthogonal (ahead (site) #1) (where (id \"Human\"))) )",
         "MoveRobot": "(if (\"IsPieceAt\" \"Rubble\" Neutral (ahead (site) #1)) (remove (site)) (fromTo (from (site)) (to (ahead (site) #1) (apply (if (\"IsPieceAt\" \"Human\" P1 (to)) (remove (to)) ) ) ) ) )",
         "GoCloser": "(if (\"CloserToHuman\" #1) (\"MoveRobot\" #1) #2 )",

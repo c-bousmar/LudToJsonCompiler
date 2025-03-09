@@ -1,6 +1,6 @@
 {
     "define": {
-        "CompleteLineWithPieceTaken": "(if (or (= (what at:(handSite (mover))) (id \"Square0\")) (= (what at:(handSite (mover))) (mover)) ) (add (piece (mover)) (to (last To))) (add (piece (next)) (to (last To))) ) (remove (handSite (mover)))",
+        "CompleteLineWithPieceTaken": "(if (or (= (what at:(handSite (mover))) (id \"Square0\")) (= (what at:(handSite (mover))) (mover)) ) (add (piece (mover)) (to (last To))) (add (piece (next)) (to (last To))) )",
         "TakeAPieceInOuterSites": "(move Select (from (sites Outer)) (then (and (fromTo (from (last To)) (to (handSite (mover))) ) (moveAgain) ) ) )",
         "LastRow": "(sites Row (row of:(last To)))",
         "LastColumn": "(sites Column (column of:(last To)))",

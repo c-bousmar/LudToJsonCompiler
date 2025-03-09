@@ -1,8 +1,8 @@
 {
     "define": {
-        "NumCaptureDone": "(value Player Mover",
+        "NumCaptureDone": "(value Player Mover)",
         "Sow": "(move Select (from (sites Mover) if:(> (count at:(from)) 0) ) (then (sow #1 if:(or { (and {(<= (count at:(to)) 9) (is Odd (count at:(to))) (>= \"NumCaptureDone\" <Capture:doneSoFar>) }) (and (\"IsOffBoard\" \"NumCaptureDone\") (= (count at:(to)) <Capture:numCounters>)) <Capture:ruleSecondCapture> }) apply:(fromTo (from (to)) (to (mapEntry (mover))) count:(count at:(to)) (then (and (if (= \"NumCaptureDone\" 1) (set Value Mover 2)) (if (\"IsOffBoard\" \"NumCaptureDone\") (set Value Mover 1)) ) ) ) origin:True ) ) )",
-        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1"
+        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1)))"
     },
     "game": "\"Ako Okwe\" (players 2) (equipment { (mancalaBoard 2 5 { (track \"TrackCCW\" \"1,E,N,W\" loop:True) (track \"TrackCW\" \"6,E,S,W\" loop:True) } ) (regions P1 (sites Bottom)) (regions P2 (sites Top)) (map {(pair P1 FirstSite) (pair P2 LastSite)}) (piece \"Seed\" Shared) }) (rules (start (set Count 10 to:(sites Track))) (play (or (\"Sow\" \"TrackCW\") (\"Sow\" \"TrackCCW\"))) (end (\"MancalaByScoreWhen\" (no Moves Mover))) )",
     "option": {

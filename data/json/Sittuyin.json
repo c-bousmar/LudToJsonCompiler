@@ -1,6 +1,6 @@
 {
     "define": {
-        "PawnToReplace": "(!= 0 (count Sites in:(sites Occupied by:Mover container:\"Hand\" component:\"Pawn\"",
+        "PawnToReplace": "(!= 0 (count Sites in:(sites Occupied by:Mover container:\"Hand\" component:\"Pawn\")))",
         "EmptySitesBehindPawnPositions": "(intersection (difference (sites Mover) (union (sites \"PawnSites\") (sites \"NoPawnSites\"))) (sites Empty) )",
         "ReplaceAPawn": "(move (from (sites Occupied by:Mover container:\"Hand\" component:\"Pawn\")) (to (\"EmptySitesBehindPawnPositions\")) )",
         "PawnWasMovedForward": "(and (is In (last From) (sites Board)) (\"IsPieceAt\" \"Pawn\" Mover (last To)))",

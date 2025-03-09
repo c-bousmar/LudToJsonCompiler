@@ -1,11 +1,11 @@
 {
     "define": {
-        "SiteToEnter": "(\"NextSiteOnTrack\" (pips) from:(mapEntry \"StartTrack\" Mover",
-        "SiteToEnterCapturePiece": "(\"NextSiteOnTrack\" (pips) from:(\"BarSite\" Mover",
-        "RemoveAPiece": "(move Remove (from",
-        "SiteToMoveOnTrack": "(trackSite Move steps:(pips",
-        "BarEmpty": "(is Empty (\"BarSite\" #1",
-        "BarSite": "(mapEntry \"Bar\" #1",
+        "SiteToEnter": "(\"NextSiteOnTrack\" (pips) from:(mapEntry \"StartTrack\" Mover))",
+        "SiteToEnterCapturePiece": "(\"NextSiteOnTrack\" (pips) from:(\"BarSite\" Mover))",
+        "RemoveAPiece": "(move Remove (from))",
+        "SiteToMoveOnTrack": "(trackSite Move steps:(pips))",
+        "BarEmpty": "(is Empty (\"BarSite\" #1))",
+        "BarSite": "(mapEntry \"Bar\" #1)",
         "EmptySiteIfOneSpecialRegion": "(and (is Empty (to)) (is In (to) (sites Mover \"OnePieceMax\")) )",
         "CaptureEnemyPiece": "(if (\"IsEnemyAt\" (to)) (move (from (to)) (to (\"BarSite\" Next))) )",
         "OneEnemyPiece": "(and (\"IsSingletonStack\" (to)) (\"IsEnemyAt\" (to)) )",

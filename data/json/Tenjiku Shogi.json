@@ -3,7 +3,7 @@
         "CaptureEnemy": "(apply (if (\"IsEnemyAt\" (to)) (remove (to)) ) )",
         "Promote": "(then (if (and (= (state at:(last To)) 0) (or (is In (last To) (sites Mover \"Promotion\")) (is In (last From) (sites Mover \"Promotion\")) ) ) (moveAgain) ) )",
         "SlideMove": "(move Slide #1 #2 (to if:(\"IsEnemyAt\" (to)) (\"CaptureEnemy\") ) #3 )",
-        "StepMove": "(\"StepToNotFriend\" #1 #2",
+        "StepMove": "(\"StepToNotFriend\" #1 #2)",
         "HopMove": "(move Hop #1 (between if:True ) (to if:(not (\"IsFriendAt\" (to))) (\"CaptureEnemy\") ) #2 )",
         "HopMoveWithRange": "(move Hop #1 (between #2 #3 #4 if:True ) (to if:(not (\"IsFriendAt\" (to))) (\"CaptureEnemy\") ) #5 )",
         "DoubleStep": "(move Step #1 (to if:(not (\"IsFriendAt\" (to))) (\"CaptureEnemy\") ) (then (step (from (last To)) #2 (to if:(not (\"IsFriendAt\" (to))) (\"CaptureEnemy\") ) ) ) )",

@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "4",
-        "PiecesOwnedBy": "(count at:(mapEntry #1",
+        "PiecesOwnedBy": "(count at:(mapEntry #1))",
         "NumToCapture": "(if (is Mover P1) (sites (values Remembered \"NumToCaptureP1\")) (sites (values Remembered \"NumToCaptureP2\")) )",
         "UpdateNumToCapture": "(if (is Mover P1) (and (forget Value \"NumToCaptureP1\" All) (if (is In <ToCapture:num> (\"NumToCapture\")) (remember Value \"NumToCaptureP1\" 1) (if (is In 1 (\"NumToCapture\")) (remember Value \"NumToCaptureP1\" 3) (if (is In 5 (\"NumToCapture\")) (remember Value \"NumToCaptureP1\" 1) (remember Value \"NumToCaptureP1\" 5) ) ) ) ) (and (forget Value \"NumToCaptureP2\" All) (if (is In <ToCapture:num> (\"NumToCapture\")) (remember Value \"NumToCaptureP2\" 1) (if (is In 1 (\"NumToCapture\")) (remember Value \"NumToCaptureP2\" 3) (if (is In 5 (\"NumToCapture\")) (remember Value \"NumToCaptureP2\" 1) (remember Value \"NumToCaptureP2\" 5) ) ) ) ) )",
         "NumCountersToCapture": "(if (is In <ToCapture:num> (\"NumToCapture\")) (+ 1 <ToCapture:num>) (if (is In 1 (\"NumToCapture\")) 2 (if (is In 3 (\"NumToCapture\")) 4 6 ) ) )",

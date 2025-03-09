@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "6",
-        "NextHoleFrom": "(\"NextSiteOnTrack\" #2 from:#1",
+        "NextHoleFrom": "(\"NextSiteOnTrack\" #2 from:#1)",
         "OneRowIsEmpty": "(or (all Sites (sites P1) if:(= 0 (count at:(site)))) (all Sites (sites P2) if:(= 0 (count at:(site)))) )",
         "NoPiecesInP1Side": "(all Sites (sites P1) if:(= 0 (count at:(site))))",
         "LeftMostEmpty": "(trackSite FirstSite from:(mapEntry \"LeftMost\" Mover) if:(is Empty (to)) )"

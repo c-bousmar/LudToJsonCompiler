@@ -1,6 +1,6 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips"
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))"
     },
     "game": "\"Hue-Ta-Quee-Che-Ka\" <Variant>",
     "option": {

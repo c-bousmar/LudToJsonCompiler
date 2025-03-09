@@ -23,7 +23,6 @@ ITEM_PATTERN = re.compile(r'\(item\s+"(.*?)"\s*<(.*?)>\s*"(.*?)"\)', re.DOTALL)
 
 
 def extract_balanced_parentheses(text, start_index):
-    """ Extracts a balanced parenthesis expression starting from `start_index`. """
     stack = []
     index = start_index
 
@@ -39,31 +38,31 @@ def extract_balanced_parentheses(text, start_index):
 
     while index < len(text):
         char = text[index]
-
         if char == "(":
             stack.append("(")
         elif char == ")":
             stack.pop()
             if not stack:
                 return text[start_body:index + 1].strip(), index + 1
-
         index += 1
-
     return None, start_index
 
 def handle_define_section(stripped_section, json_structure):
-    """Extracts (define ...) sections while handling nested parentheses."""
     define_sections = [DEFINE_MARKER + part for part in stripped_section.split(DEFINE_MARKER) if part.strip()]
-
+    
     for define_section in define_sections:
         name_match = DEFINE_PATTERN.search(define_section)
         if name_match:
             name = name_match.group(1).strip()
             start_index = name_match.end()
-            
+
+            if start_index >= len(define_section):
+                continue
+
             body, _ = extract_balanced_parentheses(define_section, start_index)
             if body:
                 json_structure["define"][name] = body.strip()
+
 
 
 def handle_items(section, json_structure):

@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "RemmemberSowedHoles": "(if (is Mover P1) (remember Value \"SowedHolesP1\" #1 unique:True) (remember Value \"SowedHolesP2\" #1 unique:True) )",
         "SowedHoles": "(if (is Mover P1) (values Remembered \"SowedHolesP1\") (values Remembered \"SowedHolesP2\") )"
     },

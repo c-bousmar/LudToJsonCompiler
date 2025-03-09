@@ -1,7 +1,7 @@
 {
     "define": {
-        "NextSiteFrom": "(\"NextSiteOnTrack\" #2 from:#1",
-        "AllPiecesInFinalQuadrant": "(\"AllOwnedPiecesIn\" (sites Mover \"FinalQuadrant\"",
+        "NextSiteFrom": "(\"NextSiteOnTrack\" #2 from:#1)",
+        "AllPiecesInFinalQuadrant": "(\"AllOwnedPiecesIn\" (sites Mover \"FinalQuadrant\"))",
         "FiveOnThreeFinal": "(if (is Mover P1) (and { (\"IsFriendAt\" 10) (\"IsFriendAt\" 11) (\"IsFriendAt\" 12) (= 5 (size Stack at:10)) (= 5 (size Stack at:11)) (= 5 (size Stack at:12)) }) (and { (\"IsFriendAt\" 13) (\"IsFriendAt\" 14) (\"IsFriendAt\" 15) (= 5 (size Stack at:13)) (= 5 (size Stack at:14)) (= 5 (size Stack at:15)) }) )",
         "ThreeOnFiveFinal": "(if (is Mover P1) (and { (\"IsFriendAt\" 8) (\"IsFriendAt\" 9) (\"IsFriendAt\" 10) (\"IsFriendAt\" 11) (\"IsFriendAt\" 12) (= 3 (size Stack at:8)) (= 3 (size Stack at:9)) (= 3 (size Stack at:10)) (= 3 (size Stack at:11)) (= 3 (size Stack at:12)) }) (and { (\"IsFriendAt\" 13) (\"IsFriendAt\" 14) (\"IsFriendAt\" 15) (\"IsFriendAt\" 17) (\"IsFriendAt\" 18) (= 3 (size Stack at:13)) (= 3 (size Stack at:14)) (= 3 (size Stack at:15)) (= 3 (size Stack at:17)) (= 3 (size Stack at:18)) }) )",
         "SevenFiveThreeFinal": "(if (is Mover P1) (and { (\"IsFriendAt\" 10) (\"IsFriendAt\" 11) (\"IsFriendAt\" 12) (= 3 (size Stack at:10)) (= 5 (size Stack at:11)) (= 7 (size Stack at:12)) }) (and { (\"IsFriendAt\" 13) (\"IsFriendAt\" 14) (\"IsFriendAt\" 15) (= 7 (size Stack at:13)) (= 5 (size Stack at:14)) (= 3 (size Stack at:15)) }) )",

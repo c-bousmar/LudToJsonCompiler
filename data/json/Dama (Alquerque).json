@@ -1,11 +1,11 @@
 {
     "define": {
         "HopCounter": "(\"HopCapture\" ~ (directions {Forwards Rightward Leftward}) (then (and (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") (\"HasCaptured\") ) ) )",
-        "HasCaptured": "(set Value Mover 0",
-        "HasNotCaptured": "(set Value Mover 1",
-        "DidNotCaptured": "(= (value Player Prev) 1",
+        "HasCaptured": "(set Value Mover 0)",
+        "HasNotCaptured": "(set Value Mover 1)",
+        "DidNotCaptured": "(= (value Player Prev) 1)",
         "RememberSiteWithPossibleCapture": "(set Pending (sites From (or (forEach Piece \"Counter\" (\"HopCounter\")) (forEach Piece \"DoubleCounter\" (\"HopCaptureDistance\")) ) ) )",
-        "SitesWithPossibleCaptureInPreviousTurn": "(sites Pending",
+        "SitesWithPossibleCaptureInPreviousTurn": "(sites Pending)",
         "HuffOnePieceOf": "(move Select (from #1 if:(is Occupied (from))) (then (and { (remove (last To)) (moveAgain) (set Value Prev 0) }) ) )",
         "ShouldCapturedButMoved": "(and (is In (last From) (\"SitesWithPossibleCaptureInPreviousTurn\")) (is In (last From) (sites Empty)) )"
     },

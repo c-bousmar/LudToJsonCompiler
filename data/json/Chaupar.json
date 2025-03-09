@@ -1,9 +1,9 @@
 {
     "define": {
-        "Triple": "(all DiceEqual",
-        "Die1": "(face 97",
-        "Die2": "(face 98",
-        "Die3": "(face 99",
+        "Triple": "(all DiceEqual)",
+        "Die1": "(face 97)",
+        "Die2": "(face 98)",
+        "Die3": "(face 99)",
         "HasDouble": "(or { (= (\"Die1\") (\"Die2\")) (= (\"Die1\") (\"Die3\")) (= (\"Die2\") (\"Die3\")) })",
         "CountPieceTypeInStack": "(count Pieces of:#1 in:(sites {#2}))",
         "HasASixThreeOrTwo": "(or { (is AnyDie 6) (is AnyDie 3) (is AnyDie 2) })",

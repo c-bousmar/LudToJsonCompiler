@@ -1,7 +1,7 @@
 {
     "define": {
         "Hop": "(\"HopStackEnemyCaptureTop\" #1 ~ (then (if (can Move (\"HopStackEnemyCaptureTop\" (from (last To)) #1 ) ) (moveAgain) ) ) )",
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To) level:(topLevel at:(last To"
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To) level:(topLevel at:(last To)))"
     },
     "game": "\"Lasca\" (\"TwoPlayersNorthSouth\") (equipment { <Board:type> (piece \"Counter\" Each) (piece \"CounterStar\" Each) (regions P1 (sites Bottom)) (regions P2 (sites Top)) }) (rules (start { (place \"Counter1\" <Board:startP1>) (place \"Counter2\" <Board:startP2>) }) (play (if \"SameTurn\" (if \"IsUnpromoted\" (\"HopStackEnemyCaptureTop\" (from (last To)) (directions {FR FL}) (then (\"PromoteIfReach\" (sites Next) \"CounterStar\" (if (can Move (\"HopStackEnemyCaptureTop\" (from (last To)) (directions {FR FL}) ) ) (moveAgain) ) ) ) ) (\"HopStackEnemyCaptureTop\" (from (last To)) Diagonal (then (if (can Move (\"HopStackEnemyCaptureTop\" (from (last To)) Diagonal ) ) (moveAgain) ) ) ) ) (priority { (or { (forEach Piece \"Counter\" (\"Hop\" (directions {FR FL})) top:True (then (\"PromoteIfReach\" (sites Next) \"CounterStar\"))) (forEach Piece \"CounterStar\" (\"Hop\" Diagonal) top:True) }) (or { (forEach Piece \"Counter\" (\"StepStackToEmpty\" (directions {FR FL})) top:True (then (\"PromoteIfReach\" (sites Next) \"CounterStar\"))) (forEach Piece \"CounterStar\" (\"StepStackToEmpty\" Diagonal) top:True) }) }) ) ) (end (\"BlockWin\")) )",
     "option": {

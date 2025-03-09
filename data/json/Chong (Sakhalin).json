@@ -1,7 +1,7 @@
 {
     "define": {
-        "SumPips": "(count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1",
+        "SumPips": "(count Pips)",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1)",
         "NumDiceAtOne": "(+ { (if (= 1 (face (+ 0 (count Sites in:(sites Board))))) 1 0) (if (= 1 (face (+ 1 (count Sites in:(sites Board))))) 1 0) (if (= 1 (face (+ 2 (count Sites in:(sites Board))))) 1 0) (if (= 1 (face (+ 3 (count Sites in:(sites Board))))) 1 0) })",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to)) )"
     },

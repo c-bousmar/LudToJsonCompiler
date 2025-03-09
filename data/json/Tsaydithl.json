@@ -1,8 +1,8 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips",
+        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips))",
         "SiteToMoveOnSelectedTrack": "(if (= (state at:(from)) 1) (\"NextSiteOnTrack\" #1 \"TrackCCW\") (\"NextSiteOnTrack\" #1 \"TrackCW\") )",
-        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2",
+        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2)",
         "MoveOn": "(if (\"IsNotOffBoard\" #1) (if (or (is Empty #1) (\"IsEnemyAt\" #1) ) (move (from (from) level:(level)) (to #1 (\"HittingCapture\" (value Piece at:((to)))) ) ) ) )",
         "MadeACompleteCircuit": "(if (= 1 (state at:(where \"Stick\" Mover))) (is In (value Piece at:(where \"Stick\" Mover)) (sites Track \"TrackCCW\" from:(\"NextSite\" (last From) \"TrackCCW\") to:(last To))) (is In (value Piece at:(where \"Stick\" Mover)) (sites Track \"TrackCW\" from:(\"NextSite\" (last From) \"TrackCW\") to:(last To))) )"
     },

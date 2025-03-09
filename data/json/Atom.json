@@ -1,6 +1,6 @@
 {
     "define": {
-        "JumpSite": "(+ 7 #1",
+        "JumpSite": "(+ 7 #1)",
         "EscapeAPiece": "(if (and (is Occupied #1) (= 2 (count Sites in:(intersection (\"OuterRadial\" #1) (sites Occupied by:(player (who at:#1)))) ) ) ) (move Remove #1) )",
         "PlaceAPiece": "(if (not (is Empty (handSite Mover))) (move (from (handSite Mover)) (to (intersection (sites Centre) (sites Empty))) ) )",
         "OuterRadial": "(sites {#1 (- #1 7) (- #1 14)})",

@@ -1,9 +1,8 @@
 {
     "define": {
-        "NumPieces": "[1..16]",
-        "DieNotUsed": "(!= (pips) 0",
+        "DieNotUsed": "(!= (pips) 0)",
         "NextSiteFrom": "(trackSite Move from:#1 steps:(pips) )",
-        "RemoveAPiece": "(move Remove (from"
+        "RemoveAPiece": "(move Remove (from))"
     },
     "game": "\"Los Romanos Rencontrat\" <Variant>",
     "option": {

@@ -1,10 +1,10 @@
 {
     "define": {
-        "SiteToSelect": "(\"NextSiteOnTrack\" (- (pips) 1) from:(mapEntry \"StartTrack\" (mover",
-        "BearOff": "(move Remove #1",
-        "PieceUnstacked": "(= (state at:#1) 2",
-        "PieceFullStacked": "(= (state at:#1) 0",
-        "PieceHalfStacked": "(= (state at:#1) 1",
+        "SiteToSelect": "(\"NextSiteOnTrack\" (- (pips) 1) from:(mapEntry \"StartTrack\" (mover)))",
+        "BearOff": "(move Remove #1)",
+        "PieceUnstacked": "(= (state at:#1) 2)",
+        "PieceFullStacked": "(= (state at:#1) 0)",
+        "PieceHalfStacked": "(= (state at:#1) 1)",
         "PieceStacked": "(or (\"PieceFullStacked\" #1) (\"PieceHalfStacked\" #1) )",
         "UnstackFull": "(forEach Level (last To) (set State at:(last To) level:(level) 2) )",
         "UnstackHalf": "(forEach Level (last To) (set State at:(last To) level:(level) 1) )"

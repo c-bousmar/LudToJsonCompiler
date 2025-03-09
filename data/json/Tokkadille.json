@@ -1,9 +1,9 @@
 {
     "define": {
-        "NextSiteFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2",
-        "HuckeSite": "(mapEntry \"Hucke\" (mover",
-        "Die1": "(face 26",
-        "Die2": "(face 27",
+        "NextSiteFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2)",
+        "HuckeSite": "(mapEntry \"Hucke\" (mover))",
+        "Die1": "(face 26)",
+        "Die2": "(face 27)",
         "CanMove2PiecesToHucke": "(if (= (\"Die1\") (\"Die2\")) (<= 2 (count Pieces Mover in:(sites {(\"NextSiteFrom\" (\"HuckeSite\") \"ReverseHuckeTrack\" (\"Die2\")) }))) (and (<= 1 (count Pieces Mover in:(sites {(\"NextSiteFrom\" (\"HuckeSite\") \"ReverseHuckeTrack\" (\"Die1\")) }))) (<= 1 (count Pieces Mover in:(sites {(\"NextSiteFrom\" (\"HuckeSite\") \"ReverseHuckeTrack\" (\"Die2\")) }))) ) )",
         "CanMove2PiecesFromHucke": "(if (and (and (!= (\"Die1\") 1) (!= (\"Die2\") 1)) (<= 2 (count Pieces Mover in:(sites { (\"HuckeSite\") })))) (if (= (\"Die1\") (\"Die2\")) (not (\"IsEnemyAt\" (\"NextSiteFrom\" (\"HuckeSite\") \"Track\" (\"Die2\")))) (and (not (\"IsEnemyAt\" (\"NextSiteFrom\" (\"HuckeSite\") \"Track\" (\"Die1\")))) (not (\"IsEnemyAt\" (\"NextSiteFrom\" (\"HuckeSite\") \"Track\" (\"Die2\")))) ) ) )",
         "UpdateScore": "(forEach Site (sites Occupied by:Mover) (if (is In (site) (sites Mover \"BeforeHucke\")) (and (if (and { (is In (\"NextSiteFrom\" (site) \"Track\" (\"Die1\")) (sites Mover \"BeforeHucke\")) (\"IsEnemyAt\" (\"NextSiteFrom\" (site) \"Track\" (\"Die1\"))) (\"IsSingletonStack\" (\"NextSiteFrom\" (site) \"Track\" (\"Die1\"))) }) (addScore Mover 1) ) (if (and { (is In (\"NextSiteFrom\" (site) \"Track\" (\"Die2\")) (sites Mover \"BeforeHucke\")) (\"IsEnemyAt\" (\"NextSiteFrom\" (site) \"Track\" (\"Die2\"))) (\"IsSingletonStack\" (\"NextSiteFrom\" (site) \"Track\" (\"Die2\"))) }) (addScore Mover 1) ) ) (if (!= (site) (\"HuckeSite\")) (and (if (and (\"IsEnemyAt\" (\"NextSiteFrom\" (site) \"Track\" (\"Die1\"))) (\"IsSingletonStack\" (\"NextSiteFrom\" (site) \"Track\" (\"Die1\"))) ) (addScore Mover 1) ) (if (and (\"IsEnemyAt\" (\"NextSiteFrom\" (site) \"Track\" (\"Die2\"))) (\"IsSingletonStack\" (\"NextSiteFrom\" (site) \"Track\" (\"Die2\"))) ) (addScore Mover 1) ) ) (if (and { (= 1 (\"Die1\")) (= 1 (\"Die2\")) (<= 4 (size Stack at:(\"HuckeSite\"))) (\"IsSingletonStack\" (\"NextSiteFrom\" (site) \"Track\" (\"Die1\"))) }) (addScore Mover 1) ) ) ) )"

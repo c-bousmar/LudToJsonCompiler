@@ -1,6 +1,6 @@
 {
     "define": {
-        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1"
+        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1)))"
     },
     "game": "\"Mbangbi\" <Variant>",
     "option": {

@@ -1,8 +1,8 @@
 {
     "define": {
-        "FileAt": "(+ (% #1 3) (* (/ #1 9) 9",
-        "RowAt": "(* (/ #1 3) 3",
-        "ColumnAt": "(% #1 9",
+        "FileAt": "(+ (% #1 3) (* (/ #1 9) 9))",
+        "RowAt": "(* (/ #1 3) 3)",
+        "ColumnAt": "(% #1 9)",
         "AdjacentOccupiedUpDown": "(sites (results from:#1 to:(forEach (difference (difference (sites {(\"ColumnAt\" (from)) (+ (\"ColumnAt\" (from)) 9) (+ (\"ColumnAt\" (from)) 18) }) (from) ) (sites Empty) ) if:(or (= (site) (+ (\"ColumnAt\" (from)) 9)) (= (from) (+ (\"ColumnAt\" (from)) 9)) ) ) (to) ) )",
         "EmptySlideSitesUpDown": "(sites (results from:#1 to:(forEach (intersection (difference (sites {(\"ColumnAt\" (from)) (+ (\"ColumnAt\" (from)) 9) (+ (\"ColumnAt\" (from)) 18) }) (from) ) (sites Empty) ) if:(or (is Empty (+ (\"ColumnAt\" (from)) 9)) (= (from) (+ (\"ColumnAt\" (from)) 9)) ) ) (to) ) )",
         "IsMill": "(or (and { (= (state at:#1) (state at:(+ {#1 #2}))) (= (state at:#1) (state at:(+ { #1 #2 #2}))) (!= (what at:#1) (what at:(+ {#1 #2}))) (!= (what at:#1) (what at:(+ {#1 #2 #2}))) (!= (what at:(+ {#1 #2})) (what at:(+ {#1 #2 #2}))) }) (and { (= (what at:#1) (what at:(+ {#1 #2}))) (= (what at:#1) (what at:(+ { #1 #2 #2}))) (!= (state at:#1) (state at:(+ {#1 #2}))) (!= (state at:#1) (state at:(+ {#1 #2 #2}))) (!= (state at:(+ {#1 #2})) (state Vertex at:(+ {#1 #2 #2}))) }) )",

@@ -1,6 +1,5 @@
 {
     "define": {
-        "Columns": "6",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",
         "OneRowIsEmpty": "(or (all Sites (sites P1) if:(= 0 (count at:(site)))) (all Sites (sites P2) if:(= 0 (count at:(site)))) )",

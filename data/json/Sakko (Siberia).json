@@ -1,7 +1,5 @@
 {
-    "define": {
-        "Sakko": "6"
-    },
+    "define": {},
     "game": "\"Sakko (Siberia)\" <Variant>",
     "option": {
         "Variant": {

@@ -4,8 +4,8 @@
         "PiecesSurroundingAreNotAdjacent": "(all Sites (sites Around (between) Own) if:(all Sites (sites Around (site) Own) if:(not (is In (to) (sites Around (between) Own))) ) )",
         "SurroundCorners": "(surround (from (last To)) Orthogonal (between if:(and { (is In (between) (sites \"Fortresses\")) (\"IsEnemyAt\" (between)) (\"PiecesSurroundingAreNotAdjacent\") }) (apply (remove (between))) ) (to if:(\"IsFriendAt\" (to))) except:1 )",
         "SurroundThrone": "(surround (from (last To)) Orthogonal (between if:(and { (= (between) (\"Throne\")) (\"IsPieceAt\" \"Jarl\" P1 (between)) (\"PiecesSurroundingAreNotAdjacent\") }) (apply (remove (between))) ) (to if:(\"IsFriendAt\" (to))) except:3 )",
-        "JarlWasCaptured": "(\"IsOffBoard\" (where \"Jarl\" P1",
-        "Throne": "(centrePoint"
+        "JarlWasCaptured": "(\"IsOffBoard\" (where \"Jarl\" P1))",
+        "Throne": "(centrePoint)"
     },
     "game": "\"HeXentafl\" (players 2) (equipment { (board (rotate 90 (hex <Board:size>))) (piece \"Thrall\" P1 (move Slide (between if:(and (!= (between) (\"Throne\")) (is Empty (between)))) (then (and (\"SurroundCorners\") (\"Custodial\"))) ) ) (piece \"Thrall\" P2 (move Slide (between if:(and (!= (between) (\"Throne\")) (is Empty (between)))) (then (and {(\"SurroundThrone\") (\"SurroundCorners\") (\"Custodial\") })) ) ) (piece \"Jarl\" P1 (move <Board:kingMove> (then (and (\"SurroundCorners\") (\"Custodial\"))) ) ) (regions \"Fortresses\" (sites Corners)) }) (rules (start { (place \"Jarl1\" (\"Throne\")) <Board:start> }) (play (forEach Piece)) (end { (\"PieceTypeReachWin\" \"Jarl1\" (sites \"Fortresses\") P1) (if \"JarlWasCaptured\" (result P2 Win)) }) )",
     "option": {

@@ -1,14 +1,14 @@
 {
     "define": {
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To",
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To))",
         "PlayRules": "(if \"SameTurn\" (if \"IsUnpromoted\" (max Moves (\"HopInternationalDraughtsStyle\" (from (last To)) (then (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) ) ) ) (max Moves (\"HopDiagonalSequenceCaptureAgain\" before:(count Rows) after:(count Rows) at:EndOfTurn)) ) (priority { (max Moves (or (forEach Piece \"Counter\" (\"HopInternationalDraughtsStyle\" (from) (then (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) ) ) ) (forEach Piece \"DoubleCounter\" (\"HopDiagonalSequenceCapture\" before:(count Rows) after:(count Rows) at:EndOfTurn)) ) ) (or (forEach Piece \"Counter\" (\"StepToEmpty\" (directions {FR FL})) (then (\"PromoteIfReach\" (sites Next) \"DoubleCounter\")) ) (forEach Piece \"DoubleCounter\" (move Slide Diagonal)) ) }) )",
         "MovesWithCapture": "(if \"SameTurn\" (if \"IsUnpromoted\" (max Moves (\"HopInternationalDraughtsStyle\" (from (last To)) (then (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) ) ) ) (max Moves (\"HopDiagonalSequenceCaptureAgain\" before:(count Rows) after:(count Rows) at:EndOfTurn)) ) (max Moves (or (forEach Piece \"Counter\" (\"HopInternationalDraughtsStyle\" (from) (then (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) ) ) ) (forEach Piece \"DoubleCounter\" (\"HopDiagonalSequenceCapture\" before:(count Rows) after:(count Rows) at:EndOfTurn)) ) ) )",
         "PlayRulesHuff": "(if (and (\"SameTurn\") (is Occupied (last To))) (if \"IsUnpromoted\" (\"HopInternationalDraughtsStyle\" (from (last To)) (then (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) ) ) (\"HopDiagonalSequenceCaptureAgain\" before:(count Rows) after:(count Rows) at:EndOfTurn) (then (\"HasCaptured\")) ) (or { (or (forEach Piece \"Counter\" (\"HopInternationalDraughtsStyle\" (from) (then (and (\"ReplayIfCanMove\" (\"HopInternationalDraughtsStyle\" (from (last To))) (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") ) (\"HasCaptured\") ) ) ) ) (forEach Piece \"DoubleCounter\" (\"HopDiagonalSequenceCapture\" before:(count Rows) after:(count Rows) at:EndOfTurn)) (then (\"HasCaptured\")) ) (forEach Piece \"Counter\" (\"StepToEmpty\" (directions {FR FL})) (then (and (\"PromoteIfReach\" (sites Next) \"DoubleCounter\") (\"HasNotCaptured\") ) ) ) (forEach Piece \"DoubleCounter\" (move Slide Diagonal (then (\"HasNotCaptured\")))) }) )",
-        "HasCaptured": "(set Value Mover 0",
-        "HasNotCaptured": "(set Value Mover 1",
-        "DidNotCaptured": "(= (value Player Prev) 1",
+        "HasCaptured": "(set Value Mover 0)",
+        "HasNotCaptured": "(set Value Mover 1)",
+        "DidNotCaptured": "(= (value Player Prev) 1)",
         "RememberSiteWithPossibleCapture": "(set Pending (sites From (\"MovesWithCapture\") ) )",
-        "SitesWithPossibleCaptureInPreviousTurn": "(sites Pending",
+        "SitesWithPossibleCaptureInPreviousTurn": "(sites Pending)",
         "HuffOnePieceOf": "(move Select (from #1 if:(is Occupied (from)) ) (then (and { (remove (last To)) (moveAgain) (set Value Prev 0) }) ) )",
         "ShouldCapturedButMoved": "(and (is In (last From) (\"SitesWithPossibleCaptureInPreviousTurn\")) (is In (last From) (sites Empty)) )"
     },

@@ -1,10 +1,10 @@
 {
     "define": {
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (pips",
-        "RemoveAPiece": "(move Remove (from",
-        "Bar": "(handSite Mover",
-        "BarEmpty": "(is Empty \"Bar\"",
-        "NextSiteFrom": "(\"NextSiteOnTrack\" (pips) from:#1",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (pips))",
+        "RemoveAPiece": "(move Remove (from))",
+        "Bar": "(handSite Mover)",
+        "BarEmpty": "(is Empty \"Bar\")",
+        "NextSiteFrom": "(\"NextSiteOnTrack\" (pips) from:#1)",
         "MoveAPiece": "(move (from #1) (to (\"NextSiteFrom\" #1) if:(\"NoEnemyOrOnlyOne\" (to)) (\"HittingCapture\" (handSite Next)) ) )",
         "MoveAPieceIf": "(forEach Die replayDouble:True if:#1 (\"MoveAPiece\" #2) )"
     },

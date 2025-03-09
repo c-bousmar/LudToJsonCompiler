@@ -1,7 +1,7 @@
 {
     "define": {
-        "ThrowValue": "(count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1",
+        "ThrowValue": "(count Pips)",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1)",
         "Move": "(or (if (and { (is Occupied (handSite Mover)) (all DiceEqual) (= 2 (value Player Mover)) }) (move (from (handSite Mover)) (to (mapEntry \"Entry\" Mover)) (then (and (moveAgain) (set Var \"Double\" 1) ) ) ) ) (forEach Piece) )",
         "AllReachedCenter": "(= 2 (count Pieces Mover in:(sites Centre)))"
     },

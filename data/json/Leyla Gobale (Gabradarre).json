@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "6",
-        "PlayableSites": "(sites (values Remembered \"Playable\"",
+        "PlayableSites": "(sites (values Remembered \"Playable\"))",
         "APlayerCanNotMove": "(and (not (is Next Mover)) (or (all Sites (sites P1) if:(or (not (is In (site) (\"PlayableSites\"))) (or (!= 0 (state at:(site))) (is Empty (site))))) (all Sites (sites P2) if:(or (not (is In (site) (\"PlayableSites\"))) (or (!= 0 (state at:(site))) (is Empty (site))))) ) )",
         "CapturedPiece": "(+ { (count Cell at:(handSite #1)) (count in:(forEach (sites Board) if:(= (state at:(site)) #1))) (count in:(forEach (sites #1) if:(= (state at:(site)) 0))) })"
     },

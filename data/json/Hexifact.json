@@ -1,6 +1,5 @@
 {
     "define": {
-        "GridDirection": "<BoardShape:directionsUsed>",
         "ScoreMover": "(do (and { (remember Value 0) (remember Value 0) (forEach Group \"GridDirection\" (remember Value (count Sites in:(sites))) ) }) next:(set Var \"TopValue\" (max (values Remembered)) (then (forget Value (max (values Remembered)) (then (set Score Mover (* (var \"TopValue\") (max (values Remembered))) (then (forget Value All) ) ) ) ) ) ) )",
         "PlacementSites": "(and (no Pieces Mover in:(sites Around (to) \"GridDirection\")) (not (no Pieces Next in:(sites Around (to) \"GridDirection\"))) )"
     },

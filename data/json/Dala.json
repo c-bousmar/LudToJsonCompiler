@@ -1,6 +1,6 @@
 {
     "define": {
-        "IfCentreFull": "(= (count Moves) 4",
+        "IfCentreFull": "(= (count Moves) 4)",
         "FreeCentreSites": "(to (forEach (sites Centre) if:(is Empty (site)) ) )",
         "AddPieceTo": "(move (from (handSite Mover)) #1 #2 )",
         "IfLine3MoveAgain": "(then (if (is Line 3 Orthogonal exact:True) (and (moveAgain) (addScore Mover 1) ) ) )",

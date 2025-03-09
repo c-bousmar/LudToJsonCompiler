@@ -1,7 +1,5 @@
 {
-    "define": {
-        "Columns": "6"
-    },
+    "define": {},
     "game": "\"Gabatta\" <Variant>",
     "option": {
         "Variant": {

@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextCanNotMove": "(not (can Move (do (forEach Piece Next) ifAfterwards:(not (\"IsInCheck\" \"King_noCross\" Next (forEach Piece",
+        "NextCanNotMove": "(not (can Move (do (forEach Piece Next) ifAfterwards:(not (\"IsInCheck\" \"King_noCross\" Next (forEach Piece))))))",
         "ElephantMove": "(move Hop Diagonal (between if:True) (to if:(not (\"IsFriendAt\" (to))) (apply (if (\"IsEnemyAt\" (to)) (remove (to)) ) ) ) )",
         "Move": "(do (forEach Piece) ifAfterwards:(not (\"IsInCheck\" \"King_noCross\" Mover)) (then (if (\"IsInCheck\" \"King_noCross\" Next) (set Value Mover (+ 1 (value Player Mover))) (set Value Mover 0) ) ) )"
     },

@@ -1,15 +1,15 @@
 {
     "define": {
-        "SameTurn": "(is Prev Mover",
-        "IsAJumpableSite": "(is In (between) (difference (sites Occupied by:Next) (sites (values Remembered))",
-        "CanHop": "(can Move (forEach Piece (move Hop #1 <Board:adj> (between if:(\"IsAJumpableSite\")) (to if:(is Empty (to)))",
-        "OpponentHop": "(forEach Piece (move Hop #1 <Board:adj> (between if:(\"IsAJumpableSite\") (apply (set Pending (between)))) (to if:(is Empty (to))) (then (and { (remember Value (value Pending)) (remove (value Pending)) (add (piece (id \"Disc\" Mover)) (to (value Pending))) } (then (and { (set Pending) (if (\"CanHop\" (from (last To))) (moveAgain)) }",
-        "ForcedHop": "(if (= 0 (size Array (values Remembered))) (\"OpponentHop\" (from if:(!= (from) (last To)))) (\"OpponentHop\" (from if:(= (from) (last To))))",
-        "Placement": "(do (forget Value All) next:(move Add (piece (id \"Disc\" Mover)) (to (sites Empty)) (then (if (can Move (\"OpponentHop\" (from if:(!= (from) (last To))))) (moveAgain))",
-        "Tri46Bug": "(tri {4 6 4 7 4}",
-        "Tri56Bug": "(tri {5 6 5 7 5}",
-        "Tri57Bug": "(tri {5 7 5 8 5}",
-        "Tri78Bug": "(tri {7 8 7 10 6}"
+        "SameTurn": "(is Prev Mover)",
+        "IsAJumpableSite": "(is In (between) (difference (sites Occupied by:Next) (sites (values Remembered)) ))",
+        "CanHop": "(can Move (forEach Piece (move Hop #1 <Board:adj> (between if:(\"IsAJumpableSite\")) (to if:(is Empty (to))) )))",
+        "OpponentHop": "(forEach Piece (move Hop #1 <Board:adj> (between if:(\"IsAJumpableSite\") (apply (set Pending (between)))) (to if:(is Empty (to))) (then (and { (remember Value (value Pending)) (remove (value Pending)) (add (piece (id \"Disc\" Mover)) (to (value Pending))) } (then (and { (set Pending) (if (\"CanHop\" (from (last To))) (moveAgain)) } ))))))",
+        "ForcedHop": "(if (= 0 (size Array (values Remembered))) (\"OpponentHop\" (from if:(!= (from) (last To)))) (\"OpponentHop\" (from if:(= (from) (last To)))) )",
+        "Placement": "(do (forget Value All) next:(move Add (piece (id \"Disc\" Mover)) (to (sites Empty)) (then (if (can Move (\"OpponentHop\" (from if:(!= (from) (last To))))) (moveAgain)) )))",
+        "Tri46Bug": "(tri {4 6 4 7 4})",
+        "Tri56Bug": "(tri {5 6 5 7 5})",
+        "Tri57Bug": "(tri {5 7 5 8 5})",
+        "Tri78Bug": "(tri {7 8 7 10 6})"
     },
     "game": "\"Claim Jumpers\" (players 2) (equipment { (board <Board:size> use:Vertex) (piece \"Disc\" Each) } ) (rules (start (set Score Each 0)) (play (if (\"SameTurn\") (\"ForcedHop\") (\"Placement\") (then (and (set Score Mover (count Pieces Mover)) (set Score Next (count Pieces Next)) )))) (end { (if (and \"EndCondition\" (= (score Mover) (score Next)) ) (result Mover Win) ) (if (and \"EndCondition\" (!= (score Mover) (score Next)) ) (byScore) ) } ))) (define \"EndCondition\" (or {(no Moves Next) (all Passed)} )",
     "option": {},

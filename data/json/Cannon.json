@@ -1,11 +1,11 @@
 {
     "define": {
-        "StepToEmptyForwards": "(\"StepToEmpty\" (directions Forwards of:All",
-        "StepCapture": "(\"StepToEnemy\" (directions {Forwards Rightward Leftward} of:All",
+        "StepToEmptyForwards": "(\"StepToEmpty\" (directions Forwards of:All))",
+        "StepCapture": "(\"StepToEnemy\" (directions {Forwards Rightward Leftward} of:All))",
         "EnemyAround": "(not (all Sites (sites Around (from) All) if:(not (\"IsEnemyAt\" (site))) ) )",
         "RetreatMove": "(if (\"EnemyAround\") (move Hop (directions Backwards of:All) (between if:(is Empty (between)) ) (to if:(is Empty (to))) ) )",
         "CannonMove": "(move Hop All (between (exact 2) if:(\"IsPieceAt\" \"Pawn\" Mover (between)) ) (to if:(is Empty (to)) ) )",
-        "AheadSite": "(ahead (from) #1 (directions Vertex from:(from) to:(to",
+        "AheadSite": "(ahead (from) #1 (directions Vertex from:(from) to:(to)))",
         "IsCannon": "(and (\"IsPieceAt\" \"Pawn\" Mover (to)) (\"IsPieceAt\" \"Pawn\" Mover (\"AheadSite\" steps:2)) )",
         "CannonShoot": "(forEach Direction All (if (and { (\"IsCannon\") (is Empty (\"AheadSite\" steps:3)) }) (if (\"IsEnemyAt\" (\"AheadSite\" steps:4)) (move Remove (\"AheadSite\" steps:4)) (if (and (is Empty (\"AheadSite\" steps:4)) (\"IsEnemyAt\" (\"AheadSite\" steps:5)) ) (move Remove (\"AheadSite\" steps:5)) ) ) ) )"
     },

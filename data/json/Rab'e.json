@@ -1,6 +1,5 @@
 {
     "define": {
-        "Columns": "6",
         "OneHomeEmpty": "(or (all Sites (sites P1) if:(is Empty (site))) (all Sites (sites P2) if:(is Empty (site))) )",
         "NumCapturedPieces": "(+ (count Cell at:(handSite #1)) (count in:(sites #1)) )",
         "LeftMostEmpty": "(trackSite FirstSite from:(mapEntry \"LeftMost\" Mover) if:(is Empty (to)) )"

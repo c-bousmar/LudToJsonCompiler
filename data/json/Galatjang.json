@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "6",
-        "CaptureEnoughSeed": "(> 7 (count in:(difference (sites Board) (mapEntry Mover",
+        "CaptureEnoughSeed": "(> 7 (count in:(difference (sites Board) (mapEntry Mover))))",
         "PlayableSites": "(forEach (sites Mover \"Home\") if:(is In (site) (values Remembered)) )",
         "AllPossibleHolesFilled": "(or (and (> 7 (count at:(mapEntry P2))) (= 42 (count in:(sites Bottom)))) (and (> 7 (count at:(mapEntry P1))) (= 42 (count in:(sites Top)))) )",
         "NoLegalMoves": "(all Sites (forEach (difference (union (sites Bottom) (sites Top)) (sites Empty)) if:(is In (site) (values Remembered)) ) if:(= 0 (count at:(site))) )"

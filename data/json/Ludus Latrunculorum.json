@@ -1,7 +1,5 @@
 {
-    "define": {
-        "NoRepetition": "<Repetition>"
-    },
+    "define": {},
     "game": "\"Ludus Latrunculorum\" (players 2) <Version>",
     "option": {
         "Repetition of states": {

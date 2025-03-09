@@ -1,9 +1,7 @@
 {
     "define": {
-        "MajorPiece": "1",
-        "MinorPiece": "0",
-        "PiecesInRegion": "(intersection (sites #1) (sites Occupied by:All",
-        "NumberOfPiecesInRegion": "(count Sites in:(\"PiecesInRegion\" #1",
+        "PiecesInRegion": "(intersection (sites #1) (sites Occupied by:All))",
+        "NumberOfPiecesInRegion": "(count Sites in:(\"PiecesInRegion\" #1))",
         "PiecesInRegionByState": "(forEach (\"PiecesInRegion\" #1) if:(= #2 (state at:(site))))",
         "NumberOfPiecesInRegionByState": "(count Sites in:(forEach (\"PiecesInRegion\" #1) if:(= #2 (state at:(site)))))",
         "MiddleOfBoardPlusExtra": "(union { (sites \"The Arena\") (sites \"The Free Zone\") (sites #1) })",

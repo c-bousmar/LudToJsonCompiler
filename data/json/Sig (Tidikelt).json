@@ -1,13 +1,12 @@
 {
     "define": {
-        "BottomSite": "36",
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "Sig": "(= 1 (\"ThrowValue\"",
-        "ActivatePiece": "(set State at:#1 1",
-        "PieceActivated": "(!= 0 (state at:#1",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "Sig": "(= 1 (\"ThrowValue\"))",
+        "ActivatePiece": "(set State at:#1 1)",
+        "PieceActivated": "(!= 0 (state at:#1))",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (if (is In (to) (sites Next \"Home\")) (remove (to)) (if (\"IsOffBoard\" (\"FirstAvailableInHome\" Next)) (remove (to)) (fromTo (from (to)) (to (\"FirstAvailableInHome\" Next)) ) ) ) )",
-        "IsInTrack": "(is In #1 (sites Track Mover #2",
-        "FirstAvailableInHome": "(min (array (intersection (sites Empty) (sites #1 \"Home\"",
+        "IsInTrack": "(is In #1 (sites Track Mover #2))",
+        "FirstAvailableInHome": "(min (array (intersection (sites Empty) (sites #1 \"Home\"))))",
         "CaptureEnemyPieceInEntering": "(apply if:(\"IsEnemyAt\" (to)) (if (\"IsOffBoard\" (\"FirstAvailableInHome\" Next)) (remove (to)) (fromTo (from (to)) (to (\"FirstAvailableInHome\" Next)) ) ) )",
         "Move": "(or (if (\"IsInTrack\" (from) \"HomeTrack\") (if (if (\"PieceActivated\" (from)) True (\"Sig\") ) (if (not (\"IsFriendAt\" (\"NextSiteOnTrack\" (\"ThrowValue\") \"HomeTrack\"))) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\") \"HomeTrack\") \"CaptureEnemyPiece\" ) (then (if (and (not (\"PieceActivated\" (last To))) (\"Sig\")) (\"ActivatePiece\" (last To)) ) ) ) ) ) ) (if (\"IsInTrack\" (from) \"EnemyTrack\") (if (not (\"IsFriendAt\" (\"NextSiteOnTrack\" (\"ThrowValue\") \"EnemyTrack\"))) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\") \"EnemyTrack\") \"CaptureEnemyPiece\" ) ) ) ) )"
     },

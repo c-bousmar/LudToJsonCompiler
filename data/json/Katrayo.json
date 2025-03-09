@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "<Row:size>",
-        "NoPiece": "(all Sites (sites Player \"Home\") if:(= 0 (count at:(site"
+        "NoPiece": "(all Sites (sites Player \"Home\") if:(= 0 (count at:(site))))"
     },
     "game": "\"Katrayo\" (players 2) (equipment { (mancalaBoard 2 \"Columns\" store:None <Row:tracks> ) (piece \"Seed\" Shared) (regions \"Home\" P1 (sites Track \"TrackCCW1\")) (regions \"Home\" P2 (sites Track \"TrackCCW2\")) }) (rules (start (set Count 2 to:(sites Board))) (play (or { (if (or (= (value Player Mover) 1) (<= (value Player Mover) 0)) (move Select (from (if (\"SameTurn\") \"LastHoleSowed\" (sites Mover \"Home\") ) if:(> (count at:(from)) 0) ) (then (sow \"TrackCCW\" owner:(mover) apply:(if (> (count at:(to)) 1) (and { (if (<= (value Player Mover) 0) (set Value Mover 1) ) (moveAgain) (if (is In (to) (sites Mover \"Home\")) (if (!= 0 (count at:(\"OppositePit\" (to)))) (fromTo (from (\"OppositePit\" (to))) (to (to)) count:(count at:(\"OppositePit\" (to))) ) ) ) }) (set Value Mover 0) ) ) ) ) ) (if (or (= (value Player Mover) 2) (<= (value Player Mover) 0)) (move Select (from (if (\"SameTurn\") \"LastHoleSowed\" (sites Mover \"Home\") ) if:(> (count at:(from)) 0) ) (then (sow \"TrackCW\" owner:(mover) apply:(if (> (count at:(to)) 1) (and { (if (<= (value Player Mover) 0) (set Value Mover 2) ) (moveAgain) (if (is In (to) (sites Mover \"Home\")) (if (!= 0 (count at:(\"OppositePit\" (to)))) (fromTo (from (\"OppositePit\" (to))) (to (to)) count:(count at:(\"OppositePit\" (to))) ) ) ) }) (set Value Mover 0) ) ) ) ) ) }) ) (end (forEach NonMover if:(\"NoPiece\") (result Player Loss) ) ) )",
     "option": {

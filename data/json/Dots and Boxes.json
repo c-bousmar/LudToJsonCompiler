@@ -3,7 +3,7 @@
         "CellOfLastEdge": "(sites Incident Cell of:Edge at:(last To))",
         "NoFreeEdge": "(\"NoSites\" (intersection (sites Incident Edge of:Cell at:(site)) (sites Empty Edge) ) )",
         "CaptureTheCell": "(claim (to Cell (site) ) (then (and (addScore Mover 1) (moveAgain) ) ) )",
-        "HalfBoardSize": "(/ (count Cells) 2"
+        "HalfBoardSize": "(/ (count Cells) 2)"
     },
     "game": "\"Dots and Boxes\" (players 2) (equipment {(board <Dual:begin> (<Board> <Size>) <Dual:end>) }) (rules (play (move Add (to Edge (sites Empty Edge)) (then (forEach Site \"CellOfLastEdge\" (if \"NoFreeEdge\" \"CaptureTheCell\" ) ) ) ) ) (end (if (> (score Mover) \"HalfBoardSize\") (result Mover <Result>))) )",
     "option": {

@@ -1,8 +1,8 @@
 {
     "define": {
-        "PiecesOwnedBy": "(+ (count in:(sites #1)) (count at:(mapEntry #1",
-        "PiecesHandOwnedBy": "(+ (count in:(sites #1)) (count Cell at:(handSite #1",
-        "NextHole": "(\"NextSiteOnTrack\" 1 from:(to) #1"
+        "PiecesOwnedBy": "(+ (count in:(sites #1)) (count at:(mapEntry #1)))",
+        "PiecesHandOwnedBy": "(+ (count in:(sites #1)) (count Cell at:(handSite #1)))",
+        "NextHole": "(\"NextSiteOnTrack\" 1 from:(to) #1)"
     },
     "game": "\"Kpo\" (players <Players:num>) (equipment { (mancalaBoard 2 6 <Players:track> ) (piece \"Seed\" Shared) <Players:homes> <Players:store> }) (rules (start (set Count <Players:init> to:(sites Track))) <Players:Play> <Players:end> )",
     "option": {

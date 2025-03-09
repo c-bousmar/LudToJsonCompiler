@@ -1,9 +1,9 @@
 {
     "define": {
-        "Side1": "(union (sites Side NE) (sites Side N",
-        "Side2": "(union (sites Side SE) (sites Side S",
-        "Side3": "(union (sites Side NW) (sites Side SW",
-        "AddPieceOf": "(move Add (piece #1) (to (sites Empty)) #2"
+        "Side1": "(union (sites Side NE) (sites Side N))",
+        "Side2": "(union (sites Side SE) (sites Side S))",
+        "Side3": "(union (sites Side NW) (sites Side SW))",
+        "AddPieceOf": "(move Add (piece #1) (to (sites Empty)) #2 )"
     },
     "game": "\"Bipartisan Y\" (players 2) (equipment { (board <Board:size> use:Vertex) (piece \"Disc\" Each ) (piece \"Counter\" Neutral maxState:2) } ) (rules (play (if (\"SameTurn\") (\"AddPieceOf\" (next) ~) (\"AddPieceOf\" (mover) (then (moveAgain))) )) (end { (if (and (= 1 (who at:(last To))) (is Connected 3 {\"Side1\" \"Side2\" \"Side3\"}) ) (result P1 Win) ) (if (and (= 2 (who at:(last To))) (is Connected 3 {\"Side1\" \"Side2\" \"Side3\"}) ) (result P2 Win) ) }",
     "option": {

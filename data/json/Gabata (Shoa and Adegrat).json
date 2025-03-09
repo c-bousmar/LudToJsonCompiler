@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextHole": "(\"NextSiteOnTrack\" #3 from:#1 #2",
+        "NextHole": "(\"NextSiteOnTrack\" #3 from:#1 #2)",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "OpponentOwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP2\")) (sites (values Remembered \"OwnedP1\")) )",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",

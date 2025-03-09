@@ -1,17 +1,17 @@
 {
     "define": {
-        "PlayableSite": "(difference <Board:area> (sites Occupied by:Mover",
+        "PlayableSite": "(difference <Board:area> (sites Occupied by:Mover))",
         "ValueAtTo": "(max 1 (max (results from:(last To) to:(\"FirstFriend\" Orthogonal) (size Group at:(to) Orthogonal if:(= (mover) (who at:(to)))) ) ) )",
         "ValueAtFrom": "(set Var \"MaxSizeFrom\" (max 1 (max (results from:(from) to:(\"FirstFriend\" Orthogonal) (size Group at:(to) Orthogonal if:(= (mover) (who at:(to)))) ) ) ) )",
         "FirstFriend": "(sites To (move Hop #1 (between (min 0) if:(or { (= (from) (between)) (is Next (who at:(between))) (is Empty (between)) } ) ) (to <Board:area> if:(is Mover (who at:(to)))) ) )",
         "Astralesce": "(forEach Piece (do (\"ValueAtFrom\") next:(do (move Slide Orthogonal (between if:(or (= (between) (from)) (is In (between) \"PlayableSite\")) (apply (remove (between))) ) (to (\"PlayableSite\")) ) ifAfterwards:(> \"ValueAtTo\" (var \"MaxSizeFrom\")) ) ) )",
         "Constellate": "(forEach Piece (do (\"ValueAtFrom\") next:(do (move Slide Orthogonal (between if:(or (= (between) (from)) (is In (between) (intersection <Board:area> (sites Empty))) ) ) (to if:(is Next (who at:(to))) (apply (remove (to))) ) ) ifAfterwards:(> \"ValueAtTo\" (var \"MaxSizeFrom\")) ) ) )",
         "IsSingleGroupOf": "(= 1 (count Groups Cell Orthogonal if:(is #1 (who at:(to))) ) )",
-        "StandardEnd": "(if (or { (no Moves Next) (\"IsSingleGroupOf\" Mover) (\"IsSingleGroupOf\" Next) }) { (if (\"IsSingleGroupOf\" Mover) (result Mover Win) ) (if (\"IsSingleGroupOf\" Next) (result Next Win) ) (\"AMSEnd\") }",
-        "AMSEnd": "(if (no Moves Next) (result Mover Loss",
-        "Last2MoveEnd": "(\"BlockWin\"",
-        "Dummy": "(place <Game:token> 1",
-        "ColourBackground": "(colour 245 245 245"
+        "StandardEnd": "(if (or { (no Moves Next) (\"IsSingleGroupOf\" Mover) (\"IsSingleGroupOf\" Next) }) { (if (\"IsSingleGroupOf\" Mover) (result Mover Win) ) (if (\"IsSingleGroupOf\" Next) (result Next Win) ) (\"AMSEnd\") } )",
+        "AMSEnd": "(if (no Moves Next) (result Mover Loss))",
+        "Last2MoveEnd": "(\"BlockWin\")",
+        "Dummy": "(place <Game:token> 1)",
+        "ColourBackground": "(colour 245 245 245)"
     },
     "game": "\"Astralesce and Constellation\" (players 2) (equipment { (board (hex Hexagon <Board:side>) use:Cell) (piece \"Disc\" Each) }) (rules (start {<Board:white> <Board:black>}) (play <Game:structure> ) (end <Game:winCondition> ) )",
     "option": {

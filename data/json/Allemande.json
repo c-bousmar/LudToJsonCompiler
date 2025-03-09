@@ -3,10 +3,9 @@
         "EmptyCellsAroundPiecesPlaced": "(intersection (sites Around (sites (values Remembered)) Orthogonal) (sites Empty))",
         "TouchingPlacements": "(or { (move Add (piece (id \"Square\" Mover)) (to Cell \"EmptyCellsAroundPiecesPlaced\") ) (move Select (from Edge (forEach of:\"EmptyCellsAroundPiecesPlaced\" (sites Incident Edge of:Cell at:(site)) ) if:(no Pieces All in:(sites Incident Cell of:Edge at:(from))) ) (then (add (piece (id \"Square\" Mover)) (to Cell (sites Incident Cell of:Edge at:(last From)))) ) ) })",
         "Placements": "(or { (move Add (piece (id \"Square\" Mover)) (to (sites Empty)) (then (if (\"NewTurn\") (remember Value (last To)) ) ) ) (move Select (from Edge (sites Board Edge) if:(no Pieces All in:(sites Incident Cell of:Edge at:(from))) ) (then (forEach Site (sites Incident Cell of:Edge at:(last From)) (and (add (piece (id \"Square\" Mover)) (to (site)) ) (if (\"NewTurn\") (remember Value (site)) ) ) ) ) ) (if (\"SameTurn\") (move Pass) ) })",
-        "NoCrosscuts": "(= (size Array (sizes Group Orthogonal Mover)) (size Array (sizes Group All Mover",
+        "NoCrosscuts": "(= (size Array (sizes Group Orthogonal Mover)) (size Array (sizes Group All Mover)))",
         "GamePlay": "(if (\"NewTurn\") (do (\"Placements\") ifAfterwards:(or { \"NoCrosscuts\" (can Move (do <GameOption:restriction> ifAfterwards:(\"NoCrosscuts\") )) }) (then (moveAgain)) ) (do <GameOption:restriction> ifAfterwards:(\"NoCrosscuts\") (then (forget Value All)) ) )",
-        "Goal": "(or (is Connected at:(regionSite (sites Column Cell 0) index:0) Orthogonal { (sites Column (+ \"Order\" 1)) (sites Column 0) } ) (is Connected at:(regionSite (sites Row Cell 0) index:0) Orthogonal { (sites Row (+ \"Order\" 1)) (sites Row 0) } ) )",
-        "Order": "<Board:size>"
+        "Goal": "(or (is Connected at:(regionSite (sites Column Cell 0) index:0) Orthogonal { (sites Column (+ \"Order\" 1)) (sites Column 0) } ) (is Connected at:(regionSite (sites Row Cell 0) index:0) Orthogonal { (sites Row (+ \"Order\" 1)) (sites Row 0) } ) )"
     },
     "game": {},
     "option": {

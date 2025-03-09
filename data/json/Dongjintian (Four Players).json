@@ -1,8 +1,7 @@
 {
     "define": {
-        "Columns": "5",
-        "PiecesOwnedBy": "(count Cell at:(handSite #1",
-        "SitesSowed": "(sites (values Remembered \"SowedSites\"",
+        "PiecesOwnedBy": "(count Cell at:(handSite #1))",
+        "SitesSowed": "(sites (values Remembered \"SowedSites\"))",
         "NextSiteExist": "(!= (last To) (\"NextSite\" #1))",
         "NextSite": "(ahead (last To) steps:#1 (\"LastDirection\" Vertex))",
         "SowAgainMove": "(move Select (from (last To)) (to (difference (sites Around (last To)) (\"SitesSowed\"))) (then (and (add (piece (id \"Seed\" Shared)) (to (last To))) (if (< 1 (var \"NumToSow\")) (and { (set Var \"NumToSow\" (- (var \"NumToSow\") 1)) (moveAgain) (remember Value \"SowedSites\" (last From)) }) (and { (forget Value \"SowedSites\" All) (set Var \"NumToSow\" 0) (if (\"NextSiteExist\" 1) (if (is Occupied (\"NextSite\" 1)) (moveAgain) (if (\"NextSiteExist\" 2) (if (is Occupied (\"NextSite\" 2)) (and (fromTo (from (\"NextSite\" 2)) (to (handSite Mover)) count:(count at:(\"NextSite\" 2)) ) (if (and (\"NextSiteExist\" 3) (\"NextSiteExist\" 4) ) (if (and (is Occupied (\"NextSite\" 4)) (is Empty (\"NextSite\" 3)) ) (fromTo (from (\"NextSite\" 4)) (to (handSite Mover)) count:(count at:(\"NextSite\" 4)) ) ) ) ) ) ) ) ) }) ) ) ) )"

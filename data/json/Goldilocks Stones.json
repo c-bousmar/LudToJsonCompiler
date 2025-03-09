@@ -2,11 +2,9 @@
     "define": {
         "Score3": "(forEach Piece (if (= 3 (count Pieces Mover in:(sites Around (from) Orthogonal)) ) (set State at:(from) 1) (set State at:(from) 0) ) (then (set Score Mover (count Sites in:(intersection (sites Occupied by:Mover) (sites State 1)))) ) )",
         "ScoreHalf": "(forEach Piece (if (= (* 2 (count Pieces Mover in:(sites Around (from) Orthogonal)) ) (count Sites in:(sites Around (from) Orthogonal)) ) (set State at:(from) 1) (set State at:(from) 0) ) (then (set Score Mover (count Sites in:(intersection (sites Occupied by:Mover) (sites State 1)))) ) )",
-        "Connection": "<BoardShape:directionsUsed>",
-        "BoardUsed": "<BoardShape:gridType>",
-        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell",
-        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell",
-        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell",
+        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell)",
+        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell)",
+        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell)",
         "DoubleMove": "(then (if (and (is Prev Next) (not (was Pass)) ) (moveAgain) ) )"
     },
     "game": "\"Goldilocks Stones\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" P1) (piece \"Ball\" P2) }) (rules (start (set Score Each 0)) (play (or (move Pass) (move Add (piece (mover)) (to (sites Empty)) (then <Scoring:updateOption> )) <TurnType:turnOption> )) (end (if (all Passed) { (if (= (score Mover) (score Next)) (result Mover Loss) ) (if (!= (score Mover) (score Next)) (byScore) ) } ) ) )",

@@ -1,7 +1,5 @@
 {
-    "define": {
-        "Home": "<Players:home>"
-    },
+    "define": {},
     "game": "\"Merekocdu\" (players <Players:num>) (equipment { (board (concentric {(* 3 <Players:num>)}) { <Players:track> } use:Vertex ) (piece \"Seed\" Shared) (hand Each) }) (rules (start { <Players:homes> (set Count 7 to:(sites Board)) }) (play (move Select (from (\"Home\") if:(> (count at:(from)) 1) ) (then (sow apply:(if (or (= (count at:(to)) 2) (= (count at:(to)) 4) ) (fromTo (from (to)) (to (handSite Mover)) count:(count at:(to)) ) ) origin:True ) ) ) ) (end (if (= (count in:(sites Board)) 0) (result Mover Win))) )",
     "option": {
         "Players": {

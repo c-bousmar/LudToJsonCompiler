@@ -1,8 +1,7 @@
 {
     "define": {
-        "Columns": "<Row:size>",
-        "NoPiece": "(all Sites (sites Player) if:(= 0 (count at:(site",
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NoPiece": "(all Sites (sites Player) if:(= 0 (count at:(site))))",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "NoSiteWith2Seeds": "(all Sites (sites Mover \"Home\") if:(!= 2 (count at:(site))))",
         "AllSitesNoMoreThanOne": "(all Sites (sites Mover \"Home\") if:(>= 1 (count at:(site))))"
     },

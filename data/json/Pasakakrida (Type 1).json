@@ -1,7 +1,7 @@
 {
     "define": {
-        "NextSiteFrom": "(\"NextSiteOnTrack\" (pips) from:#1",
-        "RemoveAPiece": "(move Remove (from"
+        "NextSiteFrom": "(\"NextSiteOnTrack\" (pips) from:#1)",
+        "RemoveAPiece": "(move Remove (from))"
     },
     "game": "\"Pasakakrida (Type 1)\" <Variant>",
     "option": {

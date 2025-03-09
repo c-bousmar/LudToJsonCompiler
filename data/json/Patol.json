@@ -1,12 +1,12 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips",
+        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips))",
         "SiteToMoveOnSelectedTrack": "(if (= (value Player Mover) 2) (\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCCW\") (\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCW\") )",
-        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2",
-        "SiteToMoveOnTrackCW": "(\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCW\"",
-        "SiteToMoveOnTrackCCW": "(\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCCW\"",
-        "SelectCW": "(set Value Mover 1",
-        "SelectCCW": "(set Value Mover 2",
+        "NextSite": "(\"NextSiteOnTrack\" 1 from:#1 #2)",
+        "SiteToMoveOnTrackCW": "(\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCW\")",
+        "SiteToMoveOnTrackCCW": "(\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackCCW\")",
+        "SelectCW": "(set Value Mover 1)",
+        "SelectCCW": "(set Value Mover 2)",
         "RememberSelectedTrack": "(then (if (\"IsOffBoard\" (value Player Mover)) #1 ) )",
         "MoveOn": "(if (\"IsNotOffBoard\" #1) (if (or (is In #1 (sites Empty)) (\"IsEnemyAt\" #1) ) (move (from (from) level:(level)) (to #1 <Play:capture> ) ) ) #2 )",
         "MadeACompleteCircuit": "(if (= 1 (value Player Mover)) (is In (value Piece at:(where \"Marker\" Mover)) (sites Track \"TrackCW\" from:(\"NextSite\" (last From) \"TrackCW\") to:(last To))) (is In (value Piece at:(where \"Marker\" Mover)) (sites Track \"TrackCCW\" from:(\"NextSite\" (last From) \"TrackCCW\") to:(last To))) )"

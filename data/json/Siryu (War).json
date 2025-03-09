@@ -1,10 +1,10 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (\"ThrowValue\"",
-        "ActivatePiece": "(if (= (state at:(last To)) 1) (set State at:(last To) 0",
-        "ActivatedPiece": "(= (state at:(from)) 0",
-        "InactivePiece": "(= (state at:(from)) 1",
+        "ThrowValue": "(mapEntry \"ThrowDiceValue\" (count Pips))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (\"ThrowValue\"))",
+        "ActivatePiece": "(if (= (state at:(last To)) 1) (set State at:(last To) 0))",
+        "ActivatedPiece": "(= (state at:(from)) 0)",
+        "InactivePiece": "(= (state at:(from)) 1)",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to)) )",
         "PieceMove": "(if (or (\"ActivatedPiece\") (and (= (count Pips) (mapEntry \"Sir\" (mover))) (\"InactivePiece\")) ) (if (\"IsNotOffBoard\" \"SiteToMoveOnTrack\") (if (or (is In \"SiteToMoveOnTrack\" (sites Empty)) (\"IsEnemyAt\" \"SiteToMoveOnTrack\") ) (move (from) (to \"SiteToMoveOnTrack\" \"CaptureEnemyPiece\" ) ) ) (then (\"ActivatePiece\")) ) )"
     },

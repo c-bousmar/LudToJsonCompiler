@@ -1,7 +1,7 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry (count Pips",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1",
+        "ThrowValue": "(mapEntry (count Pips))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" #2 #1)",
         "SiteToMove": "(if (= (from) (handSite Mover)) (\"SiteToMoveOnTrack\" from:0 (- (\"ThrowValue\") 1)) (\"SiteToMoveOnTrack\" from:(from) (\"ThrowValue\")) )"
     },
     "game": "\"Uturu Uturu Kaida\" (players <Player:num>) (equipment { (board (rectangle 2 <Board:size>) (track \"Track\" <Board:track> directed:True) use:Vertex ) (hand Each) (piece \"Horse\" Each (if (\"IsOffBoard\" (\"SiteToMove\")) (move Remove (from) level:(level)) (move (from (from) level:(level)) (to (\"SiteToMove\")) stack:True ) ) ) (\"StickDice\" 2) (map {(pair 0 10) (pair 1 0) (pair 2 20)}) }) (rules (start (place \"Horse\" \"Hand\")) (play (\"RollMove\" (if (< 0 (\"ThrowValue\")) (or (forEach Piece) (forEach Piece container:(mover))) ) ) ) (end (\"EscapeWin\")) )",

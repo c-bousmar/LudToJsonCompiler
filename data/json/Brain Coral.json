@@ -8,14 +8,11 @@
         "NoTiebreaker": "(and (set Score Mover (var \"MoverScore\")) (set Score Next (var \"NextScore\")) )",
         "CascadeTiebreaker": "(if (= (var \"MoverScore\") (var \"NextScore\")) (and (set Score Mover (* -1 (\"CascadeScore\" Mover Next))) (set Score Next (* -1 (\"CascadeScore\" Next Mover))) ) (\"NoTiebreaker\") )",
         "AllHave1Connection2Edge": "(all Sites #1 if:(or (and (is Empty (site)) (is In (site) (sites Outer)) ) (!= Infinity (count Steps (step \"ConnectionDirection\" (to if:(is Empty (to))) ) (site) (difference (sites Outer) (site)) ) ) ) )",
-        "ScoreConnectionDirection": "<BoardShape:directionScored>",
-        "ConnectionDirection": "<BoardShape:directionUsed>",
-        "BoardUsed": "<BoardShape:gridType>",
-        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell",
-        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell",
-        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell",
-        "TriSquare": "(board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex",
-        "ColourBackground": "(colour 126 130 156"
+        "HexLimp": "(board (hex Limping (- <BoardSize:smallSide> 1)) use:Cell)",
+        "Hex2Limp": "(board (hex (- <BoardSize:smallSide> 1) (+ <BoardSize:smallSide> 1)) use:Cell)",
+        "HexCell": "(board (hex Hexagon <BoardSize:smallSide>) use:Cell)",
+        "TriSquare": "(board (tiling T33434 (- <BoardSize:smallSide> 2)) use:Vertex)",
+        "ColourBackground": "(colour 126 130 156)"
     },
     "game": "\"Brain Coral\" (players 2) (equipment { \"BoardUsed\" (piece \"Ball\" Each) (piece \"Disc\" Each) }) (rules (start (set Score Each 0)) (play (do (move Add (to (sites Empty))) ifAfterwards:(\"AllHave1Connection2Edge\" (sites Around (last To) \"ConnectionDirection\" includeSelf:True)) (then <Scoring:selScoring>) )) (end (if (no Moves Next) { (if (= (score Mover) (score Next)) <TieScoring:finalTie> ) (if (!= (score Mover) (score Next)) (byScore) ) }) ) )",
     "option": {

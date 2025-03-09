@@ -1,7 +1,6 @@
 {
     "define": {
-        "NumPlayers": "<Player:num>",
-        "PiecesOwnedBy": "(count Cell at:(handSite #1"
+        "PiecesOwnedBy": "(count Cell at:(handSite #1))"
     },
     "game": "\"Pic\" (players \"NumPlayers\") (equipment { (board (concentric {(* 3 \"NumPlayers\")}) (track \"Track\" <Player:track> loop:True) use:Vertex ) (piece \"Seed\" Shared) (hand Each) <Player:regions> }) (rules (start (set Count <Start:numSeeds> to:(sites Track))) (play (or { (move Select (from (sites Mover) if:(is Occupied (from)) ) (then (sow apply:(if (and (not (is In (to) (sites Mover))) (= 3 (count at:(to))) ) (and (fromTo (from (to)) (to (handSite Mover)) count:3 ) (set State at:(to) (mover)) ) ) ) ) ) } (then (forEach Site (sites Board) (if (and (is Occupied (site)) (!= 0 (state at:(site)))) (and (fromTo (from (site)) (to (handSite (state at:(site)))) count:(count at:(site)) ) (set State at:(site) (state at:(site))) ) ) ) ) ) ) (end (if (\"NoPieceOnBoard\") (byScore { <Player:scores> }) ) ) )",
     "option": {

@@ -1,7 +1,5 @@
 {
-    "define": {
-        "SizeStart": "<Board:sizeHome>"
-    },
+    "define": {},
     "game": "\"Bajr\" (players <Players:numPlayers>) (equipment { (board (square <Board:size>)) (piece \"Counter\" Each (\"StepToEmpty\" (directions {Forwards Leftward Rightward}))) <Players:home> }) (rules (start { <Players:start> }) (play (forEach Piece)) (end (\"FillWin\" (sites (player (mapEntry (mover)))))) )",
     "option": {
         "Board": {

@@ -1,11 +1,10 @@
 {
     "define": {
-        "Columns": "<Board:rowSize>",
-        "WasInStore": "(is Pending",
-        "LastCounterInTheStore": "(set Pending",
-        "SowingEndInMyStore": "(= (to) (mapEntry Mover",
-        "LastHoleSowed": "(sites {(var)}",
-        "StoreLastHoleSowed": "(set Var (to"
+        "WasInStore": "(is Pending)",
+        "LastCounterInTheStore": "(set Pending)",
+        "SowingEndInMyStore": "(= (to) (mapEntry Mover))",
+        "LastHoleSowed": "(sites {(var)})",
+        "StoreLastHoleSowed": "(set Var (to))"
     },
     "game": "\"Katro Bevohoka\" (players 2) (equipment { (mancalaBoard 4 \"Columns\" store:None { (track \"TrackCCW1\" \"0,E,N1,W\" loop:True P1) (track \"TrackCCW2\" <Board:CCW2> loop:True P2) } ) (regions \"Home\" P1 (sites Track \"TrackCCW1\")) (regions \"Home\" P2 (sites Track \"TrackCCW2\")) (regions \"Normal\" P1 (difference (sites P1 \"Home\") (sites { <Board:R1> <Board:S1> <Board:T1> } ))) (regions \"Normal\" P2 (difference (sites P2 \"Home\") (sites { <Board:R2> <Board:S2> <Board:T2> } ))) (map {(pair P1 <Board:R1>) (pair P2 <Board:R2>)}) (piece \"Seed\" Shared) }) (rules (start { (set Count 2 to:(union (sites P1 \"Normal\") (sites P2 \"Normal\"))) (set Count 3 to: (sites { <Board:S1> <Board:T1> <Board:S2> <Board:T2> } )) } ) (play (move Select (from (if (and (\"SameTurn\") (not (\"WasInStore\")) ) \"LastHoleSowed\" (difference (sites Mover) (mapEntry (mover)) ) ) if:(< 0 (count at:(from))) ) (then (sow \"TrackCCW\" owner:(mover) apply: (if (\"SowingEndInMyStore\") (and (moveAgain) (\"LastCounterInTheStore\") ) (if (> (count at:(to)) 1) (and (moveAgain) (\"StoreLastHoleSowed\") ) ) ) ) ) ) ) (end (if (= (count Sites in:(difference (sites Mover) (sites Empty))) 1) (result Mover Win) ) ) )",
     "option": {

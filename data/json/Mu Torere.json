@@ -1,7 +1,7 @@
 {
     "define": {
-        "IsEmpty": "(is Empty (to",
-        "Centre": "(= (to) (centrePoint",
+        "IsEmpty": "(is Empty (to))",
+        "Centre": "(= (to) (centrePoint))",
         "MoveOnlyIfAdjacentToEnemyOrCentre": "(move Step (to if:(and (\"IsEmpty\") (or (not \"Centre\") (is Related Adjacent (from) (sites Occupied by:Next)) ) ) ) )",
         "MoveOnlyIfAdjacentToEnemy": "(move Step (to if:(and (\"IsEmpty\") (is Related Adjacent (from) (sites Occupied by:Next)) ) ) )"
     },

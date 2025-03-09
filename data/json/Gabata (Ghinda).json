@@ -1,8 +1,8 @@
 {
     "define": {
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
-        "NoPieceOnOwnedHolesP1": "(all Sites (sites (values Remembered \"OwnedP1\")) if:(= 0 (count at:(site",
-        "NoPieceOnOwnedHolesP2": "(all Sites (sites (values Remembered \"OwnedP2\")) if:(= 0 (count at:(site",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
+        "NoPieceOnOwnedHolesP1": "(all Sites (sites (values Remembered \"OwnedP1\")) if:(= 0 (count at:(site))))",
+        "NoPieceOnOwnedHolesP2": "(all Sites (sites (values Remembered \"OwnedP2\")) if:(= 0 (count at:(site))))",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "RememberOwnedHolesRandom": "(if (< 50 (value Random (range 1 100))) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",

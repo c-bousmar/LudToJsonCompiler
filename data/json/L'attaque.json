@@ -1,7 +1,7 @@
 {
     "define": {
-        "CaptureFlag": "(trigger \"FlagCaptured\" (next",
-        "FlagWasCaptured": "(is Triggered \"FlagCaptured\" (next",
+        "CaptureFlag": "(trigger \"FlagCaptured\" (next))",
+        "FlagWasCaptured": "(is Triggered \"FlagCaptured\" (next))",
         "CapturePiecesAndMakeVisible": "(and { (fromTo (from) (to (mapEntry (what at:(from))))) (fromTo (from (to)) (to (mapEntry (what at:(to))))) (set Hidden What at:(mapEntry (what at:(from))) False to:P1) (set Hidden What at:(mapEntry (what at:(from))) False to:P2) (set Hidden What at:(mapEntry (what at:(to))) False to:P1) (set Hidden What at:(mapEntry (what at:(to))) False to:P2) (set Hidden Value at:(mapEntry (what at:(from))) False to:P1) (set Hidden Value at:(mapEntry (what at:(from))) False to:P2) (set Hidden Value at:(mapEntry (what at:(to))) False to:P1) (set Hidden Value at:(mapEntry (what at:(to))) False to:P2) })",
         "CaptureDefenderAndMakeVisible": "(and { (fromTo (from (to)) (to (mapEntry (what at:(to))))) (fromTo (from) (to)) (set Hidden What at:(mapEntry (what at:(to))) False to:P1) (set Hidden What at:(mapEntry (what at:(to))) False to:P2) (set Hidden What at:(to) False to:Next) (set Hidden Value at:(mapEntry (what at:(to))) False to:P1) (set Hidden Value at:(mapEntry (what at:(to))) False to:P2) (set Hidden Value at:(to) False to:Next) })",
         "CaptureDefenderAndMoveAttackerAndMakeVisible": "(and { (fromTo (from (to)) (to (mapEntry (what at:(to))))) (fromTo (from) (to)) (set Hidden What at:(mapEntry (what at:(to))) False to:P1) (set Hidden What at:(mapEntry (what at:(to))) False to:P2) (set Hidden What at:(from) False to:Next) (set Hidden Value at:(mapEntry (what at:(to))) False to:P1) (set Hidden Value at:(mapEntry (what at:(to))) False to:P2) (set Hidden Value at:(from) False to:Next) })",

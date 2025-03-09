@@ -1,15 +1,13 @@
 {
     "define": {
-        "CrosscutSites": "(sites (results from:#1 to:(sites Around (from) Diagonal if:(and (is Mover (who at:(to))) (= 2 (count Sites in:(intersection { (sites Around (to) Orthogonal) (sites Around (from) Orthogonal) (sites Occupied by:Next) } ))))) (to)",
-        "HasCrosscuts": "(< 0 (count Sites in:(\"CrosscutSites\" #1)",
-        "Place": "(move Add (to (sites Empty)) (then (set Var \"Status\" \"AlreadyPlaced\" (then (if (and (\"NewTurn\") (\"HasCrosscuts\" (last To)) ) (set Var \"LT\" (last To) (then (set NextPlayer (player (mover))))) (set Var \"LT\" -1)",
-        "Choose2Resolve": "(forEach Site (sites Occupied by:Mover) (do (set Var \"LT\" (site)) next:(\"ResolveTheValue\" (var \"LT\")) ) (then (set Var \"Status\" \"NotYetPlaced\" (then (set NextPlayer (player (mover)))",
-        "ResolveTheValue": "(forEach Site (intersection (sites Around #1 Orthogonal) (sites Around (\"CrosscutSites\" #1) Orthogonal) ) (move (from #1) (to (site) if:(or \"NewTurn\" (!= 1 (state at:(to)))) (apply (remove (site))) ) (then (and (add (piece (- 3 (mover))) (to (var \"LT\") (apply (set State at:(to) 1)) )) (set Var \"LT\" (last To) (then (if (\"HasCrosscuts\" (var \"LT\")) (set NextPlayer (player (mover))) (set Var \"LT\" -1 (then (if (= (var \"Status\") \"NotYetPlaced\") (set NextPlayer (player (mover))) )))",
-        "NotYetPlaced": "0",
-        "AlreadyPlaced": "1",
-        "SquareGrid": "(board (square <BoardSize:smallSide>) use:Vertex",
-        "ColourBackground": "(colour LightTan",
-        "Invisible": "(colour 0 0 0 0"
+        "CrosscutSites": "(sites (results from:#1 to:(sites Around (from) Diagonal if:(and (is Mover (who at:(to))) (= 2 (count Sites in:(intersection { (sites Around (to) Orthogonal) (sites Around (from) Orthogonal) (sites Occupied by:Next) } ))))) (to) ))",
+        "HasCrosscuts": "(< 0 (count Sites in:(\"CrosscutSites\" #1) ))",
+        "Place": "(move Add (to (sites Empty)) (then (set Var \"Status\" \"AlreadyPlaced\" (then (if (and (\"NewTurn\") (\"HasCrosscuts\" (last To)) ) (set Var \"LT\" (last To) (then (set NextPlayer (player (mover))))) (set Var \"LT\" -1) )))))",
+        "Choose2Resolve": "(forEach Site (sites Occupied by:Mover) (do (set Var \"LT\" (site)) next:(\"ResolveTheValue\" (var \"LT\")) ) (then (set Var \"Status\" \"NotYetPlaced\" (then (set NextPlayer (player (mover))) ))))",
+        "ResolveTheValue": "(forEach Site (intersection (sites Around #1 Orthogonal) (sites Around (\"CrosscutSites\" #1) Orthogonal) ) (move (from #1) (to (site) if:(or \"NewTurn\" (!= 1 (state at:(to)))) (apply (remove (site))) ) (then (and (add (piece (- 3 (mover))) (to (var \"LT\") (apply (set State at:(to) 1)) )) (set Var \"LT\" (last To) (then (if (\"HasCrosscuts\" (var \"LT\")) (set NextPlayer (player (mover))) (set Var \"LT\" -1 (then (if (= (var \"Status\") \"NotYetPlaced\") (set NextPlayer (player (mover))) ))) )))))))",
+        "SquareGrid": "(board (square <BoardSize:smallSide>) use:Vertex)",
+        "ColourBackground": "(colour LightTan)",
+        "Invisible": "(colour 0 0 0 0)"
     },
     "game": "\"Resolve\" (players 2) (equipment { \"SquareGrid\" (regions P1 {(sites Side N) (sites Side S) }) (regions P2 {(sites Side W) (sites Side E) }) (piece \"Ball\" P1) (piece \"Ball\" P2) } ) (rules (play (if (\"NewTurn\") (do (forEach Site (sites State 1) (set State at:(site) 0)) next:(<Variant:whenYouCanResolveWithoutPlacing> (\"Place\") (\"Choose2Resolve\") )) (if (<= 0 (var \"LT\")) (\"ResolveTheValue\" (var \"LT\")) (\"Place\") ))) (end { (if (is Connected at:(last To) Orthogonal Mover) (result Mover Win) ) (if (is Connected at:(last From) Orthogonal P1) (result P1 Win) ) (if (is Connected at:(last From) Orthogonal P2) (result P2 Win) ) }",
     "option": {

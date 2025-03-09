@@ -1,13 +1,13 @@
 {
     "define": {
-        "ThrowValue": "(value Player Mover",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (\"ThrowValue\"",
-        "RemoveAPiece": "(move Remove (from",
+        "ThrowValue": "(value Player Mover)",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (\"ThrowValue\"))",
+        "RemoveAPiece": "(move Remove (from))",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (fromTo (from (to)) (to (handSite Next)) count:(count at:(to)) ) )",
-        "HasToThrow": "(< (\"ThrowValue\") 0",
-        "StopTurnIfNoMoveAgain": "(if (!= (value Player Mover) -2) (set Value Mover -1",
-        "ThrowAgainAndPlay": "(and (moveAgain) (set Value Mover -2",
-        "IfMoveAgain": "(= (value Player Mover) -2",
+        "HasToThrow": "(< (\"ThrowValue\") 0)",
+        "StopTurnIfNoMoveAgain": "(if (!= (value Player Mover) -2) (set Value Mover -1))",
+        "ThrowAgainAndPlay": "(and (moveAgain) (set Value Mover -2))",
+        "IfMoveAgain": "(= (value Player Mover) -2)",
         "Move": "(if (and (= \"ThrowValue\" 1) (\"HandOccupied\" Mover)) (move (from (handSite Mover)) (to (mapEntry \"EntrySite\" (mover))) (then (\"ThrowAgainAndPlay\")) ) (if (and (= \"ThrowValue\" 5) (\"HandOccupied\" Mover)) (move (from (handSite Mover)) (to (mapEntry \"EntrySite\" (mover))) count:(count Cell at:(handSite Mover)) (then (\"ThrowAgainAndPlay\")) ) (forEach Piece) ) (then (\"StopTurnIfNoMoveAgain\")) )",
         "ThrowMove": "(if (\"HasToThrow\") (\"RollMove\" (if (\"IfMoveAgain\") (do (set Value Mover (count Pips)) next:(\"Move\")) (move Pass (then (set Value Mover (count Pips)))) ) ) (\"Move\") )"
     },

@@ -1,9 +1,9 @@
 {
     "define": {
-        "ThrowValue": "(count Pips",
-        "ExtraThrowValue": "(mapEntry \"ExtraThrow\" (count Pips",
-        "ActivatedPiece": "(= (state at:#1) 1",
-        "ActivePiece": "(set State at:#1 1",
+        "ThrowValue": "(count Pips)",
+        "ExtraThrowValue": "(mapEntry \"ExtraThrow\" (count Pips))",
+        "ActivatedPiece": "(= (state at:#1) 1)",
+        "ActivePiece": "(set State at:#1 1)",
         "Sig": "(or (= 1 (\"ThrowValue\")) (= 5 (\"ThrowValue\")) )",
         "CaptureMove": "(if (\"IsEnemyAt\" (to)) (remove (to)) )",
         "MoveToActivate": "(move (from (from) if:(and (not (\"ActivatedPiece\" (from))) (or (\"Sig\") (= 1 (var \"SpecialSig\"))) ) ) (to (\"NextSiteOnTrack\" 1) if:(not (\"IsFriendAt\" (to))) (apply \"CaptureMove\") ) (then (and (\"ActivePiece\" (last To)) (if (= 1 (var \"SpecialSig\")) (and { (moveAgain) (set Var (+ (var) 1)) }) ) ) ) )",

@@ -1,12 +1,12 @@
 {
     "define": {
-        "NextSiteFrom": "(\"NextSiteOnTrack\" #2 from:#1",
-        "DieValue": "(face 28",
-        "AllPiecesInFinalQuadrant": "(\"AllOwnedPiecesIn\" (sites Mover \"FinalQuadrant\"",
+        "NextSiteFrom": "(\"NextSiteOnTrack\" #2 from:#1)",
+        "DieValue": "(face 28)",
+        "AllPiecesInFinalQuadrant": "(\"AllOwnedPiecesIn\" (sites Mover \"FinalQuadrant\"))",
         "EnterPieces": "(if (is Occupied (handSite Mover)) (forEach Die replayDouble:True if:(\"DieNotUsed\") (move (from (handSite Mover)) (to (\"NextSiteFrom\" (mapEntry \"Entry\" Mover) (- (pips) 1)) if:(is Empty (to)) ) ) (then (\"ReplayNotAllDiceUsed\")) ) )",
         "CommonMove": "(if (\"IsEndTrack\" (\"NextSiteFrom\" (from) #1)) (if (\"AllPiecesInFinalQuadrant\") (move Remove (from)) ) (move (from (from)) (to (\"NextSiteFrom\" (from) #1) if:(and { (\"NoEnemyOrOnlyOne\" (to)) (if (not (is In (to) (sites Mover \"StartingSide\"))) True (> 2 (size Stack at:(to))) ) (if (not (is In (to) (sites Mover \"AfterPenultimate\"))) True (>= 10 (count Pieces in:(sites {(handSite Mover) (mapEntry \"Entry\" Mover)}))) ) }) (\"HittingCapture\" (handSite Next)) ) ) )",
         "Move": "(forEach Die replayDouble:True if:(\"DieNotUsed\") (\"CommonMove\" (pips)) (then (\"ReplayNotAllDiceUsed\")) )",
-        "SpecialMove": "(\"CommonMove\" #1",
+        "SpecialMove": "(\"CommonMove\" #1)",
         "SpecialEnterPieces": "(if (is Occupied (handSite Mover)) (move (from (handSite Mover)) (to (\"NextSiteFrom\" (mapEntry \"Entry\" Mover) (- #1 1)) if:(is Empty (to)) ) ) )",
         "PlayMove": "(if (>= 0 (value Player Mover)) (\"RollEachNewTurnMove\" (if (all DiceEqual) (or (\"SpecialEnterPieces\" (\"DieValue\")) (forEach Piece (\"SpecialMove\" (\"DieValue\")) top:True) (then (and { (moveAgain) (set Var \"FirstPlay\" 1) (set Value Mover (\"DieValue\")) (set Var \"DoubleToPlay\" (\"DieValue\")) }) ) ) (or (\"EnterPieces\") (forEach Piece top:True) ) ) ) (or (\"SpecialEnterPieces\" (var \"DoubleToPlay\")) (forEach Piece (\"SpecialMove\" (var \"DoubleToPlay\")) top:True) (then (and { (if (or (= (value Player Mover) 1) (= (value Player Mover) 5)) (if (!= (var \"FirstPlay\") 1) (and (set Var \"DoubleToPlay\" (var \"DoubleToPlay\")) (moveAgain) ) (if (!= 6 (var \"DoubleToPlay\")) (and (set Var \"DoubleToPlay\" (+ (var \"DoubleToPlay\") 1)) (moveAgain) ) (and (set Var \"DoubleToPlay\" 0) (set Value Mover 0) ) ) ) (if (!= (var \"FirstPlay\") 1) (and (set Var \"DoubleToPlay\" (var \"DoubleToPlay\")) (moveAgain) ) (if (!= 1 (var \"DoubleToPlay\")) (and (set Var \"DoubleToPlay\" (- (var \"DoubleToPlay\") 1)) (moveAgain) ) (and (set Var \"DoubleToPlay\" 0) (set Value Mover 0) ) ) ) ) (if (!= (var \"FirstPlay\") 1) (set Var \"FirstPlay\" 1) (set Var \"FirstPlay\" 0)) }) ) ) (then (if (no Pieces Mover) (set Score Mover 2)) ) )"
     },

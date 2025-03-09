@@ -1,6 +1,6 @@
 {
     "define": {
-        "PiecesOwnedBy": "(count Cell at:(handSite #1"
+        "PiecesOwnedBy": "(count Cell at:(handSite #1))"
     },
     "game": "\"Mandoli\" <Variant>",
     "option": {

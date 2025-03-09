@@ -1,7 +1,5 @@
 {
     "define": {
-        "NumContagionByTurn": "3",
-        "NumContainmentByTurn": "4",
         "EdgeInCommon": "(intersection (sites Incident Edge of:Cell at:(from)) (sites Incident Edge of:Cell at:(to)) )",
         "NoEdgeBetweenCells": "(not (\"NoSites\" (sites Around (to) Own Orthogonal if:(\"NoSites\" (difference \"EdgeInCommon\" (sites Empty Edge) ) ) ) ) )"
     },

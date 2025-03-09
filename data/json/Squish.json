@@ -1,14 +1,13 @@
 {
     "define": {
-        "DestinationGroupSize": "(count Sites in:(sites Distance Orthogonal (step (to if:(and (!= (var \"From\") (to)) (is Mover (who at:(to)))))) from:(to) (min 0)",
-        "IsPlayableSiteType": "(is In (to) (difference <Board:area> (sites Occupied by:Mover",
-        "AlongLine": "(sites Distance (step #1 (to if:True)) from:(from) (min 1",
-        "FurtherAlongLine": "(sites Distance (step #1 (to if:True)) from:(to) (min 1",
+        "DestinationGroupSize": "(count Sites in:(sites Distance Orthogonal (step (to if:(and (!= (var \"From\") (to)) (is Mover (who at:(to)))))) from:(to) (min 0) ))",
+        "IsPlayableSiteType": "(is In (to) (difference <Board:area> (sites Occupied by:Mover)))",
+        "AlongLine": "(sites Distance (step #1 (to if:True)) from:(from) (min 1))",
+        "FurtherAlongLine": "(sites Distance (step #1 (to if:True)) from:(to) (min 1))",
         "MoveTowardFriendInSameLine": "(< 0 (count Pieces Mover in:(\"FurtherAlongLine\" #1)))",
         "MoveToSiteWithFriendVisible": "(< 1 (count Pieces Mover in:(sites LineOfSight Piece at:(to) Orthogonal)))",
-        "SquishMove": "(move Step #1 (to if:(and (\"IsPlayableSiteType\") (\"MoveTowardFriendInSameLine\" #1) ) (apply (remove (to))",
-        "StandardEnd": "{ (if (= 1 (count Groups Cell Orthogonal if:(is Mover (who at:(to))) )) (result Mover Win) ) (if (= 1 (count Groups Cell Orthogonal if:(is Next (who at:(to))) )) (result Next Win) ) (if (no Moves Next) (result Mover Win) ) (if (no Moves Mover) (result Mover Loss) ) }",
-        "ColourBackground": "(colour 245 245 245"
+        "SquishMove": "(move Step #1 (to if:(and (\"IsPlayableSiteType\") (\"MoveTowardFriendInSameLine\" #1) ) (apply (remove (to)) )))",
+        "ColourBackground": "(colour 245 245 245)"
     },
     "game": "\"Squish\" (players 2) (equipment { (board (hex Hexagon <Board:side>) use:Cell) (piece \"Disc\" Each) } ) (rules (start {<Board:white> <Board:black>}) (play (forEach Piece (or { (\"SquishMove\" NNE) (\"SquishMove\" E) (\"SquishMove\" SSE) (\"SquishMove\" SSW) (\"SquishMove\" W) (\"SquishMove\" NNW) } ))) (end \"StandardEnd\"",
     "option": {

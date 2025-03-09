@@ -1,6 +1,6 @@
 {
     "define": {
-        "ThrowPipValue": "(mapEntry \"Throw\" (pips",
+        "ThrowPipValue": "(mapEntry \"Throw\" (pips))",
         "CaptureToPieceAndAddScore": "(apply (if (is Occupied (to)) (and { (if (is In (to) (sites {(where \"King\" P1) (where \"King\" P2) (where \"King\" P3) (where \"King\" P4)})) (set Value Mover (+ (value Player Mover) 1)) ) (if (and (!= Off (where \"King\" Mover)) (= (value Player Mover) 1)) (addScore Mover 54) ) (addScore Mover (value Piece at:(to))) (remove (to)) }) ) )",
         "CaptureForwardDiagonal": "(move Step (directions {FR FL}) (to if:(\"IsEnemyAt\" (to)) (\"CaptureToPieceAndAddScore\") ) )",
         "PlayAPiece": "(forEach Die (if (= (\"ThrowPipValue\") 1) (or (forEach Piece \"Pawn\") (forEach Piece \"King_noCross\")) (if (= (\"ThrowPipValue\") 4) (forEach Piece \"Elephant\") (if (= (\"ThrowPipValue\") 3) (forEach Piece \"Knight\") (if (= (\"ThrowPipValue\") 2) (forEach Piece \"Rook\") ) ) ) ) )"

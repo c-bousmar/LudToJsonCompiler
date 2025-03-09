@@ -1,6 +1,6 @@
 {
     "define": {
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To",
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To))",
         "HopStyle": "(move Hop #1 #2 (between if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between)) ) (apply (remove (between))) ) (to if:(is Empty (to))) #3 )",
         "HopSequenceCaptureAgain": "(move Hop (from (last To)) Adjacent (between #1 #2 if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between))) (apply (remove (between) #3)) ) (to if:(is Empty (to))) (then (if (can Move (hop (from (last To)) Adjacent (between #1 #2 if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between)) ) ) (to if:(is Empty (to))) ) ) (moveAgain) ) ) )",
         "HopSequenceCapture": "(move Hop Adjacent (between #1 #2 if:(\"IsEnemyAt\" (between)) (apply (remove (between) #3)) ) (to if:(is Empty (to))) (then (if (can Move (hop (from (last To)) Adjacent (between #1 #2 if:(and (not (is In (between) (sites ToClear))) (\"IsEnemyAt\" (between)) ) ) (to if:(is Empty (to))) ) ) (moveAgain) ) ) )"

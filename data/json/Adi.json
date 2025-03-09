@@ -1,10 +1,9 @@
 {
     "define": {
-        "Columns": "6",
-        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1",
+        "PiecesOwnedBy": "(+ (count at:(mapEntry #1)) (count in:(sites #1)))",
         "PossibleSowFrom": "(if (is Mover P1) (not (is In (from) (values Remembered \"P1SowFrom\"))) (not (is In (from) (values Remembered \"P2SowFrom\"))) )",
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
-        "NoPieceOnBoard": "(all Sites (union (sites P1) (sites P2)) if:(= 0 (count at:(site",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
+        "NoPieceOnBoard": "(all Sites (union (sites P1) (sites P2)) if:(= 0 (count at:(site))))",
         "RightMostEmpty": "(trackSite FirstSite \"TrackCW\" from:(mapEntry \"RightMost\" Mover) if:(is Empty (to)) )",
         "ForgetValue": "(if (is Mover P1) (forget Value \"OwnedP1\" #1) (forget Value \"OwnedP2\" #1) )",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",

@@ -1,7 +1,7 @@
 {
     "define": {
-        "ThrowValue": "(count Pips",
-        "NoPieceOnBoard": "(< (count Pieces Mover in:(sites Board)) 1",
+        "ThrowValue": "(count Pips)",
+        "NoPieceOnBoard": "(< (count Pieces Mover in:(sites Board)) 1)",
         "CaptureMove": "(forEach Level (to) FromTop (if (\"IsEnemyAt\" (to) level:(level)) (remove (to) level:(level)) ) )"
     },
     "game": "\"Aj T'iwil\" (players <Player:num>) (equipment { (board (rectangle 1 <Player:size>) <Player:tracks> use:Edge ) (regions \"AllSites\" (sites Board Vertex)) (piece \"Stick\" Each (forEach Value (values Remembered \"Throws\") (if (\"IsOffBoard\" (\"NextSiteOnTrack\" (value) from:(from) \"Track\")) (move (from (from) level:(level)) (to (handSite Mover) (apply (forget Value \"Throws\" (value))) ) ) (move (from (from) level:(level) if:(if (is In (from) (sites Hand Mover)) (\"NoPieceOnBoard\") True ) ) (to (\"NextSiteOnTrack\" (value) from:(from) \"Track\") (apply (and (\"CaptureMove\") (forget Value \"Throws\" (value)))) ) ) ) ) ) (\"StickDice\" 4) (hand Each) }) (rules (start { <Player:team> }) phases:{ (phase \"ThrowPhase\" (play (\"RollMove\" (move Pass (then (if (not (no Pieces Mover)) (and { (if (!= 0 (\"ThrowValue\")) (do (remember Value \"Throws\" (\"ThrowValue\")) ifAfterwards:(can Move (or (forEach Piece container:(mover)) (forEach Piece))) ) ) (moveAgain) (if (\"SameTurn\") (set Pending)) }) ) ) ) ) ) (nextPhase (is Pending) \"MovePhase\") ) (phase \"MovePhase\" (play (or (forEach Piece) (forEach Piece container:(mover)) (then (if (< 0 (size Array (values Remembered \"Throws\"))) (moveAgain) ) ) ) ) (nextPhase (= 0 (size Array (values Remembered \"Throws\"))) \"ThrowPhase\") ) } (end (\"CaptureAllTeam\")) )",

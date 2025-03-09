@@ -1,18 +1,18 @@
 {
     "define": {
-        "IsSupplierAt": "(and (not (is Empty #1)) (> 3 (count Pieces of:(who at:#1) in:(sites Around #1 <Grid:dir> if:(not (is Empty (to))))))",
+        "IsSupplierAt": "(and (not (is Empty #1)) (> 3 (count Pieces of:(who at:#1) in:(sites Around #1 <Grid:dir> if:(not (is Empty (to)))))) )",
         "IsWarehouseAt": "(< 2 (count Pieces of:(who at:#1) in:(sites Around #1 <Grid:dir>)))",
-        "IsDeficitInChainAt": "(< (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1)))",
-        "ChainAt": "(sites Group at:#1 <Grid:dir>",
+        "IsDeficitInChainAt": "(< (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1))) )",
+        "ChainAt": "(sites Group at:#1 <Grid:dir>)",
         "SuppliersAroundChainAt": "(sites Around (\"ChainAt\" #1) <Grid:dir> if:(\"IsSupplierAt\" (to)))",
-        "WarehousesinChainAt": "(forEach (\"ChainAt\" #1) if:(\"IsWarehouseAt\" (site))",
-        "Place": "(do (move Add (to (sites Empty)) ) ifAfterwards:(not (\"IsDeficitInChainAt\" (last To)))",
-        "DeficitWarehousesOf": "(forEach (sites Occupied by:#1) if:(and (\"IsWarehouseAt\" (site)) (\"IsDeficitInChainAt\" (site))",
-        "AllWarehousesOf": "(forEach (sites Occupied by:#1) if:(\"IsWarehouseAt\" (site",
-        "Score": "(and (\"ScoreFor\" P1) (\"ScoreFor\" P2",
-        "ScoreFor": "(set Score #1 (size Array (array (\"AllWarehousesOf\" #1",
-        "SurplusGoodsChainAt": "(- (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1)))",
-        "UpdateSurplusesToDisplayFor": "(forEach Group <Grid:dir> if:(is In (to) (sites Occupied by:#1)) (forEach Value (array (sites)) (set Value at:(value) (\"SurplusGoodsChainAt\" (value)))"
+        "WarehousesinChainAt": "(forEach (\"ChainAt\" #1) if:(\"IsWarehouseAt\" (site)) )",
+        "Place": "(do (move Add (to (sites Empty)) ) ifAfterwards:(not (\"IsDeficitInChainAt\" (last To))) )",
+        "DeficitWarehousesOf": "(forEach (sites Occupied by:#1) if:(and (\"IsWarehouseAt\" (site)) (\"IsDeficitInChainAt\" (site)) ))",
+        "AllWarehousesOf": "(forEach (sites Occupied by:#1) if:(\"IsWarehouseAt\" (site)))",
+        "Score": "(and (\"ScoreFor\" P1) (\"ScoreFor\" P2))",
+        "ScoreFor": "(set Score #1 (size Array (array (\"AllWarehousesOf\" #1))))",
+        "SurplusGoodsChainAt": "(- (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1))) )",
+        "UpdateSurplusesToDisplayFor": "(forEach Group <Grid:dir> if:(is In (to) (sites Occupied by:#1)) (forEach Value (array (sites)) (set Value at:(value) (\"SurplusGoodsChainAt\" (value))) ))"
     },
     "game": "\"SupplyChains\" (players 2) (equipment { <Board:used> (piece \"Disc\" Each) } ) (rules (play (priority { (move Remove (\"DeficitWarehousesOf\" <Variant:removalsBy>)) (or { (\"Place\") <Variant:passingAllowed> } ) } (then (and { (\"UpdateSurplusesToDisplayFor\" Mover) (\"UpdateSurplusesToDisplayFor\" Next) (\"Score\") (if (can Move (move Remove (\"DeficitWarehousesOf\" <Variant:removalsBy>))) (moveAgain) <Variant:moveProtocol> ) } )))) (end (if (or (all Passed) (no Moves Mover)) (byScore))) )) (define \"DoubleTurnProtocol\" (set Var \"MoveInTurn\" (% (+ 3 (var \"MoveInTurn\")) 2) (then (if (= 1 (var \"MoveInTurn\")) (moveAgain)",
     "option": {

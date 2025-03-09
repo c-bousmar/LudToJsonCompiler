@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\"",
+        "NextHole": "(\"NextSiteOnTrack\" #2 from:#1 \"Track\")",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "RightMostEmpty": "(trackSite FirstSite \"TrackCW\" from:(mapEntry \"RightMost\" Mover) if:(is Empty (to)) )",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",

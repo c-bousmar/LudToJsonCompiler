@@ -2,13 +2,13 @@
     "define": {
         "PlaceOutOfSight": "(move Add (to (sites Empty) if:(not (is Within (id \"Disc\" Mover) in:(sites LineOfSight Piece at:(to)))) ) (then (addScore Mover 1)) )",
         "StepMoves": "(or { (\"StepIteration\" \"S1\" 1) (\"StepIteration\" \"S2\" 2) (\"StepIteration\" \"S3\" 3) (\"StepIteration\" \"S4\" 4) (\"StepIteration\" \"S5\" 5) })",
-        "S1": "(intersection (sites Empty) (sites Around (from",
-        "S2": "(intersection (sites Empty) (sites Around (\"S1\"",
-        "S3": "(intersection (sites Empty) (sites Around (\"S2\"",
-        "S4": "(intersection (sites Empty) (sites Around (\"S3\"",
-        "S5": "(intersection (sites Empty) (sites Around (\"S4\"",
+        "S1": "(intersection (sites Empty) (sites Around (from)))",
+        "S2": "(intersection (sites Empty) (sites Around (\"S1\")))",
+        "S3": "(intersection (sites Empty) (sites Around (\"S2\")))",
+        "S4": "(intersection (sites Empty) (sites Around (\"S3\")))",
+        "S5": "(intersection (sites Empty) (sites Around (\"S4\")))",
         "StepIteration": "(if (<= #2 (count Pieces Next in:(sites Around (from)))) (move (from (from)) (to (#1)) ) )",
-        "BoardUsed": "(<BoardShape:gridType> <BoardSize:smallSide>"
+        "BoardUsed": "(<BoardShape:gridType> <BoardSize:smallSide>)"
     },
     "game": "\"Infuse\" (players 2) (equipment { (board \"BoardUsed\" use:Cell) (piece \"Disc\" Each) }) (rules (start (set Score Each 0)) (play (if (was Pass) (or (move Pass) (priority (\"PlaceOutOfSight\") (forEach Piece (do (\"StepMoves\") ifAfterwards:(can Move (add (to (sites Empty) if:(not (is Within (id \"Disc\" Mover) in:(sites LineOfSight Piece at:(to))))) ) ) ) ) ) ) (or { (\"PlaceOutOfSight\") (forEach Piece (\"StepMoves\")) (move Pass) }) ) ) (end { (if (and (all Passed) (> (score Mover) (score Next)) ) (result Mover Win) ) (if (and (all Passed) (<= (score Mover) (score Next)) ) (result Next Win) ) }) )",
     "option": {},

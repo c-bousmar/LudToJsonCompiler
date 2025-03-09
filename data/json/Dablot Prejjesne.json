@@ -3,7 +3,7 @@
         "HopSequenceCapture": "(move Hop #1 (between if:(and (\"IsEnemyAt\" (between)) (>= (value Piece at:(from)) (value Piece at:(between)))) (apply (remove (between))) ) (to if:(is Empty (to))) (then (\"ReplayIfCanMove\" (hop (from (last To)) (between if:(and (\"IsEnemyAt\" (between)) (>= (value Piece at:(from)) (value Piece at:(between)))) (apply (remove (between))) ) (to if:(is Empty (to))) ) ) ) )",
         "OnlyKings": "(and { (= 1 (count Pieces P1)) (\"IsNotOffBoard\" (where \"King\" P1)) (= 1 (count Pieces P2)) (\"IsNotOffBoard\" (where \"King\" P2)) })",
         "HigherValue": "(max (results from:(sites Occupied by:#1) to:(sites Occupied by:#1) (value Piece at:(to)) ) )",
-        "OneSinglePiece": "(= 1 (count Pieces #1",
+        "OneSinglePiece": "(= 1 (count Pieces #1))",
         "SingleEnemyHigherPieceBlocked": "(and { (< (\"HigherValue\" Mover) (\"HigherValue\" Next)) (\"OneSinglePiece\" Next) (no Moves Next) })",
         "OneSinglePieceSameRank": "(and { (\"OneSinglePiece\" P1) (\"OneSinglePiece\" P2) (= (\"HigherValue\" P1) (\"HigherValue\" P2)) })",
         "StepToEmptyToward": "(move Step (to if:(and (is Empty (to)) (< (count Steps (to) (regionSite (sites Occupied by:Next) index:0)) (count Steps (from) (regionSite (sites Occupied by:Next) index:0)) ) ) ) )"

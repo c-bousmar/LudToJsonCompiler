@@ -1,10 +1,7 @@
 {
     "define": {
-        "Entry": "87",
-        "EndInnerTrack": "1",
-        "BeginOuterTrack": "0",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (count Pips) #1",
-        "SiteToMoveOnTrackForLion": "(\"NextSiteOnTrack\" (* (count Pips) 2) #1",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (count Pips) #1)",
+        "SiteToMoveOnTrackForLion": "(\"NextSiteOnTrack\" (* (count Pips) 2) #1)",
         "EmptyCentralSpaceReached": "(and (\"IsEndTrack\" (\"SiteToMoveOnTrack\")) (is Empty \"BeginOuterTrack\") )",
         "EntryReachedFromInside": "(\"IsEndTrack\" (\"NextSiteOnTrack\" (count Pips) \"OppositeTrack\"))",
         "PieceNowMoveToTheEntry": "(then (and (remove (last To)) (add (piece (id \"Marker\" Mover)) (to 0)) ) )",

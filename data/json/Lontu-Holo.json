@@ -1,6 +1,6 @@
 {
     "define": {
-        "NextHoleFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2",
+        "NextHoleFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2)",
         "NoSeedInHome": "(all Sites (sites #1 \"Home\") if:(is Empty (site)))",
         "OneSeedInEachHole": "(all Sites (sites #1 \"Home\") if:(= 1 (count at:(site))))"
     },

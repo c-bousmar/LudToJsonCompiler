@@ -1,15 +1,14 @@
 {
     "define": {
-        "PrimaryDirectionsFor": "(if (if (= 1 (player #1)) (directions {Forwards Rightward}) (if (= 2 <Board:players>) (directions {Backwards Leftward}) (if (= 2 (player #1)) (directions {Backwards Leftward}) (directions {Backwards Leftward})",
-        "LapSiteOf": "(if (= 1 #1) (sites <Board:lapP1>) (if (= 2 #1) (sites <Board:lapP2>) (sites <Board:lapP3>))",
-        "GridDir": "Adjacent",
+        "PrimaryDirectionsFor": "(if (if (= 1 (player #1)) (directions {Forwards Rightward}) (if (= 2 <Board:players>) (directions {Backwards Leftward}) (if (= 2 (player #1)) (directions {Backwards Leftward}) (directions {Backwards Leftward}) ))))",
+        "LapSiteOf": "(if (= 1 #1) (sites <Board:lapP1>) (if (= 2 #1) (sites <Board:lapP2>) (sites <Board:lapP3>)) )",
         "SymRemover": "(renumber (rotate (* (- #1 1) (/ 360 #1)) (trim (remove #2 #3))))",
-        "Sym2Remover": "(\"SymRemover\" 2 (\"SymRemover\" 2 #1 #2) #2",
+        "Sym2Remover": "(\"SymRemover\" 2 (\"SymRemover\" 2 #1 #2) #2)",
         "RaggedSquare": "(\"SymRemover\" 4 (\"SymRemover\" 4 (\"SymRemover\" 4 (\"SymRemover\" 4 #1 #2) #2) #2) #3)",
         "RaggedTri": "(\"SymRemover\" 1 (\"SymRemover\" 3 (\"SymRemover\" 3 #1 #2) #2) #3)",
         "RaggedHex": "(\"SymRemover\" 6 (\"SymRemover\" 6 (\"SymRemover\" 6 (\"SymRemover\" 6 (\"SymRemover\" 6 (\"SymRemover\" 6 (hex #1) #2) #2) #2) #2) #2) #3)",
-        "DestinationEdgesFor": "(intersection (sites Perimeter Edge) (forEach of:(sites #1) (sites Incident Edge of:Cell at:(site",
-        "DestinationEdgesForx": "(sites Perimeter Edge"
+        "DestinationEdgesFor": "(intersection (sites Perimeter Edge) (forEach of:(sites #1) (sites Incident Edge of:Cell at:(site))))",
+        "DestinationEdgesForx": "(sites Perimeter Edge)"
     },
     "game": {},
     "option": {},

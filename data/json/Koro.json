@@ -1,6 +1,6 @@
 {
     "define": {
-        "IsOlderPlayer": "(is Mover P1",
+        "IsOlderPlayer": "(is Mover P1)",
         "NoOwnedHoleWithMoreThanOneSeedExceptHogon": "(all Sites (difference (sites #1) (mapEntry \"Hogon\" #1)) if:(>= 1 (count at:(site))) )",
         "NoOwnedHoleWithMoreThanOneSeed": "(all Sites (sites #1) if:(>= 1 (count at:(site))) )"
     },

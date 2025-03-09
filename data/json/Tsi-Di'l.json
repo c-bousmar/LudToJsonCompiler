@@ -1,7 +1,5 @@
 {
-    "define": {
-        "Dim": "[#]"
-    },
+    "define": {},
     "game": "\"Tsi-Di'l\" <Variant>",
     "option": {
         "Variant": {

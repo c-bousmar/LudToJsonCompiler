@@ -1,10 +1,10 @@
 {
     "define": {
-        "ThrowValue": "(count Pips",
+        "ThrowValue": "(count Pips)",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to)) )",
-        "ActivatePiece": "(set State at:#1 1",
-        "PieceActivated": "(!= 0 (state at:#1",
-        "SiteInHome": "(is In #1 (sites Mover \"Home\"",
+        "ActivatePiece": "(set State at:#1 1)",
+        "PieceActivated": "(!= 0 (state at:#1))",
+        "SiteInHome": "(is In #1 (sites Mover \"Home\"))",
         "CountOwnPiecesOutHome": "(count Pieces Mover in:(difference (sites Board) (sites Mover \"Home\")))",
         "OnlyOnePieceMovingOutOfHome": "(if (not (\"SiteInHome\" (from))) True (if (\"SiteInHome\" (\"NextSiteOnTrack\" (\"ThrowValue\"))) True (= (\"CountOwnPiecesOutHome\") 0) ) )",
         "Move": "(if (and { (if (\"PieceActivated\" (from)) True (= 1 (\"ThrowValue\")) ) #1 }) (if (and (not (\"IsFriendAt\" (\"NextSiteOnTrack\" (\"ThrowValue\")))) (\"OnlyOnePieceMovingOutOfHome\") ) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\")) \"CaptureEnemyPiece\" ) (then (if (and (not (\"PieceActivated\" (last To))) (= 1 (\"ThrowValue\"))) (\"ActivatePiece\" (last To)) ) ) ) ) )"

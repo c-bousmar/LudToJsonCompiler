@@ -1,7 +1,5 @@
 {
     "define": {
-        "ProduceWorkerOrSoldier": "1",
-        "ProduceBase": "2",
         "ProductionSites": "(> (+ (count Sites in:(sites State \"ProduceWorkerOrSoldier\")) (count Sites in:(sites State \"ProduceBase\"))) 0)",
         "ClearProduction": "(forEach Site (sites Empty) (set State at:(to) 0))",
         "IsFriendlyWorkerAt": "(and (is Friend (who at:#1 #2)) (\"IsPieceAt\" \"Soldier\" Mover #1) )",

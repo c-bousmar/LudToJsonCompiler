@@ -1,6 +1,6 @@
 {
     "define": {
-        "NoPieces": "(all Sites (sites #1) if:(= 0 (count at:(site"
+        "NoPieces": "(all Sites (sites #1) if:(= 0 (count at:(site))))"
     },
     "game": "\"Owana\" <Variant>",
     "option": {

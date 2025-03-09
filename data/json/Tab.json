@@ -1,13 +1,13 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry (count Pips",
+        "ThrowValue": "(mapEntry (count Pips))",
         "SpecialThrows": "(is In (\"ThrowValue\") (sites {1 4 6}))",
-        "Tab": "(= 1 (\"ThrowValue\"",
+        "Tab": "(= 1 (\"ThrowValue\"))",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to) count:(count at:(to))) )",
         "CountPiecesInHome": "(count Pieces #1 in:(sites #1 \"Home\"))",
-        "PieceGoesToEnemyHome": "(set State at:#1 1",
-        "PieceDidNotGoToEnemyHome": "(= 0 (state at:#1",
-        "IsInTrack": "(is In #1 (sites Track Mover #2",
+        "PieceGoesToEnemyHome": "(set State at:#1 1)",
+        "PieceDidNotGoToEnemyHome": "(= 0 (state at:#1))",
+        "IsInTrack": "(is In #1 (sites Track Mover #2))",
         "Move": "(or { (if (\"IsInTrack\" (site) \"HomeTrack\") (move (from (site)) (to (\"NextSiteOnTrack\" (\"ThrowValue\") from:(site) \"HomeTrack\") \"CaptureEnemyPiece\" ) count:(count at:(site)) ) ) (if (\"IsInTrack\" (site) \"MiddleTrack\") (move (from (site)) (to (\"NextSiteOnTrack\" (\"ThrowValue\") from:(site) \"MiddleTrack\") \"CaptureEnemyPiece\" ) count:(count at:(site)) ) ) (if (\"IsInTrack\" (site) \"EnemyTrack\") (if (if (is In (site) (sites Next \"Home\")) True (and (!= 0 (\"CountPiecesInHome\" Next)) (\"PieceDidNotGoToEnemyHome\" (site)) ) ) (move (from (site)) (to (\"NextSiteOnTrack\" (\"ThrowValue\") from:(site) \"EnemyTrack\") \"CaptureEnemyPiece\" ) count:(count at:(site)) (then (if (and (is In (last To) (sites Next \"Home\")) (\"PieceDidNotGoToEnemyHome\" (last To))) (\"PieceGoesToEnemyHome\" (last To)) ) ) ) ) ) })"
     },
     "game": "\"Tab\" (players 2) (equipment { (board (rectangle 4 <Board:size>) { (track \"HomeTrack1\" \"0,E,N1,W\" P1 directed:True) (track \"HomeTrack2\" <Board:HomeTrack2> P2 directed:True) (track \"MiddleTrack\" <Board:MiddleTrack> loop:True) (track \"EnemyTrack1\" <Board:EnemyTrack1> P1 directed:True) (track \"EnemyTrack2\" <Board:EnemyTrack2> P2 directed:True) } use:Vertex ) (piece \"Stick\" Each) (regions \"AllSites\" (sites Board)) (\"StickDice\" 4) (map \"Throw\" {(pair 0 6) (pair 1 1) (pair 2 2) (pair 3 3) (pair 4 4)}) (regions \"Home\" P1 (sites Bottom)) (regions \"Home\" P2 (sites Top)) }) (rules (start { (place \"Stick1\" (sites Bottom)) (place \"Stick2\" (sites Top)) }) phases:{ (phase \"InitGame\" (play (\"RollMove\" (move Pass) (then (if (\"Tab\") (moveAgain) ) ) ) ) (nextPhase (\"Tab\") \"Play\") ) (phase \"Play\" (play (\"RollMove\" (forEach Site (sites Occupied by:Mover) (\"Move\") ) (then (if (\"SpecialThrows\") (moveAgain) ) ) ) ) ) } (end (\"CaptureAll\" Next)) )",

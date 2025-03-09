@@ -1,9 +1,9 @@
 {
     "define": {
-        "NextHole": "(trackSite Move from:#1 \"Track\" steps:#2",
-        "NoPieceOnBoard": "(no Pieces All in:(sites Board",
-        "NoPieceOnOwnedHolesP1": "(no Pieces All in:(sites (values Remembered \"OwnedP1\"",
-        "NoPieceOnOwnedHolesP2": "(no Pieces All in:(sites (values Remembered \"OwnedP2\"",
+        "NextHole": "(trackSite Move from:#1 \"Track\" steps:#2)",
+        "NoPieceOnBoard": "(no Pieces All in:(sites Board))",
+        "NoPieceOnOwnedHolesP1": "(no Pieces All in:(sites (values Remembered \"OwnedP1\")))",
+        "NoPieceOnOwnedHolesP2": "(no Pieces All in:(sites (values Remembered \"OwnedP2\")))",
         "RemmemberOwnedHoles": "(if (is Mover P1) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "RememberOwnedHolesRandom": "(if (< 50 (value Random (range 1 100))) (remember Value \"OwnedP1\" #1) (remember Value \"OwnedP2\" #1) )",

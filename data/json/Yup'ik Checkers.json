@@ -1,8 +1,8 @@
 {
     "define": {
         "HopMan": "(move Hop (from #1) (directions {FR FL}) (between if:(\"IsEnemyAt\" (between)) (apply (remove (between))) ) (to if:(is Empty (to))) #2 )",
-        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To",
-        "JumpToPromotionZone": "(is In (last To) (sites Next"
+        "IsUnpromoted": "(\"IsPieceAt\" \"Counter\" Mover (last To))",
+        "JumpToPromotionZone": "(is In (last To) (sites Next))"
     },
     "game": "\"Yup'ik Checkers\" <Variant>",
     "option": {

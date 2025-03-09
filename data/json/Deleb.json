@@ -1,8 +1,8 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "ThrowThreeDice": "(+ (+ (\"Die1\") (\"Die2\")) (\"Die3\"",
-        "ThrowTwoDice": "(+ (\"Die1\") (\"Die2\"",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "ThrowThreeDice": "(+ (+ (\"Die1\") (\"Die2\")) (\"Die3\"))",
+        "ThrowTwoDice": "(+ (\"Die1\") (\"Die2\"))",
         "Remember": "(if (is Mover P1) (remember Value \"ScoreP1\" #1) (if (is Mover P2) (remember Value \"ScoreP2\" #1) (if (is Mover P3) (remember Value \"ScoreP3\" #1) (remember Value \"ScoreP4\" #1) ) ) )",
         "Forget": "(if (is Mover P1) (forget Value \"ScoreP1\" #1) (if (is Mover P2) (forget Value \"ScoreP2\" #1) (if (is Mover P3) (forget Value \"ScoreP3\" #1) (forget Value \"ScoreP4\" #1) ) ) )",
         "ForgetAll": "(if (is Mover P1) (forget Value \"ScoreP1\" All) (if (is Mover P2) (forget Value \"ScoreP2\" All) (if (is Mover P3) (forget Value \"ScoreP3\" All) (forget Value \"ScoreP4\" All) ) ) )",

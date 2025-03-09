@@ -1,8 +1,7 @@
 {
     "define": {
-        "IsPlayableSiteType": "(is In (to) (difference <Board:area> (sites Occupied by:Mover",
-        "StalemateEnd": "{ (if (no Moves Next) (result Mover Win) ) (if (no Moves Mover) (result Mover Loss) ) }",
-        "ColourBackground": "(colour 245 245 245"
+        "IsPlayableSiteType": "(is In (to) (difference <Board:area> (sites Occupied by:Mover)))",
+        "ColourBackground": "(colour 245 245 245)"
     },
     "game": "\"Unlace\" (players 2) (equipment { (board (hex Hexagon <Board:side>) use:Cell) (piece \"Disc\" Each) } ) (rules (start {<Board:white> <Board:black>}) (play (forEach Piece (do (set Var \"StartGroupSize\" (size Group at:(from) if:(is Mover (who at:(to))))) next:(do (move Step (to if:\"IsPlayableSiteType\" (apply (remove (to)))) ) ifAfterwards:(< (var \"StartGroupSize\") (size Group at:(last To) if:(is Mover (who at:(to))))) )))) (end \"StalemateEnd\"",
     "option": {

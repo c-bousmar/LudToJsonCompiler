@@ -1,10 +1,9 @@
 {
     "define": {
-        "ColumnSize": "6",
-        "EmptyTop": "(intersection (sites Top) (sites Empty",
-        "LastColumn": "(sites Column (column of:(last To",
-        "Distance": "(count Sites in:(intersection (sites Empty) \"LastColumn\"",
-        "Drop": "(slide (from (last To)) S (between (exact \"Distance\""
+        "EmptyTop": "(intersection (sites Top) (sites Empty))",
+        "LastColumn": "(sites Column (column of:(last To)))",
+        "Distance": "(count Sites in:(intersection (sites Empty) \"LastColumn\"))",
+        "Drop": "(slide (from (last To)) S (between (exact \"Distance\")))"
     },
     "game": "\"Connect Four\" (players 2) (equipment { <Model:board> (piece \"Disc\" Each) }) (rules <Model:rules> )",
     "option": {

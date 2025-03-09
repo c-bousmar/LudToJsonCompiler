@@ -1,6 +1,5 @@
 {
     "define": {
-        "CondemnedState": "1",
         "CanPlaceKnight": "(or (is Empty (to)) (and (\"IsEnemyAt\" (to)) (\"IsEmptyOrSingletonStack\" (to)) ) )",
         "PossibleKnightSites": "(sites To (move Leap (from #1) { { F F R F } { F F L F } { F R F F } { F L F F } } (to if:(\"CanPlaceKnight\")) ) )",
         "MoveCondemnPiece": "(move Select (from if:(and (\"IsTopLevel\" (from)) (<= 2 (count Sites in:(\"PossibleKnightSites\" (from)))) ) ) (then (do (set Var \"CondemnedSite\" (last From)) next:(do (set State at:(var \"CondemnedSite\") (\"CondemnedState\")) next:(moveAgain) ) ) ) )",

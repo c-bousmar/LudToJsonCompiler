@@ -1,12 +1,12 @@
 {
     "define": {
-        "SiteToMoveOnTrackAtOne": "(\"NextSiteOnTrack\" 1",
-        "SiteToMoveOnTrackAtTwo": "(\"NextSiteOnTrack\" 2",
-        "SiteToMoveOnTrackAtThree": "(\"NextSiteOnTrack\" 3",
-        "SiteToMoveOnTrackAtFour": "(\"NextSiteOnTrack\" 4",
-        "SiteToMoveOnTrackAtFive": "(\"NextSiteOnTrack\" 5",
-        "SiteToMoveOnTrackAtSix": "(\"NextSiteOnTrack\" 6",
-        "RemoveAPiece": "(move Remove (from",
+        "SiteToMoveOnTrackAtOne": "(\"NextSiteOnTrack\" 1)",
+        "SiteToMoveOnTrackAtTwo": "(\"NextSiteOnTrack\" 2)",
+        "SiteToMoveOnTrackAtThree": "(\"NextSiteOnTrack\" 3)",
+        "SiteToMoveOnTrackAtFour": "(\"NextSiteOnTrack\" 4)",
+        "SiteToMoveOnTrackAtFive": "(\"NextSiteOnTrack\" 5)",
+        "SiteToMoveOnTrackAtSix": "(\"NextSiteOnTrack\" 6)",
+        "RemoveAPiece": "(move Remove (from))",
         "PieceMove": "(if (\"IsOffBoard\" #1) \"RemoveAPiece\" (if (\"NoEnemyOrOnlyOne\" #1) (move (from) (to #1 (\"HittingCapture\" (handSite (who at:(to)))) ) ) ) )",
         "UseDie": "(forEach Die if:(\"DieNotUsed\") #1 )"
     },

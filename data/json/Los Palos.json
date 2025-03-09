@@ -1,6 +1,6 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
         "SiteToMoveOnTrack": "(if (= (state at:(from)) 0) (\"NextSiteOnTrack\" (\"ThrowValue\") \"Track\") (if (= (state at:(from)) 1) (\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackLeft\") (\"NextSiteOnTrack\" (\"ThrowValue\") \"TrackRight\") ) )",
         "UpdateState": "(if (and (= (state at:(last To)) 0) (is In (last To) (sites \"CentralTrack\"))) (if (or (is Mover P1) (is Mover P2)) (set State at:(last To) 2) (set State at:(last To) 1) ) )"
     },

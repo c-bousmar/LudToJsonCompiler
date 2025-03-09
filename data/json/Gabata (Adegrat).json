@@ -1,7 +1,7 @@
 {
     "define": {
-        "NextHoleFrom": "(\"NextSiteOnTrack\" #2 from:#1",
-        "PlayFromNextHole": "(sites {(\"NextHoleFrom\" (last To afterConsequence:True) 1)}",
+        "NextHoleFrom": "(\"NextSiteOnTrack\" #2 from:#1)",
+        "PlayFromNextHole": "(sites {(\"NextHoleFrom\" (last To afterConsequence:True) 1)})",
         "OwnedHoles": "(if (is Mover P1) (sites (values Remembered \"OwnedP1\")) (sites (values Remembered \"OwnedP2\")) )",
         "OneRowIsEmpty": "(or (all Sites (sites P1) if:(= 0 (count at:(site)))) (all Sites (sites P2) if:(= 0 (count at:(site)))) )",
         "ForgetValue": "(if (is Mover P1) (forget Value \"OwnedP1\" #1) (forget Value \"OwnedP2\" #1) )",

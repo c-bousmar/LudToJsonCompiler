@@ -5,7 +5,6 @@
         "EnemyNotImmumned": "(and (\"IsEnemyAt\" (to)) (not (and { (\"IsPieceAt\" \"Pawn\" Next (to)) (is In (to) (sites Mover)) }) ) )",
         "NotSpecialPawn": "(and { (> (value Piece at:(last To)) 2) (is In (last To) (sites Next)) (= 0 (state at:(last To))) })",
         "PromoteToAssignedPiece": "(promote (last To) (piece (value Piece at:(last To))))",
-        "ValueOfPawnKingPower": "23",
         "HasToDoThirdPromotion": "(and (is In (last To) (sites Next)) (= 2 (state at:(last To))) )",
         "ThirdPromotionOfSpecialPawn": "(and { (set Value at:(last To) \"ValueOfPawnKingPower\") (set State at:(last To) 0) (forEach Site (sites Board) (if (= (if (is Mover P1) 11 12) (value Piece at:(site))) (set Value at:(site) \"ValueOfPawnKingPower\") ) ) })",
         "SitePawnCanCaptureTwice": "(forEach (sites Empty) if:(if (is Mover P1) (and (\"IsEnemyAt\" (ahead (site) NE)) (\"IsEnemyAt\" (ahead (site) NW))) (and (\"IsEnemyAt\" (ahead (site) SE)) (\"IsEnemyAt\" (ahead (site) SW))) ) )",

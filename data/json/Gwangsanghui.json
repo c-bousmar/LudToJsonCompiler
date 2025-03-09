@@ -1,7 +1,6 @@
 {
     "define": {
-        "MarshallMove": "(move [#]",
-        "AmbushCaptureEffect": "[?]",
+        "MarshallMove": "(move [#])",
         "CaptureMove": "(apply if:(\"IsEnemyAt\" (to)) (and (remove (to)) (if (= (what at:(to)) (id \"Ambush\" Next)) (\"AmbushCaptureEffect\") ) ) )",
         "CaptureMoveSlide": "(apply (and (remove (to)) (if (= (what at:(to)) (id \"Ambush\" Next)) (\"AmbushCaptureEffect\") ) ) )",
         "CaptureMoveCannon": "(apply if:(and (\"IsEnemyAt\" (to)) (!= (id \"Pao\" Next) (what at:(between)))) (and (remove (to)) (if (= (what at:(to)) (id \"Ambush\" Next)) (\"AmbushCaptureEffect\") ) ) )"

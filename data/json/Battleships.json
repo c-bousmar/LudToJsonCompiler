@@ -1,8 +1,7 @@
 {
     "define": {
-        "Hit": "1",
         "Waves": "(difference (sites Empty) (sites Hidden to:All))",
-        "DefinePiece": "(piece #3 Each) (tile #1 Each #2 (move (from if:(is In (from) (sites Hand Mover))) (to (intersection (sites Mover \"Defence\") (sites Empty))) (then (do (forEach Site (sites LargePiece at:(last To)) (remember Value (site)) (then (remove (last To))) ) next:(do (forEach Value (values Remembered) (add (piece (id #3 Mover)) (to (value)) (then (set State at:(last To) 0)) ) ) next:(forget Value All) ) ) ) ) )",
+        "DefinePiece": "(piece #3 Each)",
         "ClearShotSpace": "(set State at:(last From) (\"Hit\") (then (set Hidden at:(last From) False to:Mover #1 ) ) )",
         "CheckForVictory": "(if (and (>= (count Turns) 10) (= 0 (count Sites in:(intersection (sites Hidden to:Mover) (sites Occupied by:Next)))) ) (set Var (id Mover) (then (forEach Site (sites Board) (set Hidden at:(site) False to:Next) ) ) ) )",
         "DeclareVictory": "(if (= (id #1) (var)) (result #1 Win) )"

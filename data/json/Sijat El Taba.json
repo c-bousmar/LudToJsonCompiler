@@ -1,13 +1,13 @@
 {
     "define": {
         "StartSites": "(union (intersection (sites #1) (expand (sites Left) steps:2) ) (intersection (sites #1) (expand (sites Right) steps:2) ) )",
-        "ThrowValue": "(mapEntry (count Pips",
+        "ThrowValue": "(mapEntry (count Pips))",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to) (then (addScore Mover 1))) )",
         "CapturesAreImpossible": "(and (= (count Sites in:(difference (sites Occupied by:P1) (sites Top))) 0) (= (count Sites in:(difference (sites Occupied by:P2) (sites Bottom))) 0) )",
         "TabuleThrowOne": "(if (> (value Player Mover) 0) (set Value Mover (+ 1 (value Player Mover))) (set Value Mover 1) )",
-        "ReinitTabule": "(set Value Mover 0",
-        "InactivedPiece": "(= (state at:(from)) 0",
-        "ActivePiece": "(set State at:(last From) 1",
+        "ReinitTabule": "(set Value Mover 0)",
+        "InactivedPiece": "(= (state at:(from)) 0)",
+        "ActivePiece": "(set State at:(last From) 1)",
         "ActiveInactivedPiece": "(move Select (from (sites Occupied by:Mover) if:(\"InactivedPiece\")) (then (and (\"ActivePiece\") (moveAgain))) )"
     },
     "game": "\"Sijat El Taba\" (players 2) (equipment { (board (rectangle <Row:num> 10) { <Row:track> } ) (piece \"Marker\" Each (if (= (state at:(from)) 1) (or (if (\"IsNotOffBoard\" (\"NextSiteOnTrack\" (\"ThrowValue\"))) (if (or (is In (\"NextSiteOnTrack\" (\"ThrowValue\")) (sites Empty)) (\"IsEnemyAt\" (\"NextSiteOnTrack\" (\"ThrowValue\"))) ) (move (from) (to (\"NextSiteOnTrack\" (\"ThrowValue\")) \"CaptureEnemyPiece\" ) ) ) ) (if (\"IsNotOffBoard\" (\"NextSiteOnTrack\" (+ (value Player Mover) (\"ThrowValue\")))) (if (\"IsEnemyAt\" (\"NextSiteOnTrack\" (+ (value Player Mover) (\"ThrowValue\")))) (move (from) (to (\"NextSiteOnTrack\" (+ (value Player Mover) (\"ThrowValue\"))) \"CaptureEnemyPiece\" ) (then (\"ReinitTabule\")) ) ) ) ) ) ) (\"StickDice\" 3) (map {(pair 1 1) (pair 2 2) (pair 3 4) (pair 0 6)}) }) (rules (start { (place \"Marker1\" (\"StartSites\" Bottom)) (place \"Marker2\" (\"StartSites\" Top)) }) (play (\"RollMove\" (if (= (mapEntry (count Pips)) 1) (or (move Pass (then (and (\"TabuleThrowOne\") (moveAgain) ) ) ) (\"ActiveInactivedPiece\") ) (if (= (mapEntry (count Pips)) 2) (forEach Piece) (forEach Piece (then (moveAgain))) ) ) ) ) (end (if (\"CapturesAreImpossible\") (byScore))) )",

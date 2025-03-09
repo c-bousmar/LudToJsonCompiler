@@ -1,19 +1,19 @@
 {
     "define": {
         "AnyOfTheseSitesMeetThisCondition": "(< 0 (size Array (array (forEach #1 #2))))",
-        "Side1": "(union (sites Side NE) (sites Side N",
-        "Side2": "(union (sites Side SE) (sites Side S",
-        "Side3": "(union (sites Side NW) (sites Side SW",
+        "Side1": "(union (sites Side NE) (sites Side N))",
+        "Side2": "(union (sites Side SE) (sites Side S))",
+        "Side3": "(union (sites Side NW) (sites Side SW))",
         "NeighborCountOf": "(count Pieces #1 in:(sites Around (to) Orthogonal))",
-        "AddToEmpty": "(move Add (to (sites Empty)) (then <Protocol:type>",
-        "FlipFromTo": "(move Add (piece (id \"Disc\" #2)) (to (sites Occupied by:#1) if:(< (\"NeighborCountOf\" #2) ((\"NeighborCountOf\" #1))) (apply (remove (to)))",
-        "StonesOfIn": "(intersection (sites Occupied by:#1) #2",
+        "AddToEmpty": "(move Add (to (sites Empty)) (then <Protocol:type> ))",
+        "FlipFromTo": "(move Add (piece (id \"Disc\" #2)) (to (sites Occupied by:#1) if:(< (\"NeighborCountOf\" #2) ((\"NeighborCountOf\" #1))) (apply (remove (to))) ))",
+        "StonesOfIn": "(intersection (sites Occupied by:#1) #2)",
         "IsWinningConnectionAtSite": "(is Connected 3 at:#1 { \"Side1\" \"Side2\" \"Side3\" })",
-        "IsConnectedAtStartOfFirstMove": "(and (is Next (next)) (\"IsConnectedPlayer\")) (and (= 1) (\"IsConnectedPlayer\" ))",
-        "P1Colour": "(colour DarkGreen",
-        "P2Colour": "(colour White",
-        "BoardColour": "(colour 215 203 170",
-        "EdgesOfSide": "(intersection (sites Outer Edge) (forEach of:(difference #1 (sites Corners Vertex)) (sites Incident Edge of:Vertex at:(site))"
+        "IsConnectedAtStartOfFirstMove": "(and (is Next (next)) (\"IsConnectedPlayer\"))",
+        "P1Colour": "(colour DarkGreen)",
+        "P2Colour": "(colour White)",
+        "BoardColour": "(colour 215 203 170)",
+        "EdgesOfSide": "(intersection (sites Outer Edge) (forEach of:(difference #1 (sites Corners Vertex)) (sites Incident Edge of:Vertex at:(site)) ))"
     },
     "game": "\"00'Y'\" (players 2) (equipment { (board <Board:size> use:Vertex) (piece \"Disc\" Each ) (piece \"Counter\" Neutral maxState:2) } ) (rules (play (priority { (if (\"SameTurn\") <Flipping:move> ) (\"AddToEmpty\") } (then (if (or (= 1 (var \"MoveInTurn\")) (can Move <Flipping:move>) ) (moveAgain) (if (\"AnyOfTheseSitesMeetThisCondition\" (sites Occupied by:<Winning:player>) if:(\"IsWinningConnectionAtSite\" (site)) ) (trigger \"Win\" <Winning:player> ) ))))) (end { (if (is Triggered \"Win\" <Winning:player>) (result <Winning:player> Win) ) (if (and (no Moves Mover) (\"AnyOfTheseSitesMeetThisCondition\" (sites Occupied by:<Winning:player>) if:(\"IsWinningConnectionAtSite\" (site)) )) (result <Winning:player> Win) ) }",
     "option": {

@@ -1,21 +1,17 @@
 {
     "define": {
-        "IsSupplierAt": "(and (not (is Empty #1)) (not (\"IsWarehouseAt\" #1))",
-        "IsWarehouseAt": "(is Pattern <Board:pattern1> from:#1",
-        "AllWarehousesOf": "(forEach (sites Occupied by:#1) if:(\"IsWarehouseAt\" (site))",
-        "ChainAt": "(sites Group at:#1 <Grid:dirChains>",
-        "SuppliersAroundChainAt": "(sites Around (\"ChainAt\" #1) <Grid:dirChains> if:(\"IsSupplierAt\" (to))",
-        "WarehousesinChainAt": "(forEach (\"ChainAt\" #1) if:(\"IsWarehouseAt\" (site))",
-        "IsDeficitInChainAt": "(< (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1)))",
-        "DeficitWarehousesOf": "(forEach (sites Occupied by:#1) if:(and (\"IsWarehouseAt\" (site)) (\"IsDeficitInChainAt\" (site))",
-        "SurplusGoodsChainAt": "(- (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1)))",
-        "UpdateSurplusesToDisplayFor": "(forEach Value (array (sites Occupied by:#1)) (set Value at:(value) (max 0 (\"SurplusGoodsChainAt\" (value))))",
-        "Score": "(and (\"ScoreFor\" P1) (\"ScoreFor\" P2",
-        "ScoreFor": "(set Score #1 (size Array (array (\"AllWarehousesOf\" #1",
-        "HexPattern": "{F R R F R R F}",
-        "SquarePattern1": "{F R R F R F R}",
-        "SquarePattern2": "{F R F}",
-        "SquarePattern3": "{F L F}"
+        "IsSupplierAt": "(and (not (is Empty #1)) (not (\"IsWarehouseAt\" #1)) )",
+        "IsWarehouseAt": "(is Pattern <Board:pattern1> from:#1)",
+        "AllWarehousesOf": "(forEach (sites Occupied by:#1) if:(\"IsWarehouseAt\" (site)) )",
+        "ChainAt": "(sites Group at:#1 <Grid:dirChains>)",
+        "SuppliersAroundChainAt": "(sites Around (\"ChainAt\" #1) <Grid:dirChains> if:(\"IsSupplierAt\" (to)) )",
+        "WarehousesinChainAt": "(forEach (\"ChainAt\" #1) if:(\"IsWarehouseAt\" (site)) )",
+        "IsDeficitInChainAt": "(< (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1))) )",
+        "DeficitWarehousesOf": "(forEach (sites Occupied by:#1) if:(and (\"IsWarehouseAt\" (site)) (\"IsDeficitInChainAt\" (site)) ))",
+        "SurplusGoodsChainAt": "(- (size Array (array (\"SuppliersAroundChainAt\" #1))) (size Array (array (\"WarehousesinChainAt\" #1))) )",
+        "UpdateSurplusesToDisplayFor": "(forEach Value (array (sites Occupied by:#1)) (set Value at:(value) (max 0 (\"SurplusGoodsChainAt\" (value)))) )",
+        "Score": "(and (\"ScoreFor\" P1) (\"ScoreFor\" P2))",
+        "ScoreFor": "(set Score #1 (size Array (array (\"AllWarehousesOf\" #1))))"
     },
     "game": "\"SupplierSabotage\" (players 2) (equipment { <Board:used> (piece \"Barn\" Each) } ) (rules (play (if (\"NewTurn\") (or { (move Add (to (sites Empty) if:(!= (to) (value Player Mover)) )) (move Pass) } ) (priority (move Select (from (\"DeficitWarehousesOf\" Mover)) (then (remove (last From) (then (set Value Mover (last To))) ))) (move Select (from (\"DeficitWarehousesOf\" Next)) (then (remove (last From)) ))) (then (and { (\"UpdateSurplusesToDisplayFor\" Mover) (\"UpdateSurplusesToDisplayFor\" Next) (\"Score\") } (then (if (< 0 (count Sites in:(\"DeficitWarehousesOf\" All))) (moveAgain) ) ) )))) (end { (if (and { (or (all Passed) (no Moves Mover)) (no Pieces in: (\"DeficitWarehousesOf\" All)) (= (score P1) (score P2)) } ) (byScore {(score P1 (count Pieces P1)) (score P2 (count Pieces P2))}) ) (if (and { (or (all Passed) (no Moves Mover)) (no Pieces in: (\"DeficitWarehousesOf\" All)) (!= (score P1) (score P2)) } ) (byScore) ) }",
     "option": {

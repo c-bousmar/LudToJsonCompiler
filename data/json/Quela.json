@@ -1,6 +1,5 @@
 {
     "define": {
-        "Columns": "<Board:size>",
         "LeftMostCounters": "(all Sites (difference (sites Mover \"Home\") (mapEntry \"LeftMost\" Mover)) if:(> (count at:(mapEntry Mover)) (count at:(site))) )",
         "OnlyOneInInner": "(all Sites (sites Mover \"Inner\") if:(= 1 (count at:(site))) )",
         "SitesWithMaxCounter": "(forEach (sites Mover \"Home\") if:(= (max (results from:(sites Mover \"Home\") to:(sites Mover \"Home\") (count at:(to)) ) ) (count at:(site)) ) )"

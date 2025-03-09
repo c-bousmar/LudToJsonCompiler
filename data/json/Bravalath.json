@@ -1,7 +1,5 @@
 {
-    "define": {
-        "NumTiles": "24"
-    },
+    "define": {},
     "game": "\"Bravalath\" (players 2) (equipment { (boardless <Tiling:type>) (tile <Tiling:tile> Each <Tiling:numSides>) }) (rules (start { (place <Tiling:piece1> (centrePoint)) (place <Tiling:piece2> (ahead (centrePoint) E)) }) (play (move Add (to (sites Playable) if:(<= 1 (count Sites in:(sites Around (to) NotEmpty)) ) ) ) ) (end { (if (is Line 4) (result Mover Win)) (if (is Line 3) (result Mover Loss)) }) )",
     "option": {
         "Tiling": {

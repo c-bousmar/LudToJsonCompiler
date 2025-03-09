@@ -1,9 +1,9 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry (count Pips",
-        "ActivatePiece": "(if (= (state at:(last To)) 1) (set State at:(last To) 0",
-        "ActivatedPiece": "(= (state at:(from)) 0",
-        "InactivePiece": "(= (state at:(from)) 1",
+        "ThrowValue": "(mapEntry (count Pips))",
+        "ActivatePiece": "(if (= (state at:(last To)) 1) (set State at:(last To) 0))",
+        "ActivatedPiece": "(= (state at:(from)) 0)",
+        "InactivePiece": "(= (state at:(from)) 1)",
         "CaptureEnemyPiece": "(apply if:(\"IsEnemyAt\" (to)) (remove (to)) )",
         "AllPieceInOpponentHome": "(and (= (count Sites in:(difference (sites Occupied by:P1) (sites P2))) 0) (= (count Sites in:(difference (sites Occupied by:P2) (sites P1))) 0) )"
     },

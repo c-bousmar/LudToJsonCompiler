@@ -1,6 +1,6 @@
 {
     "define": {
-        "PlayerSecondPhase": "(var",
+        "PlayerSecondPhase": "(var)",
         "SetPlayerSecondPhase": "(and (if (and (< (var) 1) (is Line 3)) (set Var #1) ) (if (and (\"HandEmpty\" P1) (\"HandEmpty\" P2)) (if (< (\"PlayerSecondPhase\") 1) (moveAgain) (set NextPlayer (player (\"PlayerSecondPhase\"))) ) ) )",
         "IfLine3MoveAgain": "(then (if (and (\"NewTurn\") (is Line 3)) (moveAgain) (if (no Moves Next) (and (moveAgain) (set Pending)) ) ) )",
         "RemoveEnemyPiece": "(move Remove (sites Occupied by:Next container:\"Board\") #1 )",

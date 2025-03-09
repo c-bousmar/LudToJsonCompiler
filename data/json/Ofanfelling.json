@@ -1,10 +1,10 @@
 {
     "define": {
-        "SiteToSelect": "(\"NextSiteOnTrack\" (- (pips) 1) from:(mapEntry \"StartTrack\" (mover",
-        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (pips",
-        "RemoveAPiece": "(move Remove (from",
-        "PieceUnstacked": "(= (state at:#1) 1",
-        "PieceStacked": "(= (state at:#1) 0",
+        "SiteToSelect": "(\"NextSiteOnTrack\" (- (pips) 1) from:(mapEntry \"StartTrack\" (mover)))",
+        "SiteToMoveOnTrack": "(\"NextSiteOnTrack\" (pips))",
+        "RemoveAPiece": "(move Remove (from))",
+        "PieceUnstacked": "(= (state at:#1) 1)",
+        "PieceStacked": "(= (state at:#1) 0)",
         "Unstack": "(forEach Level (last To) (set State at:(last To) level:(level) 1) )",
         "Stack": "(forEach Level (last To) (set State at:(last To) level:(level) 0) )"
     },

@@ -1,8 +1,7 @@
 {
     "define": {
-        "Columns": "8",
-        "NoPiecesInInner": "(all Sites (sites #1 \"Inner\") if:(= 0 (count at:(site",
-        "NextHole": "(\"NextSiteOnTrack\" #3 from:#1 #2",
+        "NoPiecesInInner": "(all Sites (sites #1 \"Inner\") if:(= 0 (count at:(site))))",
+        "NextHole": "(\"NextSiteOnTrack\" #3 from:#1 #2)",
         "Sowing": "(sow count:(if (!= (value Player Mover) 1) (if (is In (last From) (sites \"SquaresHoles\")) (if (<= (count at:(from)) 6) (count at:(last From)) (min 1 (count at:(last From))) ) (count at:(last From)) ) (count at:(last From)) ) #1 owner:(mover) apply:(if (is In (to) (sites Mover \"Inner\")) (if (is Occupied (\"OppositePit\" (to))) (and { (moveAgain) (set Pending) (if (is In (to) (expand (sites Right))) (set Var \"Side\" 2) (if (is In (to) (expand (sites Left))) (set Var \"Side\" 1) (set Var \"Side\" 0) ) ) }) (if (< 1 (count at:(to))) (if (or (= 1 (value Player Mover)) (and (!= 1 (value Player Mover)) (not (is In (to) (sites \"SquaresHoles\"))))) (and { (moveAgain) (set Var \"Replay\" (to)) (set Var \"Direction\" #2) }) (set Var \"Direction\" 0) ) ) ) (if (< 1 (count at:(to))) (if (or (= 1 (value Player Mover)) (and (!= 1 (value Player Mover)) (not (is In (to) (sites \"SquaresHoles\"))))) (and { (moveAgain) (set Var \"Replay\" (to)) (set Var \"Direction\" #2) }) (set Var \"Direction\" 0) ) ) ) (then (if (and {(!= 1 (value Player Mover)) (is In (last From) (sites \"SquaresHoles\")) (< (count at:(last From)) 6)}) (set Value Mover 1) ) ) )",
         "AllHolesEmptyExceptLeftMost": "(all Sites (difference (sites Mover \"Inner\") (mapEntry \"LeftMostInner\" Mover)) if:(is Empty (site)))",
         "AllHolesEmptyExceptRightMost": "(all Sites (difference (sites Mover \"Inner\") (mapEntry \"RightMostInner\" Mover)) if:(is Empty (site)))"

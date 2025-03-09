@@ -8,7 +8,7 @@
         "EdgeInCommon": "(intersection (sites Incident Edge of:Cell at:#1) (sites Incident Edge of:Cell at:#2) )",
         "NoEdgeBetweenCells": "(all Sites (\"EdgeInCommon\" #1 #2) if:(is Empty Edge (site)) )",
         "EdgeBetweenCells": "(not (all Sites (\"EdgeInCommon\" #1 #2) if:(is Empty Edge (site)) ) )",
-        "DirectionBetweenSites": "(directions from:#1 to:#2",
+        "DirectionBetweenSites": "(directions from:#1 to:#2)",
         "NoWallBetweenFromTo": "(all Sites (sites Between (directions Cell from:#1 to:#2) from:#1 fromIncluded:True to:#2) if:(not (\"EdgeBetweenCells\" (site) (ahead (site) (directions Cell from:#1 to:#2)))) )",
         "NoVertexUsedByWallBetweenCells": "(all Sites (\"VerticesInCommon\" #1 #2) if:(all Sites (\"EdgesOfVertex\" (site)) if:(is Empty Edge (site)) ) )",
         "VertexUsedByWallBetweenCells": "(not (\"NoVertexUsedByWallBetweenCells\" #1 #2))",

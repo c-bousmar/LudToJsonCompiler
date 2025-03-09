@@ -1,7 +1,6 @@
 {
     "define": {
-        "Columns": "8",
-        "NoPiecesInInner": "(all Sites (sites #1 \"Inner\") if:(= 0 (count at:(site",
+        "NoPiecesInInner": "(all Sites (sites #1 \"Inner\") if:(= 0 (count at:(site))))",
         "Sowing": "(sow #1 owner:(mover) apply:(if (is In (to) (sites Mover \"Inner\")) (if (is Occupied (\"OppositePit\" (to))) (and { (moveAgain) (set Pending) (if (is In (to) (expand (sites Right))) (set Value Mover 2) (if (is In (to) (expand (sites Left))) (set Value Mover 1) (set Value Mover 0) ) ) }) (if (< 1 (count at:(to))) (and { (moveAgain) (set Var \"Replay\" (to)) (set Var \"Direction\" #2) }) ) ) (if (< 1 (count at:(to))) (and { (moveAgain) (set Var \"Replay\" (to)) (set Var \"Direction\" #2) }) ) ) )",
         "SowingPhase2": "(move Select (from (sites Mover) if:(is Occupied (from)) ) (then (sow #1 owner:(mover) apply:(if (< 1 (count at:(to))) (and { (moveAgain) (set Var \"Replay\" (to)) (set Var \"Direction\" #2) }) ) ) ) )"
     },

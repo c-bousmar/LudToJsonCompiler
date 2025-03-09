@@ -1,7 +1,6 @@
 {
     "define": {
-        "NumPieces": "[1..16]",
-        "DieNotUsed": "(!= (pips) 0",
+        "DieNotUsed": "(!= (pips) 0)",
         "NextSiteFrom": "(trackSite Move from:#1 steps:(pips) )"
     },
     "game": "\"Len Sake\" <Variant>",

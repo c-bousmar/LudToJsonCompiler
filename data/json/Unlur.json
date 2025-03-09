@@ -3,7 +3,7 @@
         "IsSidesConnected": "(is Connected {(sites Side #1) (sites Side #2) #3})",
         "WhiteVC": "(or { (\"IsSidesConnected\" S N) (\"IsSidesConnected\" SW NE) (\"IsSidesConnected\" SE NW) })",
         "BlackVC": "(or (\"IsSidesConnected\" S NW (sites Side NE)) (\"IsSidesConnected\" N SW (sites Side SE)) )",
-        "IsPlayingPhase": "(= 1 (var"
+        "IsPlayingPhase": "(= 1 (var))"
     },
     "game": {},
     "option": {},

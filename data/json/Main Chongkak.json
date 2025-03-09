@@ -1,8 +1,7 @@
 {
     "define": {
-        "Columns": "<Board:size>",
-        "PlayableSites": "(sites (values Remembered \"Playable\"",
-        "NoPieceOnBoard": "(all Sites (union (sites Top) (sites Bottom)) if:(= 0 (count at:(site",
+        "PlayableSites": "(sites (values Remembered \"Playable\"))",
+        "NoPieceOnBoard": "(all Sites (union (sites Top) (sites Bottom)) if:(= 0 (count at:(site))))",
         "OneRowIsEmpty": "(or (all Sites (sites Bottom) if:(= 0 (count at:(site)))) (all Sites (sites Top) if:(= 0 (count at:(site)))) )",
         "RightMostEmpty": "(trackSite FirstSite from:(mapEntry \"RightMost\" Mover) if:(is Empty (to)) )"
     },

@@ -1,7 +1,7 @@
 {
     "define": {
-        "OneMoreToMove": "(is Pending",
-        "TwoPieceToMove": "(set Pending",
+        "OneMoreToMove": "(is Pending)",
+        "TwoPieceToMove": "(set Pending)",
         "AllVerticesOfCell": "(sites Incident Vertex of:Cell at:(site))",
         "HexFilled": "(= 6 (count Sites in:\"AllVerticesOfCell\") )",
         "SquareFilled": "(= 4 (count Sites in:\"AllVerticesOfCell\") )",

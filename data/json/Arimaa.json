@@ -1,17 +1,17 @@
 {
     "define": {
         "NotFrozen": "(\"NoSites\" (sites Around (from) Orthogonal if:(and (\"IsEnemyAt\" (to)) (> (value Piece at:(to)) (value Piece at:(from))) ) ) )",
-        "Frozen": "(not \"NotFrozen\"",
+        "Frozen": "(not \"NotFrozen\")",
         "NotProtectedBy": "(\"NoSites\" (sites Around #1 Orthogonal if:(= (who at:(to)) #2) ) )",
-        "ProtectedBy": "(not (\"NotProtectedBy\" (from) #1",
-        "NotMyLastMove": "(< (count MovesThisTurn) 3",
+        "ProtectedBy": "(not (\"NotProtectedBy\" (from) #1))",
+        "NotMyLastMove": "(< (count MovesThisTurn) 3)",
         "WillPushAPiece": "(and { \"NotMyLastMove\" (not (\"NoSites\" (sites Around (to) Orthogonal if:(is Empty (to))))) (\"IsEnemyAt\" (to)) (< (value Piece at:(to)) (value Piece at:(from))) })",
         "PieceMove": "(move Step #1 (to if:(and (or \"NotFrozen\" (and (\"Frozen\") (\"ProtectedBy\" Mover)) ) (or (is Empty (to)) \"WillPushAPiece\" ) ) (apply (fromTo (from (to)) (to (handSite Mover)) ) ) ) )",
         "AllPieceInATrapAreRemoved": "(forEach Site (sites \"Traps\") (if (or (and (= (who at:(to)) P1) (\"NotProtectedBy\" (site) P1)) (and (= (who at:(to)) P2) (\"NotProtectedBy\" (site) P2)) ) (do (set Pending (value Piece at:(to))) next:(remove (to))) ) )",
-        "HasToPushAPiece": "(is Occupied (handSite Mover",
+        "HasToPushAPiece": "(is Occupied (handSite Mover))",
         "PushThePiece": "(move (from (handSite Mover)) (to (sites Around (last To) Orthogonal if:(and (!= (last From) (to)) (is Empty (to))))) (then (and \"AllPieceInATrapAreRemoved\" (if \"NotMyLastMove\" (moveAgain) (remember State) ) ) ) )",
         "PullAPiece": "(move (from (sites Around (last From) Orthogonal if:(and (\"IsEnemyAt\" (to)) (if (and (is In (last To) (sites \"Traps\")) (is Pending)) (< (value Piece at:(to)) (value Pending)) (< (value Piece at:(to)) (value Piece at:(last To))) ) ) ) ) (to (last From)) )",
-        "FinishMyTurn": "(move Pass (then (remember State",
+        "FinishMyTurn": "(move Pass (then (remember State)))",
         "RabbitReachedGoal": "(if (!= 0 (count Sites in:(forEach (sites Occupied by:#1 component:\"Rabbit\") if:(is In (site) (sites #1 \"Goal\")) ) ) ) (result #1 #2) )",
         "NoRabbit": "(if (and (not (\"IsPieceAt\" \"Rabbit\" #1 (handSite #2))) (\"NoSites\" (sites Occupied by:#1 component:\"Rabbit\")) ) (result #2 #3) )"
     },

@@ -1,6 +1,5 @@
 {
     "define": {
-        "Columns": "6",
         "NoFreeSeed": "(all Sites (forEach (sites Board) if:(= 0 (state at:(site)))) if:(= 0 (count at:(site))))",
         "PiecesOwnedBy": "(+ (count Cell at:(handSite #1)) (count in:(forEach (sites Board) if:(= (id #1) (state at:(site))))) )"
     },

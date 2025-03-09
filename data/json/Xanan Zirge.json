@@ -1,6 +1,6 @@
 {
     "define": {
-        "SquarePattern": "(is Pattern {F R F R F R F} #1",
+        "SquarePattern": "(is Pattern {F R F R F R F} #1)",
         "RemoveEnemyPieceNotInLine3AndNotInSquare": "(move Remove (forEach (sites Occupied by:Next container:\"Board\") if:(and (not (is Line 3 All through:(site))) (not (\"SquarePattern\" from:(site)))) ) )",
         "IfLine3OrSquareMoveAgain": "(then (if (or (is Line 3 All) (\"SquarePattern\")) (moveAgain) ) )"
     },

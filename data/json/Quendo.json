@@ -1,7 +1,5 @@
 {
     "define": {
-        "Columns": "8",
-        "NumSeed": "<Sow:numSeed>",
         "LeftMost": "(trackSite FirstSite from:(trackSite FirstSite if:(not (is Mover (who at:(to))))) if:(is Mover (who at:(to))) )"
     },
     "game": "\"Quendo\" (players 4) (equipment { <Board:board> (piece \"Seed\" Each) (hand Each) }) (rules <Board:start> (play (if (!= 1 (count Pieces Mover)) (move Select (from (\"LeftMost\") ) (then (sow sowEffect:(if (and (!= (mover) (what at:(to))) (is Occupied (to))) (and (remove (to) count:(count at:(to))) (add (piece (id \"Seed\" Mover)) (to (to)) count:(count at:(to))) ) ) ) ) ) (move (from (\"LeftMost\")) (to (trackSite FirstSite from:(from) if:(\"IsEnemyAt\" (to))) (apply (and (remove (to) count:(count at:(to))) (add (piece (id \"Seed\" Mover)) (to (to)) count:(count at:(to))) ) ) ) ) ) ) (end (forEach NonMover if:(no Pieces Player) (result Player Loss) ) ) )",

@@ -1,10 +1,9 @@
 {
     "define": {
-        "RemovePiece": "<Version:removeRule>",
         "SlideOrChangeDirection": "(or (move Slide #1 (between #2) (to if:(\"IsEnemyAt\" (to)) (apply \"RemovePiece\") ) ) (move Set Rotation) )",
         "StepOrChangeDirection": "(or (move Step #1 (to if:(not (\"IsFriendAt\" (to))) (apply \"RemovePiece\") ) #2 ) (move Set Rotation) )",
-        "CaptureCommandeOf": "(trigger \"CommanderCaptured\" #1",
-        "CommanderOfWasCapture": "(is Triggered \"CommanderCaptured\" #1"
+        "CaptureCommandeOf": "(trigger \"CommanderCaptured\" #1)",
+        "CommanderOfWasCapture": "(is Triggered \"CommanderCaptured\" #1)"
     },
     "game": "\"Ploy\" (players <Version:numPlayers>) (equipment { (board (square 9) use:Vertex) <Version:rulesCommander> (piece \"Commander\" Each (\"StepOrChangeDirection\" (directions {FR FL BL BR} of:All))) (piece \"Shield\" Each (\"StepOrChangeDirection\" (directions Forward of:All) (then (moveAgain)))) (piece \"LanceW\" Each (\"SlideOrChangeDirection\" (directions Forwards of:All) (max 3))) (piece \"LanceY\" Each (\"SlideOrChangeDirection\" (directions {FR FL Backward} of:All) (max 3))) (piece \"LanceT\" Each (\"SlideOrChangeDirection\" (directions {Forward Rightward Leftward} of:All) (max 3))) (piece \"ProbeI\" Each (\"SlideOrChangeDirection\" (directions {Forward Backward} of:All) (max 2))) (piece \"ProbeMinV\" Each (\"SlideOrChangeDirection\" (directions {Forward FR} of:All) (max 2))) (piece \"ProbeBigV\" Each (\"SlideOrChangeDirection\" (directions {FR FL} of:All) (max 2))) }) (rules (start { <Version:start> }) (play (if \"SameTurn\" (or (move Set Rotation (to (last To))) (move Pass) ) (forEach Piece <Version:consequence>) ) ) <Version:endRules> )",
     "option": {

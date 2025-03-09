@@ -1,8 +1,8 @@
 {
     "define": {
-        "ThrowValue": "(mapEntry \"Throw\" (count Pips",
-        "SpecialThrows": "(is In (\"ThrowValue\") (sites {4 5}",
-        "NextSiteFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2",
+        "ThrowValue": "(mapEntry \"Throw\" (count Pips))",
+        "SpecialThrows": "(is In (\"ThrowValue\") (sites {4 5}))",
+        "NextSiteFrom": "(\"NextSiteOnTrack\" #3 from:#1 #2)",
         "Move": "(or (forEach Piece top:True) (forEach Piece container:(mover) top:True))",
         "MoveOnTrack": "(if (is In (from) (sites Track #2 #1)) (forEach Value (values Remembered \"Throws\") (or (if (\"IsOffBoard\" (\"NextSiteFrom\" (from) #1 (value))) (do (forget Value \"Throws\" (value)) next:(move Remove (from) level:(level)) ) ) (move (from (from) level:(level)) (to (\"NextSiteFrom\" (from) #1 (value)) if:(\"NoEnemyOrOnlyOne\" (to)) (apply (and (if (\"IsEnemyAt\" (to)) (fromTo (from (to)) (to (handSite (who at:(to)))) ) ) (forget Value \"Throws\" (value)) ) ) ) (then (if (and (!= (last From) (handSite Mover)) (is Occupied (last From))) (forEach Level (last From) FromTop (fromTo (from (last From) level:(level)) (to (last To)) ) ) ) ) ) (then (if (!= 0 (size Array (values Remembered \"Throws\"))) (moveAgain))) ) ) )"
     },

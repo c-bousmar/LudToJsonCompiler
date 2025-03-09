@@ -1,11 +1,9 @@
 {
     "define": {
-        "NumRow": "<Num:row>",
-        "NumColumn": "4",
-        "TopRow": "(+ 2 (* 3 (- \"NumRow\" 1",
-        "NumTry": "(var",
-        "RowToPlace": "(- \"TopRow\" (* 3 (\"NumTry\"",
-        "RowToCheck": "(- \"TopRow\" (* 3 (- (\"NumTry\") 1",
+        "TopRow": "(+ 2 (* 3 (- \"NumRow\" 1)))",
+        "NumTry": "(var)",
+        "RowToPlace": "(- \"TopRow\" (* 3 (\"NumTry\")))",
+        "RowToCheck": "(- \"TopRow\" (* 3 (- (\"NumTry\") 1)))",
         "HintPositions": "(union (sites Row (+ \"RowToPlace\" 1)) (sites Row (- \"RowToPlace\" 1)) )",
         "RightPositionAndColor": "(= (what at:(regionSite (sites Row (\"RowToPlace\")) index:(value))) (what at:(coord row:0 column:(value))) )",
         "ColorInSolution": "(is In (what at:(regionSite (sites Bottom) index:(value))) (results from:(sites Row (\"RowToPlace\")) to:0 (what at:(from))) )",

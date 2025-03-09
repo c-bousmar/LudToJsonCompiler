@@ -2,7 +2,7 @@
     "define": {
         "RemoveCutBranch": "(forEach Site (sites Group Edge at:(site)) (remove Edge (site)) )",
         "NotConnectedToTheGround": "(= 0 (count Sites in:(intersection (\"Ground\") (sites Group Edge at:(site) if:(is Occupied (to))) ) ) )",
-        "Ground": "(sites Bottom"
+        "Ground": "(sites Bottom)"
     },
     "game": "\"Hackenbush\" (players 2) (equipment { (board <Board:type> use:Edge) (piece \"Marker\" Each) (piece \"Disc\" Shared) (piece \"Cross\" Neutral) (regions All (expand (sites Bottom))) }) (rules (start { (set Neutral Edge (\"Ground\")) <Version:start> }) (play (move Remove <Version:play> (then (forEach Site (sites Incident Edge of:Edge at:(last To)) (if (\"NotConnectedToTheGround\") (\"RemoveCutBranch\") ) ) ) ) ) (end (if (no Moves Mover) (result Next Win)) ) )",
     "option": {
